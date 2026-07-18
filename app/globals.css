@@ -1,26 +1,253 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/ppneuemontreal-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/ppneuemontreal-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/ppneuemontreal-book.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --accent: #cf0023;
+  --media-placeholder: #d9d9d9;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --content-max: 1440px;
+  --nav-rail: 64px;
+  --font-pp-neue-montreal: "PP Neue Montreal";
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-accent: var(--accent);
+  --color-media-placeholder: var(--media-placeholder);
+  --font-sans: var(--font-pp-neue-montreal);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@keyframes media-tile-rise {
+  from {
+    transform: translate3d(0, calc(100vh + 240px), 0);
+  }
+
+  to {
+    transform: translate3d(0, -240px, 0);
+  }
+}
+
+@keyframes media-tile-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes photo-carousel-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.media-stream-item {
+  pointer-events: auto;
+  animation: media-tile-rise var(--tile-duration) linear var(--tile-delay) 1
+    both;
+  will-change: transform;
+}
+
+.media-stream-item--enter {
+  animation:
+    media-tile-rise var(--tile-duration) linear var(--tile-delay) 1 both,
+    media-tile-fade-in var(--fade-duration) ease-out var(--fade-delay) 1 both;
+}
+
+.media-tile-enter {
+  animation: media-tile-fade-in var(--fade-duration) ease-out var(--fade-delay)
+    1 both;
+}
+
+.photo-carousel-track {
+  animation: photo-carousel-scroll 48s linear infinite;
+}
+
+.photo-carousel-track:hover,
+.photo-carousel-track:focus-within {
+  animation-play-state: paused;
+}
+
+.projects-overlay-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) #e5e5e5;
+}
+
+.projects-overlay-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.projects-overlay-scroll::-webkit-scrollbar-track {
+  background: #e5e5e5;
+  border-radius: 20px;
+}
+
+.projects-overlay-scroll::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 20px;
+}
+
+.media-stream-item:hover,
+.media-stream-item:focus-within {
+  z-index: 30;
+  animation-play-state: paused;
+}
+
+.home-featured {
+  --focus-dim: rgb(0 0 0 / 40%);
+  --focus-dim-duration: 320ms;
+  --focus-dim-ease: ease-out;
+}
+
+/*
+  Stream always stays above the page veil so hover-leave doesn't
+  re-stack tiles under the background fade (which desynced the easing).
+*/
+.home-featured > ul {
+  z-index: 30;
+}
+
+/* Dim chrome / empty page area */
+.home-featured::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 22;
+  background: var(--focus-dim);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--focus-dim-duration) var(--focus-dim-ease);
+}
+
+.home-featured:has(.media-tile:hover)::after,
+.home-featured:has(.media-tile:focus-visible)::after {
+  opacity: 1;
+}
+
+/* Dim every other list item with the same fade as the page veil */
+.media-stream-item,
+.media-tile-enter {
+  isolation: isolate;
+}
+
+.media-stream-item::before,
+.media-tile-enter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: var(--focus-dim);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--focus-dim-duration) var(--focus-dim-ease);
+}
+
+.home-featured:has(.media-tile:hover) .media-stream-item:not(:hover):not(:focus-within)::before,
+.home-featured:has(.media-tile:focus-visible) .media-stream-item:not(:hover):not(:focus-within)::before,
+.home-featured:has(.media-tile:hover) .media-tile-enter:not(:has(.media-tile:hover)):not(:has(.media-tile:focus-visible))::before,
+.home-featured:has(.media-tile:focus-visible) .media-tile-enter:not(:has(.media-tile:hover)):not(:has(.media-tile:focus-visible))::before {
+  opacity: 1;
+}
+
+/* Seamless page-to-page crossfade (View Transitions API). */
+@keyframes page-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 450ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
+}
+
+::view-transition-old(root) {
+  animation-name: page-fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: page-fade-in;
+}
+
+::view-transition-group(root) {
+  animation-duration: 450ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-stream-item,
+  .media-stream-item--enter {
+    animation: none;
+  }
+
+  .photo-carousel-track {
+    animation: none;
+  }
+
+  .media-tile-enter {
+    animation: media-tile-fade-in var(--fade-duration) ease-out var(--fade-delay)
+      1 both;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
