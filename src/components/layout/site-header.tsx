@@ -31,6 +31,14 @@ export function SiteHeader({
         </div>
       ) : null}
 
+      {mode === "project" ? (
+        <Link
+          href="/"
+          className="pointer-events-auto absolute left-[23px] top-[26px] z-40 size-[30px] rounded-full bg-accent transition-opacity hover:opacity-80"
+          aria-label="Back to home"
+        />
+      ) : null}
+
       <nav
         aria-label="Primary"
         className="pointer-events-auto absolute right-[15px] top-5 flex items-center gap-2 text-sm font-medium uppercase text-accent md:text-xl lg:right-[23px] lg:top-1/2 lg:-translate-y-1/2 lg:flex-col lg:items-center lg:gap-3 lg:text-[32px]"
@@ -79,7 +87,7 @@ export function SiteHeader({
           Caloid
         </Link>
       ) : projectTitle ? (
-        <p className="pointer-events-none absolute bottom-4 right-[15px] max-w-[70%] truncate text-right text-4xl font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-6xl lg:bottom-0 lg:right-[23px] lg:max-w-none lg:text-[128px]">
+        <p className="project-title pointer-events-none absolute bottom-4 right-[15px] truncate text-right font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 lg:bottom-0 lg:right-[23px]">
           {projectTitle}
         </p>
       ) : null}

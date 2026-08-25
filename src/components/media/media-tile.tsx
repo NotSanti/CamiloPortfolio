@@ -2,61 +2,136 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, type PointerEvent as ReactPointerEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
+import dynamic from "next/dynamic";
 import { createPortal } from "react-dom";
 import type { Project } from "@/types/projects";
+
+const ProjectMuxVideo = dynamic(
+  () =>
+    import("@/src/components/media/project-mux-video").then(
+      (mod) => mod.ProjectMuxVideo,
+    ),
+  { ssr: false },
+);
 
 type MediaTileProps = {
   project: Project;
   className?: string;
   priority?: boolean;
+  /** When false, pause/unmount video (e.g. projects overlay is open). */
+  active?: boolean;
 };
 
-type CursorLabel = {
-  x: number;
-  y: number;
-  visible: boolean;
-};
-
-export function MediaTile({ project, className = "", priority = false }: MediaTileProps) {
-  const { cover, slug, title } = project;
-  const hasImage = Boolean(cover.src);
+export function MediaTile({
+  project,
+  className = "",
+  priority = false,
+  active = true,
+}: MediaTileProps) {
+  const { cover, slug, title, kind, media } = project;
+  const video =
+    kind === "video" ? media.find((item) => item.type === "video") : undefined;
+  const muxPlaybackId = video?.muxPlaybackId;
+  const videoSrc = video?.src;
+  const poster = video?.posterSrc ?? cover.src;
+  const stillSrc = kind === "video" ? poster || cover.src : cover.src;
+  const hasImage = Boolean(stillSrc);
   const aspectRatio =
     cover.width > 0 && cover.height > 0
       ? `${cover.width} / ${cover.height}`
       : "8 / 11";
 
-  const [label, setLabel] = useState<CursorLabel>({
-    x: 0,
-    y: 0,
-    visible: false,
-  });
+  const rootRef = useRef<HTMLAnchorElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const labelRef = useRef<HTMLSpanElement>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [labelVisible, setLabelVisible] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    function sync() {
+      setPrefersReducedMotion(mediaQuery.matches);
+    }
+    sync();
+    mediaQuery.addEventListener("change", sync);
+    return () => mediaQuery.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    const node = rootRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      {
+        root: null,
+        rootMargin: "120px 0px",
+        threshold: 0.01,
+      },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const canPlayVideo =
+    active &&
+    !prefersReducedMotion &&
+    inView &&
+    Boolean(muxPlaybackId || videoSrc);
+
+  useEffect(() => {
+    const node = videoRef.current;
+    if (!node || muxPlaybackId) return;
+
+    if (canPlayVideo) {
+      const playAttempt = node.play();
+      if (playAttempt !== undefined) {
+        playAttempt.catch(() => {
+          // Autoplay can be blocked; poster remains visible underneath.
+        });
+      }
+      return;
+    }
+
+    node.pause();
+  }, [canPlayVideo, muxPlaybackId]);
+
+  function moveLabel(clientX: number, clientY: number) {
+    const node = labelRef.current;
+    if (!node) return;
+    node.style.transform = `translate3d(${clientX + 14}px, ${clientY + 16}px, 0)`;
+  }
 
   function onPointerEnter(event: ReactPointerEvent<HTMLAnchorElement>) {
     if (event.pointerType !== "mouse") return;
-    setLabel({
-      x: event.clientX,
-      y: event.clientY,
-      visible: true,
-    });
+    setLabelVisible(true);
+    const { clientX, clientY } = event;
+    requestAnimationFrame(() => moveLabel(clientX, clientY));
   }
 
   function onPointerMove(event: ReactPointerEvent<HTMLAnchorElement>) {
-    if (event.pointerType !== "mouse") return;
-    setLabel({
-      x: event.clientX,
-      y: event.clientY,
-      visible: true,
-    });
+    if (event.pointerType !== "mouse" || !labelVisible) return;
+    moveLabel(event.clientX, event.clientY);
   }
 
   function onPointerLeave() {
-    setLabel((current) => ({ ...current, visible: false }));
+    setLabelVisible(false);
   }
 
   return (
     <>
       <Link
+        ref={rootRef}
         href={`/work/${slug}`}
         className={`media-tile group relative z-0 block w-full origin-center bg-media-placeholder shadow-none transition-[transform,box-shadow] duration-300 ease-out hover:z-30 hover:scale-[1.06] hover:shadow-[0_18px_48px_rgba(0,0,0,0.28)] focus-visible:z-30 focus-visible:scale-[1.06] focus-visible:shadow-[0_18px_48px_rgba(0,0,0,0.28)] motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:focus-visible:scale-100 ${className}`}
         style={{ aspectRatio }}
@@ -68,12 +143,14 @@ export function MediaTile({ project, className = "", priority = false }: MediaTi
         <span className="relative block size-full overflow-hidden">
           {hasImage ? (
             <Image
-              src={cover.src}
+              src={stillSrc}
               alt={cover.alt}
               width={cover.width}
               height={cover.height}
-              sizes="(max-width: 768px) 40vw, 280px"
+              sizes="(max-width: 768px) 40vw, 160px"
               priority={priority}
+              loading={priority ? "eager" : "lazy"}
+              quality={80}
               className="size-full object-cover"
             />
           ) : (
@@ -81,18 +158,40 @@ export function MediaTile({ project, className = "", priority = false }: MediaTi
               media
             </span>
           )}
+
+          {canPlayVideo && muxPlaybackId ? (
+            <span className="pointer-events-none absolute inset-0" aria-hidden>
+              <ProjectMuxVideo
+                playbackId={muxPlaybackId}
+                title={title}
+                variant="tile"
+                active={canPlayVideo}
+              />
+            </span>
+          ) : null}
+
+          {canPlayVideo && !muxPlaybackId && videoSrc ? (
+            <video
+              ref={videoRef}
+              className="pointer-events-none absolute inset-0 size-full object-cover"
+              src={videoSrc}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden
+              tabIndex={-1}
+            />
+          ) : null}
         </span>
       </Link>
 
-      {label.visible
+      {labelVisible
         ? createPortal(
             <span
+              ref={labelRef}
               aria-hidden
-              className="pointer-events-none fixed z-[100] whitespace-nowrap text-xs font-medium uppercase tracking-wide text-accent md:text-sm"
-              style={{
-                left: label.x + 14,
-                top: label.y + 16,
-              }}
+              className="pointer-events-none fixed top-0 left-0 z-[100] whitespace-nowrap text-xs font-medium uppercase tracking-wide text-accent will-change-transform md:text-sm"
             >
               Open project
             </span>,

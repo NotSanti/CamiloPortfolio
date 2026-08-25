@@ -1,70 +1,79 @@
 import Image from "next/image";
 import type { AboutContent } from "@/data/about";
-import { RichText } from "@/src/components/about/rich-text";
-import { LiquidPillLink } from "@/src/components/ui/liquid-pill-link";
 
 type AboutPageViewProps = {
   content: AboutContent;
 };
 
 export function AboutPageView({ content }: AboutPageViewProps) {
+  const sloganLines = Array.from({ length: content.sloganRepeat }, (_, index) => index);
+
   return (
-    <div className="fixed inset-0 z-0 bg-background">
-      <div className="flex size-full flex-col gap-10 px-8 pb-8 pt-6 lg:grid lg:grid-cols-[minmax(220px,386px)_minmax(0,1fr)] lg:gap-16">
-        <div className="flex min-h-0 flex-col lg:h-full">
-          <h1 className="shrink-0 text-[clamp(3rem,8vw,96px)] font-bold uppercase leading-none text-accent">
-            <span className="block">Camilo</span>
-            <span className="block">Luna</span>
-          </h1>
+    <div className="fixed inset-0 z-0 overflow-hidden bg-background">
+      {/* Bio — tighter type, closer to the top edge */}
+      <p className="absolute left-8 top-3 max-w-[min(960px,calc(100%-11rem))] text-sm font-bold leading-relaxed text-accent md:top-4 md:text-base md:leading-7 lg:left-8 lg:top-4 lg:max-w-[min(980px,calc(100%-14rem))] lg:text-lg lg:leading-8">
+        {content.bio}
+      </p>
 
-          <div className="relative mt-auto aspect-[386/699] w-full max-w-[386px] shrink-0 overflow-hidden bg-media-placeholder">
-            <Image
-              src={content.portraitSrc}
-              alt={content.portraitAlt}
-              fill
-              className="object-cover object-top"
-              sizes="386px"
-              priority
-            />
-          </div>
-        </div>
-
-        <div className="flex min-h-0 flex-1 flex-col justify-between gap-10 lg:h-full lg:pt-[115px]">
-          <div className="relative max-w-[679px] shrink-0 px-8 py-10">
-            <Image
-              src="/icons/corner-tl.svg"
-              alt=""
-              width={56}
-              height={44}
-              className="pointer-events-none absolute left-0 top-0"
-            />
-            <Image
-              src="/icons/corner-br.svg"
-              alt=""
-              width={56}
-              height={44}
-              className="pointer-events-none absolute bottom-0 right-0 rotate-180"
-            />
-            <RichText
-              segments={content.contactQuote}
-              className="text-xl font-medium leading-normal text-foreground md:text-2xl"
-            />
-          </div>
-
-          <div className="flex max-w-[679px] shrink-0 flex-col gap-6">
-            <LiquidPillLink
-              href={content.contactInstagramUrl}
-              label={content.contactInstagramLabel}
-              external
-            />
-            <LiquidPillLink
-              href={`mailto:${content.contactEmail}`}
-              label="Email"
-              className="max-w-[447px]"
-            />
-          </div>
-        </div>
+      {/* Contact — Figma Contact 39:29 */}
+      <div className="absolute right-[15px] top-5 z-10 flex flex-col items-end gap-1 text-right text-sm font-bold leading-relaxed text-accent md:right-6 md:text-base md:leading-7 lg:right-[59px] lg:top-4 lg:gap-0 lg:text-lg lg:leading-8">
+        <p className="uppercase">Contact</p>
+        <a
+          href={`mailto:${content.contactEmail}`}
+          className="font-medium uppercase transition-opacity hover:opacity-70"
+        >
+          Email
+        </a>
+        <a
+          href={content.contactInstagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium uppercase transition-opacity hover:opacity-70"
+        >
+          {content.contactInstagramLabel}
+        </a>
+        <a
+          href={content.contactLinkedInUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium uppercase transition-opacity hover:opacity-70"
+        >
+          {content.contactLinkedInLabel}
+        </a>
       </div>
+
+      {/* Middle slogan stack — centered in the viewport */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/2 hidden w-max -translate-x-1/2 -translate-y-1/2 md:block"
+        aria-hidden
+      >
+        {sloganLines.map((index) => (
+          <p
+            key={index}
+            className="whitespace-nowrap text-lg font-bold uppercase leading-[44px] text-accent lg:text-2xl"
+            style={{ marginTop: index === 0 ? 0 : -27 }}
+          >
+            {content.slogan}
+          </p>
+        ))}
+      </div>
+
+      {/* Side photo — Figma SidePhoto 19:21 */}
+      <div className="absolute bottom-24 left-8 aspect-[465/268] w-[min(465px,42vw)] overflow-hidden bg-media-placeholder md:bottom-20 lg:bottom-[48px] lg:left-8">
+        <Image
+          src={content.portraitSrc}
+          alt={content.portraitAlt}
+          fill
+          className="object-cover"
+          sizes="465px"
+          priority
+        />
+      </div>
+
+      {/* ABOUT wordmark — Figma ABOUT 19:23 */}
+      <p className="pointer-events-none absolute bottom-4 right-[15px] text-4xl font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-6xl lg:bottom-0 lg:right-[26px] lg:text-[128px]">
+        About
+      </p>
     </div>
   );
 }

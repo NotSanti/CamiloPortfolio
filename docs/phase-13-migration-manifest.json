@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-08-25T05:45:06.438Z",
+  "dryRun": false,
+  "sourceFile": "public/media/videos/CardinTest2.mp4",
+  "sourcePath": "/media/videos/CardinTest2.mp4",
+  "sourceSha256": "f3a4fed8537a2236680104a2b9987964cd0457d8cca2c4fd65ff3810cb74a811",
+  "sourceBytes": 3967611,
+  "strategy": "single shared Mux asset for identical placeholder",
+  "muxAssetId": "wP01TRk7AX2ddE47NWxoE2K2y6bpIIPbSzOOuMPw0001Os",
+  "muxPlaybackId": "Q300BKxqCjoFmkus8hI009i1d1BDa2sAKPYPhgr9PdbUg",
+  "muxUploadId": "DaTEQbdHQKyim7rsSdaoC7wt0201bYdvMNrG9ifWq00GVM",
+  "mapping": [
+    {
+      "videoId": "a961442d-2bec-4cc7-bcb0-ff5df38f4906",
+      "projectId": "395da3df-ef81-4a1e-bab6-c7d6bae100cd",
+      "slug": "night-motion",
+      "title": "Night motion film",
+      "displayOrder": 0,
+      "from": "/media/videos/CardinTest2.mp4",
+      "muxAssetId": "wP01TRk7AX2ddE47NWxoE2K2y6bpIIPbSzOOuMPw0001Os",
+      "muxPlaybackId": "Q300BKxqCjoFmkus8hI009i1d1BDa2sAKPYPhgr9PdbUg",
+      "muxUploadId": "DaTEQbdHQKyim7rsSdaoC7wt0201bYdvMNrG9ifWq00GVM"
+    },
+    {
+      "videoId": "e6891808-172a-4dbc-bbfd-0f507a35320f",
+      "projectId": "33cd3082-aaab-4d06-a0cf-e0e6144ddab9",
+      "slug": "frame-rate",
+      "title": "Frame rate film",
+      "displayOrder": 0,
+      "from": "/media/videos/CardinTest2.mp4",
+      "muxAssetId": "wP01TRk7AX2ddE47NWxoE2K2y6bpIIPbSzOOuMPw0001Os",
+      "muxPlaybackId": "Q300BKxqCjoFmkus8hI009i1d1BDa2sAKPYPhgr9PdbUg",
+      "muxUploadId": "DaTEQbdHQKyim7rsSdaoC7wt0201bYdvMNrG9ifWq00GVM"
+    },
+    {
+      "videoId": "e78246e5-d5ba-4948-a1ec-0cfa4f8f8bad",
+      "projectId": "0c742008-b2f6-42d2-b850-a9a3a3049b14",
+      "slug": "cutaway",
+      "title": "Cutaway film",
+      "displayOrder": 0,
+      "from": "/media/videos/CardinTest2.mp4",
+      "muxAssetId": "wP01TRk7AX2ddE47NWxoE2K2y6bpIIPbSzOOuMPw0001Os",
+      "muxPlaybackId": "Q300BKxqCjoFmkus8hI009i1d1BDa2sAKPYPhgr9PdbUg",
+      "muxUploadId": "DaTEQbdHQKyim7rsSdaoC7wt0201bYdvMNrG9ifWq00GVM"
+    },
+    {
+      "videoId": "c756ab05-ef02-480e-81ad-946a5d3329aa",
+      "projectId": "d50aacba-532f-44f1-8232-d8d243fdb3d5",
+      "slug": "pulse-line",
+      "title": "Pulse line film",
+      "displayOrder": 0,
+      "from": "/media/videos/CardinTest2.mp4",
+      "muxAssetId": "wP01TRk7AX2ddE47NWxoE2K2y6bpIIPbSzOOuMPw0001Os",
+      "muxPlaybackId": "Q300BKxqCjoFmkus8hI009i1d1BDa2sAKPYPhgr9PdbUg",
+      "muxUploadId": "DaTEQbdHQKyim7rsSdaoC7wt0201bYdvMNrG9ifWq00GVM"
+    },
+    {
+      "videoId": "2d89bf08-55f7-4c0b-ad2b-8244c9f11030",
+      "projectId": "fdbdfdf6-9377-4b84-afea-25542daf4e81",
+      "slug": "signal-loss",
+      "title": "Signal loss film",
+      "displayOrder": 0,
+      "from": "/media/videos/CardinTest2.mp4",
+      "muxAssetId": "wP01TRk7AX2ddE47NWxoE2K2y6bpIIPbSzOOuMPw0001Os",
+      "muxPlaybackId": "Q300BKxqCjoFmkus8hI009i1d1BDa2sAKPYPhgr9PdbUg",
+      "muxUploadId": "DaTEQbdHQKyim7rsSdaoC7wt0201bYdvMNrG9ifWq00GVM"
+    },
+    {
+      "videoId": "3e296f94-bc5c-4aa0-8b5f-6fdc662ffdda",
+      "projectId": "37103392-2391-4d6e-8ca5-c2cff1d7193a",
+      "slug": "runway-dust",
+      "title": "Runway dust film",
+      "displayOrder": 0,
+      "from": "/media/videos/CardinTest2.mp4",
+      "muxAssetId": "wP01TRk7AX2ddE47NWxoE2K2y6bpIIPbSzOOuMPw0001Os",
+      "muxPlaybackId": "Q300BKxqCjoFmkus8hI009i1d1BDa2sAKPYPhgr9PdbUg",
+      "muxUploadId": "DaTEQbdHQKyim7rsSdaoC7wt0201bYdvMNrG9ifWq00GVM"
+    },
+    {
+      "videoId": "6d325dba-8e7e-4d19-8457-9cfd626c26a2",
+      "projectId": "f93f2f65-ca87-401e-9838-42e8c96722ef",
+      "slug": "static-bloom",
+      "title": "Static bloom film",
+      "displayOrder": 0,
+      "from": "/media/videos/CardinTest2.mp4",
+      "muxAssetId": "wP01TRk7AX2ddE47NWxoE2K2y6bpIIPbSzOOuMPw0001Os",
+      "muxPlaybackId": "Q300BKxqCjoFmkus8hI009i1d1BDa2sAKPYPhgr9PdbUg",
+      "muxUploadId": "DaTEQbdHQKyim7rsSdaoC7wt0201bYdvMNrG9ifWq00GVM"
+    }
+  ],
+  "failures": [
+    {
+      "videoId": "e6891808-172a-4dbc-bbfd-0f507a35320f",
+      "error": "duplicate key value violates unique constraint \"project_videos_mux_upload_id_uidx\""
+    },
+    {
+      "videoId": "e78246e5-d5ba-4948-a1ec-0cfa4f8f8bad",
+      "error": "duplicate key value violates unique constraint \"project_videos_mux_upload_id_uidx\""
+    },
+    {
+      "videoId": "c756ab05-ef02-480e-81ad-946a5d3329aa",
+      "error": "duplicate key value violates unique constraint \"project_videos_mux_upload_id_uidx\""
+    },
+    {
+      "videoId": "2d89bf08-55f7-4c0b-ad2b-8244c9f11030",
+      "error": "duplicate key value violates unique constraint \"project_videos_mux_upload_id_uidx\""
+    },
+    {
+      "videoId": "3e296f94-bc5c-4aa0-8b5f-6fdc662ffdda",
+      "error": "duplicate key value violates unique constraint \"project_videos_mux_upload_id_uidx\""
+    },
+    {
+      "videoId": "6d325dba-8e7e-4d19-8457-9cfd626c26a2",
+      "error": "duplicate key value violates unique constraint \"project_videos_mux_upload_id_uidx\""
+    }
+  ],
+  "stillLocal": [
+    "public/media/videos/CardinTest2.mp4 — kept until verified",
+    "data/projects.ts seed helpers still reference /media/videos/…"
+  ]
+}

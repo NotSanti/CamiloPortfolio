@@ -1,0 +1,1613 @@
+{
+  "generatedAt": "2026-08-25T05:04:40.988Z",
+  "dryRun": false,
+  "usingServiceRole": false,
+  "sourceFile": "public/media/shoes1.jpeg",
+  "sourceSha256": "b391e8e8180f6bd1159a8666cb93c1592e88e0309193180c2bf617fa54c896ae",
+  "sourceBytes": 1164856,
+  "galleryUpdates": [
+    {
+      "imageId": "ba3face6-d9a7-404f-b784-338a858f786e",
+      "projectId": "a1341f4f-8e50-4351-bdc2-f8ba66a1c289",
+      "slug": "after-image",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/ba3face6-d9a7-404f-b784-338a858f786e-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "b6147e10-9c66-4a90-a50a-aff01c505f4d",
+      "projectId": "a1341f4f-8e50-4351-bdc2-f8ba66a1c289",
+      "slug": "after-image",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/b6147e10-9c66-4a90-a50a-aff01c505f4d-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "d29b8d80-8062-44f9-87de-3b45a532eb28",
+      "projectId": "a1341f4f-8e50-4351-bdc2-f8ba66a1c289",
+      "slug": "after-image",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/d29b8d80-8062-44f9-87de-3b45a532eb28-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "4220812b-7675-4265-a954-2f22d5e314df",
+      "projectId": "a1341f4f-8e50-4351-bdc2-f8ba66a1c289",
+      "slug": "after-image",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/4220812b-7675-4265-a954-2f22d5e314df-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "093ec68b-dffb-498c-aa39-1190decadd53",
+      "projectId": "a1341f4f-8e50-4351-bdc2-f8ba66a1c289",
+      "slug": "after-image",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/093ec68b-dffb-498c-aa39-1190decadd53-shoes1.jpeg",
+      "displayOrder": 4
+    },
+    {
+      "imageId": "d5efc2e4-fcad-4dda-8c2b-4706e4504e55",
+      "projectId": "a1341f4f-8e50-4351-bdc2-f8ba66a1c289",
+      "slug": "after-image",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/d5efc2e4-fcad-4dda-8c2b-4706e4504e55-shoes1.jpeg",
+      "displayOrder": 5
+    },
+    {
+      "imageId": "b4cac02f-3542-4c1d-8890-28042bca43c2",
+      "projectId": "146df0af-c0a8-4d28-a706-0ed3056c4a9e",
+      "slug": "amber-hold",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/146df0af-c0a8-4d28-a706-0ed3056c4a9e/gallery/b4cac02f-3542-4c1d-8890-28042bca43c2-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "9f68c506-1feb-4c34-8191-dc89f45f40c8",
+      "projectId": "146df0af-c0a8-4d28-a706-0ed3056c4a9e",
+      "slug": "amber-hold",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/146df0af-c0a8-4d28-a706-0ed3056c4a9e/gallery/9f68c506-1feb-4c34-8191-dc89f45f40c8-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "ddb89cc9-6027-47ff-ac01-d22dcaebe854",
+      "projectId": "146df0af-c0a8-4d28-a706-0ed3056c4a9e",
+      "slug": "amber-hold",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/146df0af-c0a8-4d28-a706-0ed3056c4a9e/gallery/ddb89cc9-6027-47ff-ac01-d22dcaebe854-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "12133095-29a4-4256-baa6-56e8c77ea609",
+      "projectId": "146df0af-c0a8-4d28-a706-0ed3056c4a9e",
+      "slug": "amber-hold",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/146df0af-c0a8-4d28-a706-0ed3056c4a9e/gallery/12133095-29a4-4256-baa6-56e8c77ea609-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "0c87b51b-909d-4250-ae3c-f0e9f940c62c",
+      "projectId": "bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9",
+      "slug": "cargo-bay",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9/gallery/0c87b51b-909d-4250-ae3c-f0e9f940c62c-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "ccc2f9d0-661a-4915-a7d3-1dda4c800ede",
+      "projectId": "bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9",
+      "slug": "cargo-bay",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9/gallery/ccc2f9d0-661a-4915-a7d3-1dda4c800ede-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "33ba4162-25c7-4061-9f27-036669675864",
+      "projectId": "bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9",
+      "slug": "cargo-bay",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9/gallery/33ba4162-25c7-4061-9f27-036669675864-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "74d7c58f-68e2-48f7-a86a-16f310b0220f",
+      "projectId": "bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9",
+      "slug": "cargo-bay",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9/gallery/74d7c58f-68e2-48f7-a86a-16f310b0220f-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "48646052-22a6-4750-a462-219bac90acf9",
+      "projectId": "4f1ee73e-75f2-4443-98eb-0d5d737036d1",
+      "slug": "coastal-light",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/48646052-22a6-4750-a462-219bac90acf9-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "5e100490-266c-4062-98b7-a8c52047c226",
+      "projectId": "4f1ee73e-75f2-4443-98eb-0d5d737036d1",
+      "slug": "coastal-light",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/5e100490-266c-4062-98b7-a8c52047c226-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "c9331732-02ac-47af-949a-493fb9d8d28f",
+      "projectId": "4f1ee73e-75f2-4443-98eb-0d5d737036d1",
+      "slug": "coastal-light",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/c9331732-02ac-47af-949a-493fb9d8d28f-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "ce59ca54-fe29-4550-a2eb-6094aaaf3539",
+      "projectId": "4f1ee73e-75f2-4443-98eb-0d5d737036d1",
+      "slug": "coastal-light",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/ce59ca54-fe29-4550-a2eb-6094aaaf3539-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "59e2cbb7-1e14-4352-9396-44f5847119bd",
+      "projectId": "4f1ee73e-75f2-4443-98eb-0d5d737036d1",
+      "slug": "coastal-light",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/59e2cbb7-1e14-4352-9396-44f5847119bd-shoes1.jpeg",
+      "displayOrder": 4
+    },
+    {
+      "imageId": "7c741fd5-c984-4418-9dd3-f8e37ca3a73d",
+      "projectId": "4f1ee73e-75f2-4443-98eb-0d5d737036d1",
+      "slug": "coastal-light",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/7c741fd5-c984-4418-9dd3-f8e37ca3a73d-shoes1.jpeg",
+      "displayOrder": 5
+    },
+    {
+      "imageId": "a1d7b199-08a5-4f6c-8b72-efc7c2547ece",
+      "projectId": "2a6f013b-0c0c-4821-a376-857be40d6e9e",
+      "slug": "cold-front",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/2a6f013b-0c0c-4821-a376-857be40d6e9e/gallery/a1d7b199-08a5-4f6c-8b72-efc7c2547ece-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "1272e05a-0688-4914-ac52-dd69341f0660",
+      "projectId": "2a6f013b-0c0c-4821-a376-857be40d6e9e",
+      "slug": "cold-front",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/2a6f013b-0c0c-4821-a376-857be40d6e9e/gallery/1272e05a-0688-4914-ac52-dd69341f0660-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "4f3ac985-12c4-4bd3-8a45-0c645b849647",
+      "projectId": "2a6f013b-0c0c-4821-a376-857be40d6e9e",
+      "slug": "cold-front",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/2a6f013b-0c0c-4821-a376-857be40d6e9e/gallery/4f3ac985-12c4-4bd3-8a45-0c645b849647-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "ace0c27a-58a7-4bed-9b9d-0534ae46fc54",
+      "projectId": "2a6f013b-0c0c-4821-a376-857be40d6e9e",
+      "slug": "cold-front",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/2a6f013b-0c0c-4821-a376-857be40d6e9e/gallery/ace0c27a-58a7-4bed-9b9d-0534ae46fc54-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "a8b370c8-114a-4947-81e8-3bfe32058c43",
+      "projectId": "0941591c-6768-415e-a137-979528d21ada",
+      "slug": "drywall",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0941591c-6768-415e-a137-979528d21ada/gallery/a8b370c8-114a-4947-81e8-3bfe32058c43-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "b6d7e960-fc89-4b4f-839f-18a807371087",
+      "projectId": "0941591c-6768-415e-a137-979528d21ada",
+      "slug": "drywall",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0941591c-6768-415e-a137-979528d21ada/gallery/b6d7e960-fc89-4b4f-839f-18a807371087-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "530df6e2-de0a-4161-8bb3-c5c29d66c30d",
+      "projectId": "0941591c-6768-415e-a137-979528d21ada",
+      "slug": "drywall",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0941591c-6768-415e-a137-979528d21ada/gallery/530df6e2-de0a-4161-8bb3-c5c29d66c30d-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "7d664e81-6b10-4865-8376-6324e330ba33",
+      "projectId": "0941591c-6768-415e-a137-979528d21ada",
+      "slug": "drywall",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0941591c-6768-415e-a137-979528d21ada/gallery/7d664e81-6b10-4865-8376-6324e330ba33-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "b117a8d7-8407-4391-b0e4-bb9aa4157076",
+      "projectId": "190e312c-66bd-46dc-a49c-0b6fcb84b1bf",
+      "slug": "field-notes",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/b117a8d7-8407-4391-b0e4-bb9aa4157076-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "5b72da0a-f94e-419f-9c93-1821d50480b1",
+      "projectId": "190e312c-66bd-46dc-a49c-0b6fcb84b1bf",
+      "slug": "field-notes",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/5b72da0a-f94e-419f-9c93-1821d50480b1-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "65d28949-d02d-45ca-bd1f-f529ba314f91",
+      "projectId": "190e312c-66bd-46dc-a49c-0b6fcb84b1bf",
+      "slug": "field-notes",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/65d28949-d02d-45ca-bd1f-f529ba314f91-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "862461fb-c9aa-4513-a6e7-9473f7e7d909",
+      "projectId": "190e312c-66bd-46dc-a49c-0b6fcb84b1bf",
+      "slug": "field-notes",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/862461fb-c9aa-4513-a6e7-9473f7e7d909-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "fbc103df-7451-4c07-b069-3892269c5b9a",
+      "projectId": "190e312c-66bd-46dc-a49c-0b6fcb84b1bf",
+      "slug": "field-notes",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/fbc103df-7451-4c07-b069-3892269c5b9a-shoes1.jpeg",
+      "displayOrder": 4
+    },
+    {
+      "imageId": "6411dc6e-b3b6-413f-987a-b8e47842ae5a",
+      "projectId": "190e312c-66bd-46dc-a49c-0b6fcb84b1bf",
+      "slug": "field-notes",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/6411dc6e-b3b6-413f-987a-b8e47842ae5a-shoes1.jpeg",
+      "displayOrder": 5
+    },
+    {
+      "imageId": "0b241f73-eb15-4469-b45f-cd58fb27466d",
+      "projectId": "3b3591b2-7002-4338-8062-116db7611ca9",
+      "slug": "flatline",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/3b3591b2-7002-4338-8062-116db7611ca9/gallery/0b241f73-eb15-4469-b45f-cd58fb27466d-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "da130bb8-531f-4372-b072-a4dfd65730ca",
+      "projectId": "3b3591b2-7002-4338-8062-116db7611ca9",
+      "slug": "flatline",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/3b3591b2-7002-4338-8062-116db7611ca9/gallery/da130bb8-531f-4372-b072-a4dfd65730ca-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "295bcacc-6ccc-4580-981a-1c66b1afb1ed",
+      "projectId": "3b3591b2-7002-4338-8062-116db7611ca9",
+      "slug": "flatline",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/3b3591b2-7002-4338-8062-116db7611ca9/gallery/295bcacc-6ccc-4580-981a-1c66b1afb1ed-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "ffe24b0e-d066-43dc-b0f6-7f51f23a3e19",
+      "projectId": "e31194c6-3052-443c-9e2b-613e932fb7cf",
+      "slug": "glass-lines",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/ffe24b0e-d066-43dc-b0f6-7f51f23a3e19-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "18cee10a-5ffd-4fb6-8a73-1f2ee09657c8",
+      "projectId": "e31194c6-3052-443c-9e2b-613e932fb7cf",
+      "slug": "glass-lines",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/18cee10a-5ffd-4fb6-8a73-1f2ee09657c8-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "5d5c8a0e-746c-44f4-ab11-7d5af562a955",
+      "projectId": "e31194c6-3052-443c-9e2b-613e932fb7cf",
+      "slug": "glass-lines",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/5d5c8a0e-746c-44f4-ab11-7d5af562a955-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "b0cee5c2-876b-41fe-9c1c-08ec001b9039",
+      "projectId": "e31194c6-3052-443c-9e2b-613e932fb7cf",
+      "slug": "glass-lines",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/b0cee5c2-876b-41fe-9c1c-08ec001b9039-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "d3b2906b-fc1e-49ef-b656-ebe630629a88",
+      "projectId": "e31194c6-3052-443c-9e2b-613e932fb7cf",
+      "slug": "glass-lines",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/d3b2906b-fc1e-49ef-b656-ebe630629a88-shoes1.jpeg",
+      "displayOrder": 4
+    },
+    {
+      "imageId": "544f5293-fa64-4ea1-af81-954d7ce3c575",
+      "projectId": "bdf469ac-700a-4041-bc13-b124997439b1",
+      "slug": "late-shift",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/bdf469ac-700a-4041-bc13-b124997439b1/gallery/544f5293-fa64-4ea1-af81-954d7ce3c575-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "7d0b5cf1-3fb6-4198-bfc4-740ac34fc2be",
+      "projectId": "bdf469ac-700a-4041-bc13-b124997439b1",
+      "slug": "late-shift",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/bdf469ac-700a-4041-bc13-b124997439b1/gallery/7d0b5cf1-3fb6-4198-bfc4-740ac34fc2be-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "eaa5cbfa-86e0-497c-913c-03147fc3a11d",
+      "projectId": "bdf469ac-700a-4041-bc13-b124997439b1",
+      "slug": "late-shift",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/bdf469ac-700a-4041-bc13-b124997439b1/gallery/eaa5cbfa-86e0-497c-913c-03147fc3a11d-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "d5333b28-46cf-47ef-a59c-8ba33d7b3f98",
+      "projectId": "65a306dc-056a-4d0e-80f6-089bff258211",
+      "slug": "mirror-pool",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/65a306dc-056a-4d0e-80f6-089bff258211/gallery/d5333b28-46cf-47ef-a59c-8ba33d7b3f98-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "3a46e94d-2503-4c1c-b147-3b550d5c86df",
+      "projectId": "65a306dc-056a-4d0e-80f6-089bff258211",
+      "slug": "mirror-pool",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/65a306dc-056a-4d0e-80f6-089bff258211/gallery/3a46e94d-2503-4c1c-b147-3b550d5c86df-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "adab7952-7beb-4fb3-b6fb-0fdb3d1a09d0",
+      "projectId": "65a306dc-056a-4d0e-80f6-089bff258211",
+      "slug": "mirror-pool",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/65a306dc-056a-4d0e-80f6-089bff258211/gallery/adab7952-7beb-4fb3-b6fb-0fdb3d1a09d0-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "31f4f79e-ca20-4dc4-b1e2-4c02f602f38e",
+      "projectId": "65a306dc-056a-4d0e-80f6-089bff258211",
+      "slug": "mirror-pool",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/65a306dc-056a-4d0e-80f6-089bff258211/gallery/31f4f79e-ca20-4dc4-b1e2-4c02f602f38e-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "ea686ffe-5702-49b9-8890-2e24e17082f5",
+      "projectId": "e40a9391-82ee-41ab-a5d7-c1a84306c3ea",
+      "slug": "montreal-editorial",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/ea686ffe-5702-49b9-8890-2e24e17082f5-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "4f8f56f8-acd1-4a10-bcc2-8d0d894dbc7d",
+      "projectId": "e40a9391-82ee-41ab-a5d7-c1a84306c3ea",
+      "slug": "montreal-editorial",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/4f8f56f8-acd1-4a10-bcc2-8d0d894dbc7d-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "00b2d841-360f-4632-9073-e0de4021bdad",
+      "projectId": "e40a9391-82ee-41ab-a5d7-c1a84306c3ea",
+      "slug": "montreal-editorial",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/00b2d841-360f-4632-9073-e0de4021bdad-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "8cd8b087-43f7-4d93-ba42-e2850a35b559",
+      "projectId": "e40a9391-82ee-41ab-a5d7-c1a84306c3ea",
+      "slug": "montreal-editorial",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/8cd8b087-43f7-4d93-ba42-e2850a35b559-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "266f47ae-b6bc-4ed6-bcc7-fabd5ab28744",
+      "projectId": "e40a9391-82ee-41ab-a5d7-c1a84306c3ea",
+      "slug": "montreal-editorial",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/266f47ae-b6bc-4ed6-bcc7-fabd5ab28744-shoes1.jpeg",
+      "displayOrder": 4
+    },
+    {
+      "imageId": "0d7aea41-02f3-4efb-891f-019dbace3a83",
+      "projectId": "e40a9391-82ee-41ab-a5d7-c1a84306c3ea",
+      "slug": "montreal-editorial",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/0d7aea41-02f3-4efb-891f-019dbace3a83-shoes1.jpeg",
+      "displayOrder": 5
+    },
+    {
+      "imageId": "5944c3a5-cbd3-46e5-9bc1-a03f430f46d3",
+      "projectId": "e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f",
+      "slug": "northbound",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f/gallery/5944c3a5-cbd3-46e5-9bc1-a03f430f46d3-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "9f057b5e-f814-48e2-b417-d5856c89c709",
+      "projectId": "e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f",
+      "slug": "northbound",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f/gallery/9f057b5e-f814-48e2-b417-d5856c89c709-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "1c1c838d-5165-49e3-a90e-8a9eca5b3bd0",
+      "projectId": "e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f",
+      "slug": "northbound",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f/gallery/1c1c838d-5165-49e3-a90e-8a9eca5b3bd0-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "8aa1571a-7b3e-48d7-a24d-a4dbfaf9bd45",
+      "projectId": "5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0",
+      "slug": "open-road",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/8aa1571a-7b3e-48d7-a24d-a4dbfaf9bd45-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "36faa741-5d9c-4e3e-bdcd-ba4d4ca9721b",
+      "projectId": "5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0",
+      "slug": "open-road",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/36faa741-5d9c-4e3e-bdcd-ba4d4ca9721b-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "0e10e819-84a2-4b57-851f-770f9120449f",
+      "projectId": "5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0",
+      "slug": "open-road",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/0e10e819-84a2-4b57-851f-770f9120449f-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "361d5d50-979f-4b9d-b06f-b8cf9d22af18",
+      "projectId": "5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0",
+      "slug": "open-road",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/361d5d50-979f-4b9d-b06f-b8cf9d22af18-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "6317f750-70aa-4071-8f9a-0269149326c5",
+      "projectId": "5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0",
+      "slug": "open-road",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/6317f750-70aa-4071-8f9a-0269149326c5-shoes1.jpeg",
+      "displayOrder": 4
+    },
+    {
+      "imageId": "77c30c6b-b420-47fb-b17e-1b4475274888",
+      "projectId": "70bf1041-d050-4092-82f1-0c1f5f5d6b7a",
+      "slug": "paper-weight",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/70bf1041-d050-4092-82f1-0c1f5f5d6b7a/gallery/77c30c6b-b420-47fb-b17e-1b4475274888-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "ccd7e648-abae-4e21-ae4d-d166322d5a22",
+      "projectId": "70bf1041-d050-4092-82f1-0c1f5f5d6b7a",
+      "slug": "paper-weight",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/70bf1041-d050-4092-82f1-0c1f5f5d6b7a/gallery/ccd7e648-abae-4e21-ae4d-d166322d5a22-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "a921301e-685a-461e-a391-7511c8d51615",
+      "projectId": "70bf1041-d050-4092-82f1-0c1f5f5d6b7a",
+      "slug": "paper-weight",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/70bf1041-d050-4092-82f1-0c1f5f5d6b7a/gallery/a921301e-685a-461e-a391-7511c8d51615-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "4355f3a8-3ce3-4fe0-90e9-7ad118c7f3fd",
+      "projectId": "0fea1aae-130c-4c99-82a6-26f96fbe1e4e",
+      "slug": "quiet-rooms",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0fea1aae-130c-4c99-82a6-26f96fbe1e4e/gallery/4355f3a8-3ce3-4fe0-90e9-7ad118c7f3fd-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "609622c6-daa1-4c3a-a6e5-c2b935924ede",
+      "projectId": "0fea1aae-130c-4c99-82a6-26f96fbe1e4e",
+      "slug": "quiet-rooms",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0fea1aae-130c-4c99-82a6-26f96fbe1e4e/gallery/609622c6-daa1-4c3a-a6e5-c2b935924ede-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "cdbe7188-e70b-42a2-9400-1208d7cfad4c",
+      "projectId": "0fea1aae-130c-4c99-82a6-26f96fbe1e4e",
+      "slug": "quiet-rooms",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0fea1aae-130c-4c99-82a6-26f96fbe1e4e/gallery/cdbe7188-e70b-42a2-9400-1208d7cfad4c-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "c5c4d608-2bb5-4ac1-98b9-3f438ee03743",
+      "projectId": "0fea1aae-130c-4c99-82a6-26f96fbe1e4e",
+      "slug": "quiet-rooms",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0fea1aae-130c-4c99-82a6-26f96fbe1e4e/gallery/c5c4d608-2bb5-4ac1-98b9-3f438ee03743-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "7cbeaf75-a72f-4720-bf7d-ae98b2ff67e3",
+      "projectId": "f180f902-50fc-4994-b11b-429d94121483",
+      "slug": "red-hour",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/f180f902-50fc-4994-b11b-429d94121483/gallery/7cbeaf75-a72f-4720-bf7d-ae98b2ff67e3-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "c2769360-7d61-4789-a686-c2da935180b2",
+      "projectId": "f180f902-50fc-4994-b11b-429d94121483",
+      "slug": "red-hour",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/f180f902-50fc-4994-b11b-429d94121483/gallery/c2769360-7d61-4789-a686-c2da935180b2-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "56d0cca2-c381-49c9-9337-52c00d92f823",
+      "projectId": "f180f902-50fc-4994-b11b-429d94121483",
+      "slug": "red-hour",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/f180f902-50fc-4994-b11b-429d94121483/gallery/56d0cca2-c381-49c9-9337-52c00d92f823-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "5636faba-d46e-40d9-bed7-67b21b15ad66",
+      "projectId": "f180f902-50fc-4994-b11b-429d94121483",
+      "slug": "red-hour",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/f180f902-50fc-4994-b11b-429d94121483/gallery/5636faba-d46e-40d9-bed7-67b21b15ad66-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "d1407c8d-b47e-4a60-b5ed-c84979d183e0",
+      "projectId": "e9004cb3-7850-472d-96a7-61552f7d0980",
+      "slug": "soft-focus",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e9004cb3-7850-472d-96a7-61552f7d0980/gallery/d1407c8d-b47e-4a60-b5ed-c84979d183e0-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "8773946d-3069-42bd-88e1-ef9a701fe894",
+      "projectId": "e9004cb3-7850-472d-96a7-61552f7d0980",
+      "slug": "soft-focus",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e9004cb3-7850-472d-96a7-61552f7d0980/gallery/8773946d-3069-42bd-88e1-ef9a701fe894-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "3b338745-f5fc-486d-9949-5df7871ebe1a",
+      "projectId": "e9004cb3-7850-472d-96a7-61552f7d0980",
+      "slug": "soft-focus",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e9004cb3-7850-472d-96a7-61552f7d0980/gallery/3b338745-f5fc-486d-9949-5df7871ebe1a-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "30d86e4b-a16c-4aa4-924f-1776b65b9d83",
+      "projectId": "e9004cb3-7850-472d-96a7-61552f7d0980",
+      "slug": "soft-focus",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e9004cb3-7850-472d-96a7-61552f7d0980/gallery/30d86e4b-a16c-4aa4-924f-1776b65b9d83-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "15f667f3-6330-4478-a38f-f33e07f8c73f",
+      "projectId": "2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4",
+      "slug": "steel-horizon",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4/gallery/15f667f3-6330-4478-a38f-f33e07f8c73f-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "e18512bc-a412-49d0-a1e0-6348675f8f8a",
+      "projectId": "2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4",
+      "slug": "steel-horizon",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4/gallery/e18512bc-a412-49d0-a1e0-6348675f8f8a-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "c3a1da44-1a6b-4067-8ea5-1e02f2680711",
+      "projectId": "2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4",
+      "slug": "steel-horizon",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4/gallery/c3a1da44-1a6b-4067-8ea5-1e02f2680711-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "729c8498-3b13-4db1-bde1-7232be4e5d18",
+      "projectId": "2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4",
+      "slug": "steel-horizon",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4/gallery/729c8498-3b13-4db1-bde1-7232be4e5d18-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "154f30dc-1612-48e1-b924-31e2b55166d9",
+      "projectId": "fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb",
+      "slug": "studio-texture",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/154f30dc-1612-48e1-b924-31e2b55166d9-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "286ce733-ba89-48e0-967a-0b6392032dd5",
+      "projectId": "fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb",
+      "slug": "studio-texture",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/286ce733-ba89-48e0-967a-0b6392032dd5-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "185a7f8f-c4f3-4007-bae6-fdb10ff6b48f",
+      "projectId": "fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb",
+      "slug": "studio-texture",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/185a7f8f-c4f3-4007-bae6-fdb10ff6b48f-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "f9fa33cc-8197-4e6c-9f83-9e158d6b34e3",
+      "projectId": "fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb",
+      "slug": "studio-texture",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/f9fa33cc-8197-4e6c-9f83-9e158d6b34e3-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "24e10ad1-9fa6-46bb-9647-96ab0fb2b1fe",
+      "projectId": "fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb",
+      "slug": "studio-texture",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/24e10ad1-9fa6-46bb-9647-96ab0fb2b1fe-shoes1.jpeg",
+      "displayOrder": 4
+    },
+    {
+      "imageId": "423026d1-0666-4468-80c4-2b37abaa746c",
+      "projectId": "ed99b542-c4d4-4ec9-9cce-3fbf0096991a",
+      "slug": "urban-grain",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/423026d1-0666-4468-80c4-2b37abaa746c-shoes1.jpeg",
+      "displayOrder": 0
+    },
+    {
+      "imageId": "9a747a49-6b47-497a-b29e-0846f6e96995",
+      "projectId": "ed99b542-c4d4-4ec9-9cce-3fbf0096991a",
+      "slug": "urban-grain",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/9a747a49-6b47-497a-b29e-0846f6e96995-shoes1.jpeg",
+      "displayOrder": 1
+    },
+    {
+      "imageId": "3cc4c01b-f2a1-4334-b2f6-1eb36c5d0cf4",
+      "projectId": "ed99b542-c4d4-4ec9-9cce-3fbf0096991a",
+      "slug": "urban-grain",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/3cc4c01b-f2a1-4334-b2f6-1eb36c5d0cf4-shoes1.jpeg",
+      "displayOrder": 2
+    },
+    {
+      "imageId": "c3461bd1-d7e7-46de-b4d3-8a81749d52fd",
+      "projectId": "ed99b542-c4d4-4ec9-9cce-3fbf0096991a",
+      "slug": "urban-grain",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/c3461bd1-d7e7-46de-b4d3-8a81749d52fd-shoes1.jpeg",
+      "displayOrder": 3
+    },
+    {
+      "imageId": "61f26b43-6189-4e2d-9c33-511a9d683418",
+      "projectId": "ed99b542-c4d4-4ec9-9cce-3fbf0096991a",
+      "slug": "urban-grain",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/61f26b43-6189-4e2d-9c33-511a9d683418-shoes1.jpeg",
+      "displayOrder": 4
+    }
+  ],
+  "coverUpdates": [
+    {
+      "projectId": "a1341f4f-8e50-4351-bdc2-f8ba66a1c289",
+      "slug": "after-image",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/ba3face6-d9a7-404f-b784-338a858f786e-shoes1.jpeg"
+    },
+    {
+      "projectId": "146df0af-c0a8-4d28-a706-0ed3056c4a9e",
+      "slug": "amber-hold",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/146df0af-c0a8-4d28-a706-0ed3056c4a9e/gallery/b4cac02f-3542-4c1d-8890-28042bca43c2-shoes1.jpeg"
+    },
+    {
+      "projectId": "bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9",
+      "slug": "cargo-bay",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9/gallery/0c87b51b-909d-4250-ae3c-f0e9f940c62c-shoes1.jpeg"
+    },
+    {
+      "projectId": "4f1ee73e-75f2-4443-98eb-0d5d737036d1",
+      "slug": "coastal-light",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/48646052-22a6-4750-a462-219bac90acf9-shoes1.jpeg"
+    },
+    {
+      "projectId": "2a6f013b-0c0c-4821-a376-857be40d6e9e",
+      "slug": "cold-front",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/2a6f013b-0c0c-4821-a376-857be40d6e9e/gallery/a1d7b199-08a5-4f6c-8b72-efc7c2547ece-shoes1.jpeg"
+    },
+    {
+      "projectId": "0c742008-b2f6-42d2-b850-a9a3a3049b14",
+      "slug": "cutaway",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0c742008-b2f6-42d2-b850-a9a3a3049b14/gallery/7e5b15ff-3142-4e7f-9bdb-1b1c1bbe31a1-shoes1.jpeg"
+    },
+    {
+      "projectId": "0941591c-6768-415e-a137-979528d21ada",
+      "slug": "drywall",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0941591c-6768-415e-a137-979528d21ada/gallery/a8b370c8-114a-4947-81e8-3bfe32058c43-shoes1.jpeg"
+    },
+    {
+      "projectId": "190e312c-66bd-46dc-a49c-0b6fcb84b1bf",
+      "slug": "field-notes",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/b117a8d7-8407-4391-b0e4-bb9aa4157076-shoes1.jpeg"
+    },
+    {
+      "projectId": "3b3591b2-7002-4338-8062-116db7611ca9",
+      "slug": "flatline",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/3b3591b2-7002-4338-8062-116db7611ca9/gallery/0b241f73-eb15-4469-b45f-cd58fb27466d-shoes1.jpeg"
+    },
+    {
+      "projectId": "33cd3082-aaab-4d06-a0cf-e0e6144ddab9",
+      "slug": "frame-rate",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/33cd3082-aaab-4d06-a0cf-e0e6144ddab9/gallery/e84503cd-f5d0-4439-88d7-2645e80d1c82-shoes1.jpeg"
+    },
+    {
+      "projectId": "e31194c6-3052-443c-9e2b-613e932fb7cf",
+      "slug": "glass-lines",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/ffe24b0e-d066-43dc-b0f6-7f51f23a3e19-shoes1.jpeg"
+    },
+    {
+      "projectId": "bdf469ac-700a-4041-bc13-b124997439b1",
+      "slug": "late-shift",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/bdf469ac-700a-4041-bc13-b124997439b1/gallery/544f5293-fa64-4ea1-af81-954d7ce3c575-shoes1.jpeg"
+    },
+    {
+      "projectId": "65a306dc-056a-4d0e-80f6-089bff258211",
+      "slug": "mirror-pool",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/65a306dc-056a-4d0e-80f6-089bff258211/gallery/d5333b28-46cf-47ef-a59c-8ba33d7b3f98-shoes1.jpeg"
+    },
+    {
+      "projectId": "395da3df-ef81-4a1e-bab6-c7d6bae100cd",
+      "slug": "night-motion",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/395da3df-ef81-4a1e-bab6-c7d6bae100cd/gallery/6b16ec8d-3d8b-4a52-a535-95ce4a3320ed-shoes1.jpeg"
+    },
+    {
+      "projectId": "e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f",
+      "slug": "northbound",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f/gallery/5944c3a5-cbd3-46e5-9bc1-a03f430f46d3-shoes1.jpeg"
+    },
+    {
+      "projectId": "5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0",
+      "slug": "open-road",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/8aa1571a-7b3e-48d7-a24d-a4dbfaf9bd45-shoes1.jpeg"
+    },
+    {
+      "projectId": "70bf1041-d050-4092-82f1-0c1f5f5d6b7a",
+      "slug": "paper-weight",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/70bf1041-d050-4092-82f1-0c1f5f5d6b7a/gallery/77c30c6b-b420-47fb-b17e-1b4475274888-shoes1.jpeg"
+    },
+    {
+      "projectId": "d50aacba-532f-44f1-8232-d8d243fdb3d5",
+      "slug": "pulse-line",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/d50aacba-532f-44f1-8232-d8d243fdb3d5/gallery/ee46d565-928b-4010-8069-506571a72a68-shoes1.jpeg"
+    },
+    {
+      "projectId": "0fea1aae-130c-4c99-82a6-26f96fbe1e4e",
+      "slug": "quiet-rooms",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/0fea1aae-130c-4c99-82a6-26f96fbe1e4e/gallery/4355f3a8-3ce3-4fe0-90e9-7ad118c7f3fd-shoes1.jpeg"
+    },
+    {
+      "projectId": "f180f902-50fc-4994-b11b-429d94121483",
+      "slug": "red-hour",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/f180f902-50fc-4994-b11b-429d94121483/gallery/7cbeaf75-a72f-4720-bf7d-ae98b2ff67e3-shoes1.jpeg"
+    },
+    {
+      "projectId": "37103392-2391-4d6e-8ca5-c2cff1d7193a",
+      "slug": "runway-dust",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/37103392-2391-4d6e-8ca5-c2cff1d7193a/gallery/d9df1119-5860-4843-aeb3-d62e2edff3da-shoes1.jpeg"
+    },
+    {
+      "projectId": "fdbdfdf6-9377-4b84-afea-25542daf4e81",
+      "slug": "signal-loss",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/fdbdfdf6-9377-4b84-afea-25542daf4e81/gallery/ec8acbbf-9691-4519-a8ac-0193a5f5c50f-shoes1.jpeg"
+    },
+    {
+      "projectId": "e9004cb3-7850-472d-96a7-61552f7d0980",
+      "slug": "soft-focus",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/e9004cb3-7850-472d-96a7-61552f7d0980/gallery/d1407c8d-b47e-4a60-b5ed-c84979d183e0-shoes1.jpeg"
+    },
+    {
+      "projectId": "f93f2f65-ca87-401e-9838-42e8c96722ef",
+      "slug": "static-bloom",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/f93f2f65-ca87-401e-9838-42e8c96722ef/gallery/99b82ad6-d07f-4169-86d8-652db552f2c7-shoes1.jpeg"
+    },
+    {
+      "projectId": "2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4",
+      "slug": "steel-horizon",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4/gallery/15f667f3-6330-4478-a38f-f33e07f8c73f-shoes1.jpeg"
+    },
+    {
+      "projectId": "fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb",
+      "slug": "studio-texture",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/154f30dc-1612-48e1-b924-31e2b55166d9-shoes1.jpeg"
+    },
+    {
+      "projectId": "ed99b542-c4d4-4ec9-9cce-3fbf0096991a",
+      "slug": "urban-grain",
+      "from": "/media/shoes1.jpeg",
+      "to": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/423026d1-0666-4468-80c4-2b37abaa746c-shoes1.jpeg"
+    }
+  ],
+  "failures": [],
+  "skipped": [
+    {
+      "slug": "montreal-editorial",
+      "reason": "cover already on storage",
+      "path": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/210e3cfc-34f2-4783-b528-9475f393f25f-mapdesign.png"
+    }
+  ],
+  "migratedFiles": [
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/ba3face6-d9a7-404f-b784-338a858f786e-shoes1.jpeg",
+      "projectSlug": "after-image",
+      "kind": "gallery",
+      "imageId": "ba3face6-d9a7-404f-b784-338a858f786e"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/b6147e10-9c66-4a90-a50a-aff01c505f4d-shoes1.jpeg",
+      "projectSlug": "after-image",
+      "kind": "gallery",
+      "imageId": "b6147e10-9c66-4a90-a50a-aff01c505f4d"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/d29b8d80-8062-44f9-87de-3b45a532eb28-shoes1.jpeg",
+      "projectSlug": "after-image",
+      "kind": "gallery",
+      "imageId": "d29b8d80-8062-44f9-87de-3b45a532eb28"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/4220812b-7675-4265-a954-2f22d5e314df-shoes1.jpeg",
+      "projectSlug": "after-image",
+      "kind": "gallery",
+      "imageId": "4220812b-7675-4265-a954-2f22d5e314df"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/093ec68b-dffb-498c-aa39-1190decadd53-shoes1.jpeg",
+      "projectSlug": "after-image",
+      "kind": "gallery",
+      "imageId": "093ec68b-dffb-498c-aa39-1190decadd53"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/a1341f4f-8e50-4351-bdc2-f8ba66a1c289/gallery/d5efc2e4-fcad-4dda-8c2b-4706e4504e55-shoes1.jpeg",
+      "projectSlug": "after-image",
+      "kind": "gallery",
+      "imageId": "d5efc2e4-fcad-4dda-8c2b-4706e4504e55"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/146df0af-c0a8-4d28-a706-0ed3056c4a9e/gallery/b4cac02f-3542-4c1d-8890-28042bca43c2-shoes1.jpeg",
+      "projectSlug": "amber-hold",
+      "kind": "gallery",
+      "imageId": "b4cac02f-3542-4c1d-8890-28042bca43c2"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/146df0af-c0a8-4d28-a706-0ed3056c4a9e/gallery/9f68c506-1feb-4c34-8191-dc89f45f40c8-shoes1.jpeg",
+      "projectSlug": "amber-hold",
+      "kind": "gallery",
+      "imageId": "9f68c506-1feb-4c34-8191-dc89f45f40c8"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/146df0af-c0a8-4d28-a706-0ed3056c4a9e/gallery/ddb89cc9-6027-47ff-ac01-d22dcaebe854-shoes1.jpeg",
+      "projectSlug": "amber-hold",
+      "kind": "gallery",
+      "imageId": "ddb89cc9-6027-47ff-ac01-d22dcaebe854"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/146df0af-c0a8-4d28-a706-0ed3056c4a9e/gallery/12133095-29a4-4256-baa6-56e8c77ea609-shoes1.jpeg",
+      "projectSlug": "amber-hold",
+      "kind": "gallery",
+      "imageId": "12133095-29a4-4256-baa6-56e8c77ea609"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9/gallery/0c87b51b-909d-4250-ae3c-f0e9f940c62c-shoes1.jpeg",
+      "projectSlug": "cargo-bay",
+      "kind": "gallery",
+      "imageId": "0c87b51b-909d-4250-ae3c-f0e9f940c62c"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9/gallery/ccc2f9d0-661a-4915-a7d3-1dda4c800ede-shoes1.jpeg",
+      "projectSlug": "cargo-bay",
+      "kind": "gallery",
+      "imageId": "ccc2f9d0-661a-4915-a7d3-1dda4c800ede"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9/gallery/33ba4162-25c7-4061-9f27-036669675864-shoes1.jpeg",
+      "projectSlug": "cargo-bay",
+      "kind": "gallery",
+      "imageId": "33ba4162-25c7-4061-9f27-036669675864"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/bba13ab4-37c3-4e4f-b1e9-63eea3ee68b9/gallery/74d7c58f-68e2-48f7-a86a-16f310b0220f-shoes1.jpeg",
+      "projectSlug": "cargo-bay",
+      "kind": "gallery",
+      "imageId": "74d7c58f-68e2-48f7-a86a-16f310b0220f"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/48646052-22a6-4750-a462-219bac90acf9-shoes1.jpeg",
+      "projectSlug": "coastal-light",
+      "kind": "gallery",
+      "imageId": "48646052-22a6-4750-a462-219bac90acf9"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/5e100490-266c-4062-98b7-a8c52047c226-shoes1.jpeg",
+      "projectSlug": "coastal-light",
+      "kind": "gallery",
+      "imageId": "5e100490-266c-4062-98b7-a8c52047c226"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/c9331732-02ac-47af-949a-493fb9d8d28f-shoes1.jpeg",
+      "projectSlug": "coastal-light",
+      "kind": "gallery",
+      "imageId": "c9331732-02ac-47af-949a-493fb9d8d28f"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/ce59ca54-fe29-4550-a2eb-6094aaaf3539-shoes1.jpeg",
+      "projectSlug": "coastal-light",
+      "kind": "gallery",
+      "imageId": "ce59ca54-fe29-4550-a2eb-6094aaaf3539"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/59e2cbb7-1e14-4352-9396-44f5847119bd-shoes1.jpeg",
+      "projectSlug": "coastal-light",
+      "kind": "gallery",
+      "imageId": "59e2cbb7-1e14-4352-9396-44f5847119bd"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/4f1ee73e-75f2-4443-98eb-0d5d737036d1/gallery/7c741fd5-c984-4418-9dd3-f8e37ca3a73d-shoes1.jpeg",
+      "projectSlug": "coastal-light",
+      "kind": "gallery",
+      "imageId": "7c741fd5-c984-4418-9dd3-f8e37ca3a73d"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/2a6f013b-0c0c-4821-a376-857be40d6e9e/gallery/a1d7b199-08a5-4f6c-8b72-efc7c2547ece-shoes1.jpeg",
+      "projectSlug": "cold-front",
+      "kind": "gallery",
+      "imageId": "a1d7b199-08a5-4f6c-8b72-efc7c2547ece"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/2a6f013b-0c0c-4821-a376-857be40d6e9e/gallery/1272e05a-0688-4914-ac52-dd69341f0660-shoes1.jpeg",
+      "projectSlug": "cold-front",
+      "kind": "gallery",
+      "imageId": "1272e05a-0688-4914-ac52-dd69341f0660"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/2a6f013b-0c0c-4821-a376-857be40d6e9e/gallery/4f3ac985-12c4-4bd3-8a45-0c645b849647-shoes1.jpeg",
+      "projectSlug": "cold-front",
+      "kind": "gallery",
+      "imageId": "4f3ac985-12c4-4bd3-8a45-0c645b849647"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/2a6f013b-0c0c-4821-a376-857be40d6e9e/gallery/ace0c27a-58a7-4bed-9b9d-0534ae46fc54-shoes1.jpeg",
+      "projectSlug": "cold-front",
+      "kind": "gallery",
+      "imageId": "ace0c27a-58a7-4bed-9b9d-0534ae46fc54"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/0c742008-b2f6-42d2-b850-a9a3a3049b14/gallery/7e5b15ff-3142-4e7f-9bdb-1b1c1bbe31a1-shoes1.jpeg",
+      "projectSlug": "cutaway",
+      "kind": "cover-only",
+      "imageId": "7e5b15ff-3142-4e7f-9bdb-1b1c1bbe31a1"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/0941591c-6768-415e-a137-979528d21ada/gallery/a8b370c8-114a-4947-81e8-3bfe32058c43-shoes1.jpeg",
+      "projectSlug": "drywall",
+      "kind": "gallery",
+      "imageId": "a8b370c8-114a-4947-81e8-3bfe32058c43"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/0941591c-6768-415e-a137-979528d21ada/gallery/b6d7e960-fc89-4b4f-839f-18a807371087-shoes1.jpeg",
+      "projectSlug": "drywall",
+      "kind": "gallery",
+      "imageId": "b6d7e960-fc89-4b4f-839f-18a807371087"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/0941591c-6768-415e-a137-979528d21ada/gallery/530df6e2-de0a-4161-8bb3-c5c29d66c30d-shoes1.jpeg",
+      "projectSlug": "drywall",
+      "kind": "gallery",
+      "imageId": "530df6e2-de0a-4161-8bb3-c5c29d66c30d"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/0941591c-6768-415e-a137-979528d21ada/gallery/7d664e81-6b10-4865-8376-6324e330ba33-shoes1.jpeg",
+      "projectSlug": "drywall",
+      "kind": "gallery",
+      "imageId": "7d664e81-6b10-4865-8376-6324e330ba33"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/b117a8d7-8407-4391-b0e4-bb9aa4157076-shoes1.jpeg",
+      "projectSlug": "field-notes",
+      "kind": "gallery",
+      "imageId": "b117a8d7-8407-4391-b0e4-bb9aa4157076"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/5b72da0a-f94e-419f-9c93-1821d50480b1-shoes1.jpeg",
+      "projectSlug": "field-notes",
+      "kind": "gallery",
+      "imageId": "5b72da0a-f94e-419f-9c93-1821d50480b1"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/65d28949-d02d-45ca-bd1f-f529ba314f91-shoes1.jpeg",
+      "projectSlug": "field-notes",
+      "kind": "gallery",
+      "imageId": "65d28949-d02d-45ca-bd1f-f529ba314f91"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/862461fb-c9aa-4513-a6e7-9473f7e7d909-shoes1.jpeg",
+      "projectSlug": "field-notes",
+      "kind": "gallery",
+      "imageId": "862461fb-c9aa-4513-a6e7-9473f7e7d909"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/fbc103df-7451-4c07-b069-3892269c5b9a-shoes1.jpeg",
+      "projectSlug": "field-notes",
+      "kind": "gallery",
+      "imageId": "fbc103df-7451-4c07-b069-3892269c5b9a"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/190e312c-66bd-46dc-a49c-0b6fcb84b1bf/gallery/6411dc6e-b3b6-413f-987a-b8e47842ae5a-shoes1.jpeg",
+      "projectSlug": "field-notes",
+      "kind": "gallery",
+      "imageId": "6411dc6e-b3b6-413f-987a-b8e47842ae5a"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/3b3591b2-7002-4338-8062-116db7611ca9/gallery/0b241f73-eb15-4469-b45f-cd58fb27466d-shoes1.jpeg",
+      "projectSlug": "flatline",
+      "kind": "gallery",
+      "imageId": "0b241f73-eb15-4469-b45f-cd58fb27466d"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/3b3591b2-7002-4338-8062-116db7611ca9/gallery/da130bb8-531f-4372-b072-a4dfd65730ca-shoes1.jpeg",
+      "projectSlug": "flatline",
+      "kind": "gallery",
+      "imageId": "da130bb8-531f-4372-b072-a4dfd65730ca"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/3b3591b2-7002-4338-8062-116db7611ca9/gallery/295bcacc-6ccc-4580-981a-1c66b1afb1ed-shoes1.jpeg",
+      "projectSlug": "flatline",
+      "kind": "gallery",
+      "imageId": "295bcacc-6ccc-4580-981a-1c66b1afb1ed"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/33cd3082-aaab-4d06-a0cf-e0e6144ddab9/gallery/e84503cd-f5d0-4439-88d7-2645e80d1c82-shoes1.jpeg",
+      "projectSlug": "frame-rate",
+      "kind": "cover-only",
+      "imageId": "e84503cd-f5d0-4439-88d7-2645e80d1c82"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/ffe24b0e-d066-43dc-b0f6-7f51f23a3e19-shoes1.jpeg",
+      "projectSlug": "glass-lines",
+      "kind": "gallery",
+      "imageId": "ffe24b0e-d066-43dc-b0f6-7f51f23a3e19"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/18cee10a-5ffd-4fb6-8a73-1f2ee09657c8-shoes1.jpeg",
+      "projectSlug": "glass-lines",
+      "kind": "gallery",
+      "imageId": "18cee10a-5ffd-4fb6-8a73-1f2ee09657c8"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/5d5c8a0e-746c-44f4-ab11-7d5af562a955-shoes1.jpeg",
+      "projectSlug": "glass-lines",
+      "kind": "gallery",
+      "imageId": "5d5c8a0e-746c-44f4-ab11-7d5af562a955"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/b0cee5c2-876b-41fe-9c1c-08ec001b9039-shoes1.jpeg",
+      "projectSlug": "glass-lines",
+      "kind": "gallery",
+      "imageId": "b0cee5c2-876b-41fe-9c1c-08ec001b9039"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e31194c6-3052-443c-9e2b-613e932fb7cf/gallery/d3b2906b-fc1e-49ef-b656-ebe630629a88-shoes1.jpeg",
+      "projectSlug": "glass-lines",
+      "kind": "gallery",
+      "imageId": "d3b2906b-fc1e-49ef-b656-ebe630629a88"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/bdf469ac-700a-4041-bc13-b124997439b1/gallery/544f5293-fa64-4ea1-af81-954d7ce3c575-shoes1.jpeg",
+      "projectSlug": "late-shift",
+      "kind": "gallery",
+      "imageId": "544f5293-fa64-4ea1-af81-954d7ce3c575"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/bdf469ac-700a-4041-bc13-b124997439b1/gallery/7d0b5cf1-3fb6-4198-bfc4-740ac34fc2be-shoes1.jpeg",
+      "projectSlug": "late-shift",
+      "kind": "gallery",
+      "imageId": "7d0b5cf1-3fb6-4198-bfc4-740ac34fc2be"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/bdf469ac-700a-4041-bc13-b124997439b1/gallery/eaa5cbfa-86e0-497c-913c-03147fc3a11d-shoes1.jpeg",
+      "projectSlug": "late-shift",
+      "kind": "gallery",
+      "imageId": "eaa5cbfa-86e0-497c-913c-03147fc3a11d"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/65a306dc-056a-4d0e-80f6-089bff258211/gallery/d5333b28-46cf-47ef-a59c-8ba33d7b3f98-shoes1.jpeg",
+      "projectSlug": "mirror-pool",
+      "kind": "gallery",
+      "imageId": "d5333b28-46cf-47ef-a59c-8ba33d7b3f98"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/65a306dc-056a-4d0e-80f6-089bff258211/gallery/3a46e94d-2503-4c1c-b147-3b550d5c86df-shoes1.jpeg",
+      "projectSlug": "mirror-pool",
+      "kind": "gallery",
+      "imageId": "3a46e94d-2503-4c1c-b147-3b550d5c86df"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/65a306dc-056a-4d0e-80f6-089bff258211/gallery/adab7952-7beb-4fb3-b6fb-0fdb3d1a09d0-shoes1.jpeg",
+      "projectSlug": "mirror-pool",
+      "kind": "gallery",
+      "imageId": "adab7952-7beb-4fb3-b6fb-0fdb3d1a09d0"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/65a306dc-056a-4d0e-80f6-089bff258211/gallery/31f4f79e-ca20-4dc4-b1e2-4c02f602f38e-shoes1.jpeg",
+      "projectSlug": "mirror-pool",
+      "kind": "gallery",
+      "imageId": "31f4f79e-ca20-4dc4-b1e2-4c02f602f38e"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/ea686ffe-5702-49b9-8890-2e24e17082f5-shoes1.jpeg",
+      "projectSlug": "montreal-editorial",
+      "kind": "gallery",
+      "imageId": "ea686ffe-5702-49b9-8890-2e24e17082f5"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/4f8f56f8-acd1-4a10-bcc2-8d0d894dbc7d-shoes1.jpeg",
+      "projectSlug": "montreal-editorial",
+      "kind": "gallery",
+      "imageId": "4f8f56f8-acd1-4a10-bcc2-8d0d894dbc7d"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/00b2d841-360f-4632-9073-e0de4021bdad-shoes1.jpeg",
+      "projectSlug": "montreal-editorial",
+      "kind": "gallery",
+      "imageId": "00b2d841-360f-4632-9073-e0de4021bdad"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/8cd8b087-43f7-4d93-ba42-e2850a35b559-shoes1.jpeg",
+      "projectSlug": "montreal-editorial",
+      "kind": "gallery",
+      "imageId": "8cd8b087-43f7-4d93-ba42-e2850a35b559"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/266f47ae-b6bc-4ed6-bcc7-fabd5ab28744-shoes1.jpeg",
+      "projectSlug": "montreal-editorial",
+      "kind": "gallery",
+      "imageId": "266f47ae-b6bc-4ed6-bcc7-fabd5ab28744"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e40a9391-82ee-41ab-a5d7-c1a84306c3ea/gallery/0d7aea41-02f3-4efb-891f-019dbace3a83-shoes1.jpeg",
+      "projectSlug": "montreal-editorial",
+      "kind": "gallery",
+      "imageId": "0d7aea41-02f3-4efb-891f-019dbace3a83"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/395da3df-ef81-4a1e-bab6-c7d6bae100cd/gallery/6b16ec8d-3d8b-4a52-a535-95ce4a3320ed-shoes1.jpeg",
+      "projectSlug": "night-motion",
+      "kind": "cover-only",
+      "imageId": "6b16ec8d-3d8b-4a52-a535-95ce4a3320ed"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f/gallery/5944c3a5-cbd3-46e5-9bc1-a03f430f46d3-shoes1.jpeg",
+      "projectSlug": "northbound",
+      "kind": "gallery",
+      "imageId": "5944c3a5-cbd3-46e5-9bc1-a03f430f46d3"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f/gallery/9f057b5e-f814-48e2-b417-d5856c89c709-shoes1.jpeg",
+      "projectSlug": "northbound",
+      "kind": "gallery",
+      "imageId": "9f057b5e-f814-48e2-b417-d5856c89c709"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e2a4fa0e-1a2f-419f-8dc2-6fbcc22fa74f/gallery/1c1c838d-5165-49e3-a90e-8a9eca5b3bd0-shoes1.jpeg",
+      "projectSlug": "northbound",
+      "kind": "gallery",
+      "imageId": "1c1c838d-5165-49e3-a90e-8a9eca5b3bd0"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/8aa1571a-7b3e-48d7-a24d-a4dbfaf9bd45-shoes1.jpeg",
+      "projectSlug": "open-road",
+      "kind": "gallery",
+      "imageId": "8aa1571a-7b3e-48d7-a24d-a4dbfaf9bd45"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/36faa741-5d9c-4e3e-bdcd-ba4d4ca9721b-shoes1.jpeg",
+      "projectSlug": "open-road",
+      "kind": "gallery",
+      "imageId": "36faa741-5d9c-4e3e-bdcd-ba4d4ca9721b"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/0e10e819-84a2-4b57-851f-770f9120449f-shoes1.jpeg",
+      "projectSlug": "open-road",
+      "kind": "gallery",
+      "imageId": "0e10e819-84a2-4b57-851f-770f9120449f"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/361d5d50-979f-4b9d-b06f-b8cf9d22af18-shoes1.jpeg",
+      "projectSlug": "open-road",
+      "kind": "gallery",
+      "imageId": "361d5d50-979f-4b9d-b06f-b8cf9d22af18"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/5eb0e2fb-3b11-47f0-afb0-695a25b0d4d0/gallery/6317f750-70aa-4071-8f9a-0269149326c5-shoes1.jpeg",
+      "projectSlug": "open-road",
+      "kind": "gallery",
+      "imageId": "6317f750-70aa-4071-8f9a-0269149326c5"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/70bf1041-d050-4092-82f1-0c1f5f5d6b7a/gallery/77c30c6b-b420-47fb-b17e-1b4475274888-shoes1.jpeg",
+      "projectSlug": "paper-weight",
+      "kind": "gallery",
+      "imageId": "77c30c6b-b420-47fb-b17e-1b4475274888"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/70bf1041-d050-4092-82f1-0c1f5f5d6b7a/gallery/ccd7e648-abae-4e21-ae4d-d166322d5a22-shoes1.jpeg",
+      "projectSlug": "paper-weight",
+      "kind": "gallery",
+      "imageId": "ccd7e648-abae-4e21-ae4d-d166322d5a22"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/70bf1041-d050-4092-82f1-0c1f5f5d6b7a/gallery/a921301e-685a-461e-a391-7511c8d51615-shoes1.jpeg",
+      "projectSlug": "paper-weight",
+      "kind": "gallery",
+      "imageId": "a921301e-685a-461e-a391-7511c8d51615"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/d50aacba-532f-44f1-8232-d8d243fdb3d5/gallery/ee46d565-928b-4010-8069-506571a72a68-shoes1.jpeg",
+      "projectSlug": "pulse-line",
+      "kind": "cover-only",
+      "imageId": "ee46d565-928b-4010-8069-506571a72a68"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/0fea1aae-130c-4c99-82a6-26f96fbe1e4e/gallery/4355f3a8-3ce3-4fe0-90e9-7ad118c7f3fd-shoes1.jpeg",
+      "projectSlug": "quiet-rooms",
+      "kind": "gallery",
+      "imageId": "4355f3a8-3ce3-4fe0-90e9-7ad118c7f3fd"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/0fea1aae-130c-4c99-82a6-26f96fbe1e4e/gallery/609622c6-daa1-4c3a-a6e5-c2b935924ede-shoes1.jpeg",
+      "projectSlug": "quiet-rooms",
+      "kind": "gallery",
+      "imageId": "609622c6-daa1-4c3a-a6e5-c2b935924ede"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/0fea1aae-130c-4c99-82a6-26f96fbe1e4e/gallery/cdbe7188-e70b-42a2-9400-1208d7cfad4c-shoes1.jpeg",
+      "projectSlug": "quiet-rooms",
+      "kind": "gallery",
+      "imageId": "cdbe7188-e70b-42a2-9400-1208d7cfad4c"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/0fea1aae-130c-4c99-82a6-26f96fbe1e4e/gallery/c5c4d608-2bb5-4ac1-98b9-3f438ee03743-shoes1.jpeg",
+      "projectSlug": "quiet-rooms",
+      "kind": "gallery",
+      "imageId": "c5c4d608-2bb5-4ac1-98b9-3f438ee03743"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/f180f902-50fc-4994-b11b-429d94121483/gallery/7cbeaf75-a72f-4720-bf7d-ae98b2ff67e3-shoes1.jpeg",
+      "projectSlug": "red-hour",
+      "kind": "gallery",
+      "imageId": "7cbeaf75-a72f-4720-bf7d-ae98b2ff67e3"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/f180f902-50fc-4994-b11b-429d94121483/gallery/c2769360-7d61-4789-a686-c2da935180b2-shoes1.jpeg",
+      "projectSlug": "red-hour",
+      "kind": "gallery",
+      "imageId": "c2769360-7d61-4789-a686-c2da935180b2"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/f180f902-50fc-4994-b11b-429d94121483/gallery/56d0cca2-c381-49c9-9337-52c00d92f823-shoes1.jpeg",
+      "projectSlug": "red-hour",
+      "kind": "gallery",
+      "imageId": "56d0cca2-c381-49c9-9337-52c00d92f823"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/f180f902-50fc-4994-b11b-429d94121483/gallery/5636faba-d46e-40d9-bed7-67b21b15ad66-shoes1.jpeg",
+      "projectSlug": "red-hour",
+      "kind": "gallery",
+      "imageId": "5636faba-d46e-40d9-bed7-67b21b15ad66"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/37103392-2391-4d6e-8ca5-c2cff1d7193a/gallery/d9df1119-5860-4843-aeb3-d62e2edff3da-shoes1.jpeg",
+      "projectSlug": "runway-dust",
+      "kind": "cover-only",
+      "imageId": "d9df1119-5860-4843-aeb3-d62e2edff3da"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/fdbdfdf6-9377-4b84-afea-25542daf4e81/gallery/ec8acbbf-9691-4519-a8ac-0193a5f5c50f-shoes1.jpeg",
+      "projectSlug": "signal-loss",
+      "kind": "cover-only",
+      "imageId": "ec8acbbf-9691-4519-a8ac-0193a5f5c50f"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e9004cb3-7850-472d-96a7-61552f7d0980/gallery/d1407c8d-b47e-4a60-b5ed-c84979d183e0-shoes1.jpeg",
+      "projectSlug": "soft-focus",
+      "kind": "gallery",
+      "imageId": "d1407c8d-b47e-4a60-b5ed-c84979d183e0"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e9004cb3-7850-472d-96a7-61552f7d0980/gallery/8773946d-3069-42bd-88e1-ef9a701fe894-shoes1.jpeg",
+      "projectSlug": "soft-focus",
+      "kind": "gallery",
+      "imageId": "8773946d-3069-42bd-88e1-ef9a701fe894"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e9004cb3-7850-472d-96a7-61552f7d0980/gallery/3b338745-f5fc-486d-9949-5df7871ebe1a-shoes1.jpeg",
+      "projectSlug": "soft-focus",
+      "kind": "gallery",
+      "imageId": "3b338745-f5fc-486d-9949-5df7871ebe1a"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/e9004cb3-7850-472d-96a7-61552f7d0980/gallery/30d86e4b-a16c-4aa4-924f-1776b65b9d83-shoes1.jpeg",
+      "projectSlug": "soft-focus",
+      "kind": "gallery",
+      "imageId": "30d86e4b-a16c-4aa4-924f-1776b65b9d83"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/f93f2f65-ca87-401e-9838-42e8c96722ef/gallery/99b82ad6-d07f-4169-86d8-652db552f2c7-shoes1.jpeg",
+      "projectSlug": "static-bloom",
+      "kind": "cover-only",
+      "imageId": "99b82ad6-d07f-4169-86d8-652db552f2c7"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4/gallery/15f667f3-6330-4478-a38f-f33e07f8c73f-shoes1.jpeg",
+      "projectSlug": "steel-horizon",
+      "kind": "gallery",
+      "imageId": "15f667f3-6330-4478-a38f-f33e07f8c73f"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4/gallery/e18512bc-a412-49d0-a1e0-6348675f8f8a-shoes1.jpeg",
+      "projectSlug": "steel-horizon",
+      "kind": "gallery",
+      "imageId": "e18512bc-a412-49d0-a1e0-6348675f8f8a"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4/gallery/c3a1da44-1a6b-4067-8ea5-1e02f2680711-shoes1.jpeg",
+      "projectSlug": "steel-horizon",
+      "kind": "gallery",
+      "imageId": "c3a1da44-1a6b-4067-8ea5-1e02f2680711"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/2d8939f3-bb3b-4e6c-bfdf-7c0d5bce82a4/gallery/729c8498-3b13-4db1-bde1-7232be4e5d18-shoes1.jpeg",
+      "projectSlug": "steel-horizon",
+      "kind": "gallery",
+      "imageId": "729c8498-3b13-4db1-bde1-7232be4e5d18"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/154f30dc-1612-48e1-b924-31e2b55166d9-shoes1.jpeg",
+      "projectSlug": "studio-texture",
+      "kind": "gallery",
+      "imageId": "154f30dc-1612-48e1-b924-31e2b55166d9"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/286ce733-ba89-48e0-967a-0b6392032dd5-shoes1.jpeg",
+      "projectSlug": "studio-texture",
+      "kind": "gallery",
+      "imageId": "286ce733-ba89-48e0-967a-0b6392032dd5"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/185a7f8f-c4f3-4007-bae6-fdb10ff6b48f-shoes1.jpeg",
+      "projectSlug": "studio-texture",
+      "kind": "gallery",
+      "imageId": "185a7f8f-c4f3-4007-bae6-fdb10ff6b48f"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/f9fa33cc-8197-4e6c-9f83-9e158d6b34e3-shoes1.jpeg",
+      "projectSlug": "studio-texture",
+      "kind": "gallery",
+      "imageId": "f9fa33cc-8197-4e6c-9f83-9e158d6b34e3"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/fc3f6175-baa1-41b1-a9ff-5f444b1bdbdb/gallery/24e10ad1-9fa6-46bb-9647-96ab0fb2b1fe-shoes1.jpeg",
+      "projectSlug": "studio-texture",
+      "kind": "gallery",
+      "imageId": "24e10ad1-9fa6-46bb-9647-96ab0fb2b1fe"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/423026d1-0666-4468-80c4-2b37abaa746c-shoes1.jpeg",
+      "projectSlug": "urban-grain",
+      "kind": "gallery",
+      "imageId": "423026d1-0666-4468-80c4-2b37abaa746c"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/9a747a49-6b47-497a-b29e-0846f6e96995-shoes1.jpeg",
+      "projectSlug": "urban-grain",
+      "kind": "gallery",
+      "imageId": "9a747a49-6b47-497a-b29e-0846f6e96995"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/3cc4c01b-f2a1-4334-b2f6-1eb36c5d0cf4-shoes1.jpeg",
+      "projectSlug": "urban-grain",
+      "kind": "gallery",
+      "imageId": "3cc4c01b-f2a1-4334-b2f6-1eb36c5d0cf4"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/c3461bd1-d7e7-46de-b4d3-8a81749d52fd-shoes1.jpeg",
+      "projectSlug": "urban-grain",
+      "kind": "gallery",
+      "imageId": "c3461bd1-d7e7-46de-b4d3-8a81749d52fd"
+    },
+    {
+      "localFile": "public/media/shoes1.jpeg",
+      "storagePath": "projects/ed99b542-c4d4-4ec9-9cce-3fbf0096991a/gallery/61f26b43-6189-4e2d-9c33-511a9d683418-shoes1.jpeg",
+      "projectSlug": "urban-grain",
+      "kind": "gallery",
+      "imageId": "61f26b43-6189-4e2d-9c33-511a9d683418"
+    }
+  ]
+}

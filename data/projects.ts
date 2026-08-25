@@ -1,5 +1,11 @@
 import type { MediaItem, Project, ProjectKind } from "@/types/projects";
 
+/**
+ * Local mock portfolio used as the Phase 2 seed source of truth.
+ * The public site reads from Supabase via `src/services/projects`.
+ * Keep this file until media migration is verified, then remove.
+ */
+
 type CoverSize = {
   width: number;
   height: number;
@@ -39,7 +45,7 @@ function video(
   return {
     id,
     type: "video",
-    src: "",
+    src: "/media/videos/CardinTest2.mp4",
     posterSrc: "/media/shoes1.jpeg",
     alt,
     width: size.width,

@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useId, useState } from "react";
+import {
+  Fragment,
+  startTransition,
+  useEffect,
+  useId,
+  useState,
+  ViewTransition,
+} from "react";
 import type { MediaItem } from "@/types/projects";
 import {
   getCarouselDisplaySize,
@@ -13,11 +20,34 @@ type PhotoProjectViewProps = {
   media: MediaItem[];
 };
 
+function photoTransitionName(photoId: string) {
+  return `caloid-photo-${photoId}`;
+}
+
 export function PhotoProjectView({ title, media }: PhotoProjectViewProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const labelId = useId();
   const photos = media.filter((item) => item.type === "image");
   const selected = photos.find((item) => item.id === selectedId) ?? null;
+
+  function selectPhoto(photoId: string) {
+    // Within expanded view, swap instantly — named ViewTransitions on the hero
+    // + filmstrip were colliding. Use a transition only when opening from carousel.
+    if (selectedId !== null) {
+      setSelectedId(photoId);
+      return;
+    }
+
+    startTransition(() => {
+      setSelectedId(photoId);
+    });
+  }
+
+  function closeExpanded() {
+    startTransition(() => {
+      setSelectedId(null);
+    });
+  }
 
   useEffect(() => {
     if (!selectedId) {
@@ -26,7 +56,9 @@ export function PhotoProjectView({ title, media }: PhotoProjectViewProps) {
 
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setSelectedId(null);
+        startTransition(() => {
+          setSelectedId(null);
+        });
       }
     }
 
@@ -39,54 +71,68 @@ export function PhotoProjectView({ title, media }: PhotoProjectViewProps) {
   }
 
   if (selected) {
+    const others = photos.filter((photo) => photo.id !== selected.id);
+
     return (
-      <div className="relative flex min-h-screen flex-col bg-background px-8 pb-36 pt-[74px] lg:pb-40">
-        <button
-          type="button"
-          className="relative mx-auto aspect-[1310/796] w-full max-w-[1310px] overflow-hidden bg-media-placeholder"
-          onClick={() => setSelectedId(null)}
-          aria-label={`Close expanded view of ${selected.alt}`}
-        >
-          <Image
-            src={selected.src}
-            alt={selected.alt}
-            width={selected.width}
-            height={selected.height}
-            className="size-full object-cover"
-            priority
-          />
-        </button>
+      <div className="photo-expanded relative flex h-dvh max-h-dvh flex-col overflow-hidden bg-background">
+        <div className="photo-expanded-stage grid min-h-0 flex-1 place-items-center">
+          <ViewTransition
+            key={selected.id}
+            name={photoTransitionName(selected.id)}
+            share="photo-morph"
+          >
+            <button
+              type="button"
+              className="photo-expanded-frame relative h-full w-full overflow-hidden bg-background"
+              onClick={closeExpanded}
+              aria-label={`Close expanded view of ${selected.alt}`}
+            >
+              <Image
+                src={selected.src}
+                alt={selected.alt}
+                fill
+                className="object-contain"
+                priority
+                sizes="100vw"
+                quality={90}
+              />
+            </button>
+          </ViewTransition>
+        </div>
 
-        <ul
-          className="absolute bottom-4 left-8 flex max-w-[min(440px,calc(100%-4rem))] list-none gap-3 overflow-x-auto md:bottom-6"
-          aria-label={`${title} photo filmstrip`}
-        >
-          {photos.map((photo) => {
-            const size = getFilmstripDisplaySize(photo.width, photo.height);
-            const isActive = photo.id === selected.id;
+        {others.length > 0 ? (
+          <div className="photo-filmstrip absolute bottom-4 left-[15px] z-30 w-max md:bottom-6 md:left-6 lg:bottom-0">
+            <ul
+              className="flex list-none gap-3 overflow-x-auto"
+              aria-label={`${title} other photos`}
+            >
+              {others.map((photo) => {
+                const size = getFilmstripDisplaySize(photo.width, photo.height);
 
-            return (
-              <li key={photo.id} className="shrink-0">
-                <button
-                  type="button"
-                  onClick={() => setSelectedId(photo.id)}
-                  className={`block overflow-hidden bg-media-placeholder transition-opacity ${isActive ? "opacity-100 ring-2 ring-accent" : "opacity-70 hover:opacity-100"}`}
-                  style={{ width: size.width, height: size.height }}
-                  aria-label={`View ${photo.alt}`}
-                  aria-current={isActive ? "true" : undefined}
-                >
-                  <Image
-                    src={photo.src}
-                    alt=""
-                    width={photo.width}
-                    height={photo.height}
-                    className="size-full object-cover"
-                  />
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+                return (
+                  <li key={photo.id} className="shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => selectPhoto(photo.id)}
+                      className="block overflow-hidden bg-media-placeholder opacity-80 transition-opacity hover:opacity-100"
+                      style={{ width: size.width, height: size.height }}
+                      aria-label={`View ${photo.alt}`}
+                    >
+                      <Image
+                        src={photo.src}
+                        alt=""
+                        width={photo.width}
+                        height={photo.height}
+                        sizes="120px"
+                        className="size-full object-cover"
+                      />
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -103,14 +149,12 @@ export function PhotoProjectView({ title, media }: PhotoProjectViewProps) {
           {track.map((photo, index) => {
             const size = getCarouselDisplaySize(photo.width, photo.height);
             const isClone = index >= photos.length;
-
-            return (
+            const tile = (
               <button
-                key={`${photo.id}-${index}`}
                 type="button"
                 className="relative shrink-0 overflow-hidden bg-media-placeholder shadow-none transition-shadow duration-300 hover:z-10 hover:shadow-[0_18px_48px_rgba(0,0,0,0.22)] focus-visible:z-10 focus-visible:shadow-[0_18px_48px_rgba(0,0,0,0.22)]"
                 style={{ width: size.width, height: size.height }}
-                onClick={() => setSelectedId(photo.id)}
+                onClick={() => selectPhoto(photo.id)}
                 aria-label={`Expand ${photo.alt}`}
                 tabIndex={isClone ? -1 : 0}
                 aria-hidden={isClone || undefined}
@@ -122,9 +166,27 @@ export function PhotoProjectView({ title, media }: PhotoProjectViewProps) {
                   height={photo.height}
                   className="size-full object-cover"
                   sizes="(max-width: 768px) 70vw, 400px"
-                  priority={index < 3}
+                  priority={index < 2}
+                  quality={85}
                 />
               </button>
+            );
+
+            // Only the live (non-clone) tile owns the shared name.
+            if (isClone) {
+              return (
+                <Fragment key={`${photo.id}-${index}`}>{tile}</Fragment>
+              );
+            }
+
+            return (
+              <ViewTransition
+                key={photo.id}
+                name={photoTransitionName(photo.id)}
+                share="photo-morph"
+              >
+                {tile}
+              </ViewTransition>
             );
           })}
         </div>

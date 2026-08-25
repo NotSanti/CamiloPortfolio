@@ -39,6 +39,13 @@
   --content-max: 1440px;
   --nav-rail: 64px;
   --font-pp-neue-montreal: "PP Neue Montreal";
+  --photo-filmstrip-slot: clamp(10.5rem, 30vw, 26rem);
+  /* Scales with viewport, and also with the width left beside the filmstrip slot. */
+  --project-title-size: clamp(
+    2.25rem,
+    min(8.9vw, calc((100vw - var(--photo-filmstrip-slot) - 3rem) / 12)),
+    8rem
+  );
 }
 
 @theme inline {
@@ -94,7 +101,6 @@ body {
   pointer-events: auto;
   animation: media-tile-rise var(--tile-duration) linear var(--tile-delay) 1
     both;
-  will-change: transform;
 }
 
 .media-stream-item--enter {
@@ -108,6 +114,53 @@ body {
     1 both;
 }
 
+/* Project title scales with viewport and always leaves a left slot for the filmstrip. */
+.project-title {
+  font-size: var(--project-title-size);
+  max-width: calc(100% - var(--photo-filmstrip-slot) - 3rem);
+}
+
+/* Expanded photo: lock to the viewport and reserve chrome for nav / title / strip. */
+.photo-expanded {
+  --photo-expanded-top: 4.625rem;
+  /* Filmstrip row ≈ 105px; keep a gap above title/strip. */
+  --photo-expanded-bottom: max(8rem, calc(var(--project-title-size) + 1.5rem));
+  --photo-expanded-inline: 2rem;
+  --photo-expanded-end: max(2rem, calc(var(--nav-rail) + 1.5rem));
+  padding: var(--photo-expanded-top) var(--photo-expanded-end)
+    var(--photo-expanded-bottom) var(--photo-expanded-inline);
+}
+
+.photo-expanded-stage {
+  width: 100%;
+  min-height: 0;
+}
+
+.photo-expanded-frame {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Video project: lock to the viewport and clear the project title / nav. */
+.video-project {
+  --video-project-top: 4.625rem;
+  --video-project-bottom: max(8rem, calc(var(--project-title-size) + 1.5rem));
+  --video-project-inline: 2rem;
+  --video-project-end: max(2rem, calc(var(--nav-rail) + 1.5rem));
+  padding: var(--video-project-top) var(--video-project-end)
+    var(--video-project-bottom) var(--video-project-inline);
+}
+
+.video-project-stage {
+  width: 100%;
+  min-height: 0;
+}
+
+.video-project-frame {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .photo-carousel-track {
   animation: photo-carousel-scroll 48s linear infinite;
 }
@@ -117,23 +170,25 @@ body {
   animation-play-state: paused;
 }
 
+/* Expanded photo strip: reserved left slot beside the project title. */
+.photo-filmstrip {
+  max-width: var(--photo-filmstrip-slot);
+}
+
+.photo-filmstrip ul {
+  scrollbar-width: none;
+}
+
+.photo-filmstrip ul::-webkit-scrollbar {
+  display: none;
+}
+
 .projects-overlay-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent) #e5e5e5;
+  scrollbar-width: none;
 }
 
 .projects-overlay-scroll::-webkit-scrollbar {
-  width: 10px;
-}
-
-.projects-overlay-scroll::-webkit-scrollbar-track {
-  background: #e5e5e5;
-  border-radius: 20px;
-}
-
-.projects-overlay-scroll::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 20px;
+  display: none;
 }
 
 .media-stream-item:hover,
@@ -146,6 +201,22 @@ body {
   --focus-dim: rgb(0 0 0 / 40%);
   --focus-dim-duration: 320ms;
   --focus-dim-ease: ease-out;
+  /* Stream children are absolutely positioned; keep an explicit viewport height
+     so overflow clipping doesn't hide every tile when utility height is missing. */
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Projects overlay open: free GPU/CPU so the overlay scroll stays smooth. */
+.home-featured--suspended .media-stream-item,
+.home-featured--suspended .media-stream-item--enter {
+  animation-play-state: paused !important;
+}
+
+.home-featured--suspended {
+  pointer-events: none;
 }
 
 /*
@@ -230,6 +301,21 @@ body {
   animation-duration: 450ms;
 }
 
+/* Photo project: selected tile zooms up; siblings minimize to the corner. */
+::view-transition-group(.photo-morph) {
+  animation-duration: 560ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(.photo-morph),
+::view-transition-new(.photo-morph) {
+  animation-duration: 560ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  mix-blend-mode: normal;
+  height: 100%;
+  overflow: clip;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .media-stream-item,
   .media-stream-item--enter {
@@ -250,4 +336,12 @@ body {
   ::view-transition-new(*) {
     animation: none !important;
   }
+}
+
+/* Mux player fills tile / project stage without default chrome. */
+.project-mux-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  --controls: none;
 }

@@ -6,11 +6,9 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState,
-  type MouseEvent as ReactMouseEvent,
   type UIEvent,
 } from "react";
-import type { Project } from "@/types/projects";
+import type { ProjectSummary } from "@/types/projects";
 
 /**
  * Funnel renderable region from Figma `Renderable List Borders` (19:86),
@@ -29,7 +27,7 @@ const FUNNEL = {
 const FUNNEL_CLIP = `polygon(${FUNNEL.topLeft}% 0%, ${FUNNEL.topRight}% 0%, ${FUNNEL.bottomRight}% 100%, ${FUNNEL.bottomLeft}% 100%)`;
 
 type ProjectsOverlayProps = {
-  projects: Project[];
+  projects: ProjectSummary[];
   onClose: () => void;
 };
 
@@ -52,14 +50,7 @@ function mulberry32(seed: number): () => number {
   };
 }
 
-/**
- * Scatter each title randomly inside the funnel.
- * Vertical slots stay stratified so the list still fills the scroll height.
- * Horizontal placement uses the full-bleed top width and reserves space for the
- * title string so each item can sit fully visible when scrolled to the top.
- */
 function estimateTitleWidthPercent(title: string): number {
-  // ~36px uppercase: roughly 1.1% of viewport width per character on desktop.
   return Math.min(52, Math.max(12, title.length * 1.1));
 }
 
@@ -85,21 +76,9 @@ function getFunnelPosition(
   };
 }
 
-/** Hit-test against the funnel polygon (percentages of the viewport). */
-function isInsideFunnel(clientX: number, clientY: number): boolean {
-  const w = window.innerWidth;
-  const h = window.innerHeight;
-  const t = clientY / h;
-  const left =
-    (FUNNEL.topLeft + t * (FUNNEL.bottomLeft - FUNNEL.topLeft)) * (w / 100);
-  const right =
-    (FUNNEL.topRight + t * (FUNNEL.bottomRight - FUNNEL.topRight)) * (w / 100);
-  return clientX >= left && clientX <= right && clientY >= 0 && clientY <= h;
-}
-
 export function ProjectsOverlay({ projects, onClose }: ProjectsOverlayProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [scrollTop, setScrollTop] = useState(0);
+  const listRef = useRef<HTMLUListElement>(null);
   const positions = useMemo(
     () =>
       projects.map((project, index) =>
@@ -148,26 +127,27 @@ export function ProjectsOverlay({ projects, onClose }: ProjectsOverlayProps) {
   }, [onWheel]);
 
   function handleScroll(event: UIEvent<HTMLDivElement>) {
-    setScrollTop(event.currentTarget.scrollTop);
-  }
-
-  function handleDismissClick(event: ReactMouseEvent<HTMLDivElement>) {
-    if ((event.target as HTMLElement).closest("a")) {
-      return;
-    }
-    if (!isInsideFunnel(event.clientX, event.clientY)) {
-      onClose();
-    }
+    const list = listRef.current;
+    if (!list) return;
+    // Imperative sync avoids re-rendering every title on each scroll frame.
+    list.style.transform = `translateY(-${event.currentTarget.scrollTop}px)`;
   }
 
   return (
     <div
-      className="fixed inset-0 z-50"
+      className="fixed inset-0 z-50 bg-background"
       role="dialog"
       aria-modal="true"
       aria-label="Projects"
-      onClick={handleDismissClick}
     >
+      {/* Figma Ellipse 1 (33:2) — close control */}
+      <button
+        type="button"
+        onClick={onClose}
+        className="absolute left-[23px] top-[26px] z-40 size-[30px] rounded-full bg-accent transition-opacity hover:opacity-80"
+        aria-label="Close projects"
+      />
+
       {/*
         Full-viewport scroller (unclipped) so the native scrollbar works.
         Height spacer drives scroll range; title layer is synced below.
@@ -193,10 +173,11 @@ export function ProjectsOverlay({ projects, onClose }: ProjectsOverlayProps) {
         style={{ clipPath: FUNNEL_CLIP }}
       >
         <ul
-          className="relative w-full list-none"
+          ref={listRef}
+          className="relative w-full list-none will-change-transform"
           style={{
             height: `${contentHeightVh}vh`,
-            transform: `translateY(-${scrollTop}px)`,
+            transform: "translateY(0)",
           }}
         >
           {projects.map((project, index) => {

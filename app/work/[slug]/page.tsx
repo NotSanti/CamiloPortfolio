@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import {
-  getAllProjectSlugs,
-  getProjectBySlug,
-} from "@/data/projects";
+  getPublishedProjectBySlug,
+  getPublishedProjectSlugs,
+} from "@/src/services/projects/get-published-projects";
 import { SiteHeader } from "@/src/components/layout/site-header";
 import { PhotoProjectView } from "@/src/components/project/photo-project-view";
 import { VideoProjectView } from "@/src/components/project/video-project-view";
@@ -11,13 +11,16 @@ type ProjectPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
-  return getAllProjectSlugs().map((slug) => ({ slug }));
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const slugs = await getPublishedProjectSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getPublishedProjectBySlug(slug);
 
   if (!project) {
     return { title: "Project not found" };
@@ -31,7 +34,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getPublishedProjectBySlug(slug);
 
   if (!project) {
     notFound();

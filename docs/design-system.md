@@ -2,7 +2,7 @@
 
 Source: Figma `Caloid-Portfolio` → `MainPage` (`2:2`), a 1440 × 1024 desktop frame.
 
-Last synced from Figma: 2026-07-18 (About + Projects list frames).
+Last synced from Figma: 2026-08-05 (About `19:16` + Projects overlay `19:42`).
 
 ## Typography
 
@@ -55,26 +55,25 @@ Homepage media stream uses **2rem** left/right gutters where tiles cannot render
 - Photo carousel / expanded photo / video layouts (see prior sync).
 - Shared: vertical nav + bottom-right project title; no homepage intro / `CALOID`.
 
-### About (`AbountPage - CONTACT VIEW` `19:16`)
-
-About uses the Contact view only (bio frame `AboutPage` `19:2` is unused / hidden in Figma).
+### About (`AbountPage` `19:16`)
 
 - Nav on About is `PROJECTS - HOME` (Projects opens the overlay; Home links to `/`).
-- Stacked `CAMILO` / `LUNA` (96px Bold accent) top-left.
-- Tall portrait (~386 × 699) anchored to the **bottom** of the left column.
-- Quote block top-right with corner brackets (top-left black, bottom-right red).
-- Pill link buttons (Instagram then Email) anchored to the **bottom** of the right column.
-- Pill hover: liquid circular `#CF0023` reveal from pointer-entry (and contract to pointer-exit), ~520ms `cubic-bezier(0.76, 0, 0.24, 1)`; label/arrow invert to white with the wave; border stays put. Each pill animates independently.
+- Bio paragraph top-left (accent Bold ≈20px / 44px line-height).
+- Center stack: “WHY IS HE CALLED CALOID?” repeated with overlapping lines (accent Bold ≈24px).
+- Contact column top-right: `CONTACT` + Email / Instagram / LinkedIn links (accent).
+- Landscape portrait placeholder bottom-left (~465 × 268).
+- Large `ABOUT` wordmark bottom-right (128px Bold accent), same treatment as project titles / `CALOID`.
 
 ### Projects list (`ProjectsPage` `19:42`)
 
-Figma design note: **not a standalone surface** — rendered as an overlay on the live homepage (blurred/faded), so closing it does not remount the home stream.
+Figma design note: **not a standalone surface** — rendered as a full-viewport overlay (opaque white). Closing it does not remount the underlying page.
 
+- Solid white background (no blur / transparency of the page underneath).
+- Red circular close control top-left (≈30px, accent fill); Escape also closes.
 - **Renderable area** is a funnel from the **top of the viewport** to the bottom (full width at top 0%–100%, wider taper at bottom ≈22%–78%), from Figma `Renderable List Borders` (`19:86`), extended to `y: 0` and full-bleed at the top.
-- **Non-renderable area** is everything outside that funnel (Figma `NON RENDERABLE AREA` guide). Spec lines are design-only and are **not** shown in the UI.
-- Project titles are scattered randomly inside the funnel (stable per project id), not in a left-to-right stair pattern.
-- Click **outside** the funnel (or Escape) closes the overlay.
-- Scrolling is on a full-viewport container (so the scrollbar is not clipped by the funnel); the funnel only clips title visibility.
+- **Non-renderable area** guide lines are design-only and are **not** shown in the UI.
+- Project titles are scattered randomly inside the funnel (stable per project id).
+- Scrolling is on a full-viewport container; the funnel only clips title visibility.
 - Projects opens as an overlay on **whatever page the user is on** (home, about, or a project); it does not navigate away.
 - Project titles link to `/work/[slug]`.
 
@@ -97,7 +96,7 @@ Figma only defines 1440px desktop frames. Implementation recommendations:
 
 - Homepage: media fade-in on enter; vertical bottom→top recycle stream; hover pauses stream, scales the tile (~1.06), dims sibling tiles, and veils the rest of the page (~40% black).
 - Photo project: continuous horizontal carousel scroll; pauses on hover/focus; reduced-motion disables auto-scroll.
-- Projects overlay: background homepage is blurred (~10px) at reduced opacity (~40%).
+- Projects overlay: opaque white full-viewport surface; red circular close control top-left.
 - Image hover: Soft shadow + slight scale on the focused tile; cursor-following `OPEN PROJECT` label (mouse only).
 - Navigation transition: seamless ~450ms crossfade between routes (View Transitions); disabled when `prefers-reduced-motion` is set.
 
@@ -110,5 +109,5 @@ Figma only defines 1440px desktop frames. Implementation recommendations:
 - Added top-left intro: “Montreal based photographer & cinematographer” / “Camilo Luna”.
 - Added photo project carousel + expanded selected-photo view.
 - Added video project single-player layout.
-- Added About contact view (bio design unused).
-- Added Projects list as homepage overlay (not a standalone page).
+- About rebuilt (`19:16`): bio, overlapping slogan stack, contact links, landscape photo, `ABOUT` wordmark.
+- Projects overlay rebuilt (`19:42`): opaque white; red close circle; funnel title list retained.

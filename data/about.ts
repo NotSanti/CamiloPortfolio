@@ -1,34 +1,25 @@
-export type TextSegment = {
-  text: string;
-  accent?: boolean;
-};
-
 export type AboutContent = {
+  bio: string;
+  slogan: string;
+  sloganRepeat: number;
   portraitAlt: string;
   portraitSrc: string;
-  contactQuote: TextSegment[];
   contactEmail: string;
   contactInstagramUrl: string;
   contactInstagramLabel: string;
+  contactLinkedInUrl: string;
+  contactLinkedInLabel: string;
 };
 
 export const aboutContent: AboutContent = {
+  bio: "Born in Bogotá, Colombia, and currently residing in Montreal, Canada, Camilo Luna (CALOID) seamlessly integrates his immigrant experience into his artistic endeavors. He commenced his journey upon graduating from the Photography program at Dawson College, subsequently honing his skills as a photographer for recognized institutions including SSENSE, InfluenceU, Matt and Nat, and Sidlee. Through meaningful collaborations with artists and peers within the industry, he cultivated a wealth of experience that fueled his lifelong aspiration of filmmaking. Completing the rigorous Film Production program at Concordia University, he continues to distinguish himself within a highly accomplished community of artists.",
+  slogan: "WHY IS HE CALLED CALOID?",
+  sloganRepeat: 12,
   portraitAlt: "Camilo Luna portrait",
   portraitSrc: "/media/shoes1.jpeg",
-  contactQuote: [
-    { text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor " },
-    { text: "incididunt", accent: true },
-    { text: " ut labore et dolore magna aliqua. Ut " },
-    { text: "enim", accent: true },
-    { text: " ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in " },
-    { text: "voluptate", accent: true },
-    { text: " velit esse cillum dolore eu fugiat nulla pariatur. " },
-    { text: "Excepteur", accent: true },
-    {
-      text: " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
-    },
-  ],
   contactEmail: "hello@caloid.com",
   contactInstagramUrl: "https://www.instagram.com/caloid",
   contactInstagramLabel: "Instagram",
+  contactLinkedInUrl: "https://www.linkedin.com/in/caloid",
+  contactLinkedInLabel: "LinkedIn",
 };

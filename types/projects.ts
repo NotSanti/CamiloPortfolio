@@ -10,6 +10,8 @@ export interface MediaItem {
   width: number;
   height: number;
   posterSrc?: string;
+  /** When set, public players use Mux adaptive streaming instead of `src`. */
+  muxPlaybackId?: string;
 }
 
 export interface Project {
@@ -23,4 +25,11 @@ export interface Project {
   featured: boolean;
   cover: MediaItem;
   media: MediaItem[];
+}
+
+/** Thin list item for the projects overlay (no media payload). */
+export interface ProjectSummary {
+  id: string;
+  slug: string;
+  title: string;
 }

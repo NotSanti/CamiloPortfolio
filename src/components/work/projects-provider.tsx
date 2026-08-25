@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { usePathname } from "next/navigation";
-import type { Project } from "@/types/projects";
+import type { ProjectSummary } from "@/types/projects";
 import { ProjectsOverlay } from "@/src/components/work/projects-overlay";
 
 type ProjectsOverlayContextValue = {
@@ -30,7 +30,7 @@ export function useProjectsOverlay(): ProjectsOverlayContextValue {
 }
 
 type ProjectsProviderProps = {
-  projects: Project[];
+  projects: ProjectSummary[];
   children: ReactNode;
 };
 
@@ -49,16 +49,7 @@ export function ProjectsProvider({ projects, children }: ProjectsProviderProps) 
 
   return (
     <ProjectsOverlayContext.Provider value={value}>
-      <div
-        className={
-          isOpen
-            ? "flex min-h-full flex-1 flex-col pointer-events-none opacity-40 blur-[10px] transition-[filter,opacity]"
-            : "flex min-h-full flex-1 flex-col"
-        }
-        aria-hidden={isOpen || undefined}
-      >
-        {children}
-      </div>
+      <div className="flex min-h-full flex-1 flex-col">{children}</div>
       {isOpen ? (
         <ProjectsOverlay projects={projects} onClose={closeProjects} />
       ) : null}

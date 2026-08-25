@@ -1,8 +1,10 @@
-import { getFeaturedProjects } from "@/data/projects";
+import { getPublishedFeaturedProjects } from "@/src/services/projects/get-published-projects";
 import { HomeShell } from "@/src/components/home/home-shell";
 
-export default function Home() {
-  const featuredProjects = getFeaturedProjects();
+export const revalidate = 60;
+
+export default async function Home() {
+  const featuredProjects = await getPublishedFeaturedProjects();
 
   return <HomeShell projects={featuredProjects} />;
 }

@@ -6,9 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "migrate:images": "node scripts/migrate-images-to-storage.mjs",
+    "migrate:videos": "node scripts/migrate-videos-to-mux.mjs"
   },
   "dependencies": {
+    "@mux/mux-node": "^15.0.0",
+    "@mux/mux-player-react": "^3.13.2",
+    "@mux/upchunk": "^3.5.0",
+    "@supabase/ssr": "^0.12.5",
+    "@supabase/supabase-js": "^2.112.4",
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4"
