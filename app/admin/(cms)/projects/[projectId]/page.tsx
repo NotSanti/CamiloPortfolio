@@ -75,17 +75,21 @@ export default async function AdminProjectEditPage({
         />
       </div>
 
-      <ProjectMediaManager
-        projectId={project.id}
-        coverImagePath={project.cover_image_path}
-        coverAltText={project.cover_alt_text}
-        images={project.project_images}
-      />
+      {project.kind === "photo" ? (
+        <ProjectMediaManager
+          projectId={project.id}
+          coverImagePath={project.cover_image_path}
+          coverAltText={project.cover_alt_text}
+          images={project.project_images}
+        />
+      ) : null}
 
-      <ProjectVideoManager
-        projectId={project.id}
-        videos={project.project_videos}
-      />
+      {project.kind === "video" ? (
+        <ProjectVideoManager
+          projectId={project.id}
+          videos={project.project_videos}
+        />
+      ) : null}
 
       <div className="mt-12 border border-accent/30 px-4 py-4">
         <p className="text-sm text-foreground/70">
