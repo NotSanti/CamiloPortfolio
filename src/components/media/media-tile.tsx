@@ -24,6 +24,8 @@ type MediaTileProps = {
   project: Project;
   className?: string;
   priority?: boolean;
+  /** Force eager fetch even without priority (e.g. home stream under boot overlay). */
+  eager?: boolean;
   /** When false, pause/unmount video (e.g. projects overlay is open). */
   active?: boolean;
 };
@@ -32,6 +34,7 @@ export function MediaTile({
   project,
   className = "",
   priority = false,
+  eager = false,
   active = true,
 }: MediaTileProps) {
   const { cover, slug, title, kind, media } = project;
@@ -149,7 +152,7 @@ export function MediaTile({
               height={cover.height}
               sizes="(max-width: 768px) 40vw, 160px"
               priority={priority}
-              loading={priority ? "eager" : "lazy"}
+              loading={priority || eager ? "eager" : "lazy"}
               quality={80}
               className="size-full object-cover"
             />

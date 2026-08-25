@@ -194,9 +194,6 @@ const STREAM_SLOTS = [
   },
 ] as const;
 
-/** How many stream tiles to mount before the rest hydrate after first paint. */
-const INITIAL_STREAM_COUNT = 8;
-
 type StreamSlot = {
   id: number;
   projectIndex: number;
@@ -232,7 +229,6 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
     createInitialSlots(projects.length),
   );
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [activeSlotCount, setActiveSlotCount] = useState(INITIAL_STREAM_COUNT);
   const streamActive = !projectsOverlayOpen;
   const featuredClassName = `home-featured relative${projectsOverlayOpen ? " home-featured--suspended" : ""}`;
 
@@ -245,24 +241,6 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
     mediaQuery.addEventListener("change", sync);
     return () => mediaQuery.removeEventListener("change", sync);
   }, []);
-
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-
-    let cancelled = false;
-    const frame = window.requestAnimationFrame(() => {
-      window.setTimeout(() => {
-        if (!cancelled) {
-          setActiveSlotCount(STREAM_SLOTS.length);
-        }
-      }, 0);
-    });
-
-    return () => {
-      cancelled = true;
-      window.cancelAnimationFrame(frame);
-    };
-  }, [prefersReducedMotion]);
 
   if (projects.length === 0) {
     return null;
@@ -321,6 +299,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                 <MediaTile
                   project={project}
                   priority={index < 4}
+                  eager
                   active={streamActive}
                 />
               </li>
@@ -340,7 +319,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
         className="pointer-events-none absolute inset-y-0 left-48 right-48 z-30 list-none overflow-hidden"
         aria-label="Continuously scrolling featured projects"
       >
-        {slots.slice(0, activeSlotCount).map((slot) => {
+        {slots.map((slot) => {
           const config = STREAM_SLOTS[slot.id];
           const project = projects[slot.projectIndex];
           const displaySize = getMediaTileDisplaySize(
@@ -368,6 +347,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
               <MediaTile
                 project={project}
                 priority={slot.id < 4}
+                eager
                 active={streamActive}
               />
             </li>
