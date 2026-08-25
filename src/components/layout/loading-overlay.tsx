@@ -91,14 +91,9 @@ export function LoadingOverlay() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    if (reduceMotion) {
-      setVisible(false);
-      return;
-    }
-
     const timeoutId = window.setTimeout(() => {
       setVisible(false);
-    }, EXIT_MS);
+    }, reduceMotion ? 0 : EXIT_MS);
 
     return () => {
       window.clearTimeout(timeoutId);
