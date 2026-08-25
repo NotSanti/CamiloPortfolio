@@ -283,7 +283,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
         className={featuredClassName}
         aria-hidden={projectsOverlayOpen || undefined}
       >
-        <ul className="relative z-30 grid h-full list-none grid-cols-1 gap-(--space-3) px-48 py-(--space-4) md:grid-cols-2 md:gap-(--space-4) lg:grid-cols-4">
+        <ul className="relative z-30 grid h-full list-none grid-cols-1 gap-(--space-3) px-[15px] pr-[max(1rem,calc(var(--nav-rail)+1rem))] py-(--space-4) md:grid-cols-2 md:gap-(--space-4) md:px-16 lg:grid-cols-4 lg:px-48">
           {projects.slice(0, STREAM_SLOTS.length).map((project, index) => {
             const config = STREAM_SLOTS[index];
             const style = {
@@ -316,7 +316,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
       aria-hidden={projectsOverlayOpen || undefined}
     >
       <ul
-        className="pointer-events-none absolute inset-y-0 left-48 right-48 z-30 list-none overflow-hidden"
+        className="pointer-events-none absolute inset-y-0 left-[15px] right-[max(1rem,calc(var(--nav-rail)+1rem))] z-30 list-none overflow-hidden md:left-16 md:right-24 lg:left-48 lg:right-48"
         aria-label="Continuously scrolling featured projects"
       >
         {slots.map((slot) => {
@@ -340,7 +340,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           return (
             <li
               key={`${slot.id}-${slot.generation}`}
-              className={`media-stream-item absolute left-(--tile-left-mobile) w-[min(40vw,var(--tile-width))] md:left-(--tile-left-tablet) md:w-(--tile-width) lg:left-(--tile-left)${slot.generation === 0 ? " media-stream-item--enter" : ""}`}
+              className={`media-stream-item absolute left-(--tile-left-mobile) w-(--tile-width) md:left-(--tile-left-tablet) lg:left-(--tile-left)${slot.generation === 0 ? " media-stream-item--enter" : ""}`}
               style={style}
               onAnimationEnd={(event) => handleAnimationEnd(event, slot.id)}
             >

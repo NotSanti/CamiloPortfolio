@@ -15,17 +15,17 @@ export function SiteHeader({
   const { openProjects } = useProjectsOverlay();
   const isHome = mode === "home";
   const isAbout = mode === "about";
-  const railClassName = "lg:[writing-mode:vertical-rl] lg:rotate-180";
-  const navItemClassName = `cursor-pointer ${railClassName}`;
+  const railClassName = "[writing-mode:vertical-rl] rotate-180";
+  const navItemClassName = `cursor-pointer px-1 py-2 ${railClassName}`;
 
   return (
     <header className="pointer-events-none fixed inset-0 z-40">
       {isHome ? (
         <div className="pointer-events-auto absolute left-[15px] top-5 max-w-[min(693px,calc(100%-5rem))] text-accent">
-          <p className="text-sm font-bold uppercase leading-normal md:text-xl lg:text-2xl">
+          <p className="text-xl font-bold uppercase leading-normal md:text-2xl lg:text-2xl">
             Montreal based photographer &amp; cinematographer
           </p>
-          <p className="text-sm font-bold uppercase leading-normal md:text-xl lg:text-2xl">
+          <p className="text-xl font-bold uppercase leading-normal md:text-2xl lg:text-2xl">
             Camilo Luna
           </p>
         </div>
@@ -41,7 +41,7 @@ export function SiteHeader({
 
       <nav
         aria-label="Primary"
-        className="pointer-events-auto absolute right-[15px] top-5 flex items-center gap-2 text-sm font-medium uppercase text-accent md:text-xl lg:right-[23px] lg:top-1/2 lg:-translate-y-1/2 lg:flex-col lg:items-center lg:gap-3 lg:text-[32px]"
+        className="pointer-events-auto absolute right-[15px] top-1/2 flex -translate-y-1/2 flex-col items-center gap-3 text-2xl font-medium uppercase text-accent md:text-3xl lg:right-[23px] lg:gap-3 lg:text-[32px]"
       >
         {isAbout ? (
           <>
@@ -81,7 +81,7 @@ export function SiteHeader({
       {isHome ? (
         <Link
           href="/"
-          className="pointer-events-auto absolute bottom-4 right-[15px] text-4xl font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-6xl lg:bottom-0 lg:right-[23px] lg:text-[128px]"
+          className="pointer-events-auto absolute bottom-4 right-[15px] text-6xl font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-7xl lg:bottom-0 lg:right-[23px] lg:text-[128px]"
           aria-label="Caloid home"
         >
           Caloid

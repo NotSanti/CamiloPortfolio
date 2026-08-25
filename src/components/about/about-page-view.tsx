@@ -44,14 +44,14 @@ export function AboutPageView({ content }: AboutPageViewProps) {
 
       {/* Middle slogan stack — centered in the viewport */}
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 hidden w-max -translate-x-1/2 -translate-y-1/2 md:block"
+        className="pointer-events-none absolute left-1/2 top-[58%] w-max max-w-[calc(100vw-5.5rem)] -translate-x-1/2 -translate-y-1/2 md:top-1/2"
         aria-hidden
       >
         {sloganLines.map((index) => (
           <p
             key={index}
-            className="whitespace-nowrap text-lg font-bold uppercase leading-[44px] text-accent lg:text-2xl"
-            style={{ marginTop: index === 0 ? 0 : -27 }}
+            className="whitespace-nowrap text-center text-[clamp(0.7rem,3.4vw,1.5rem)] font-bold uppercase leading-[1.35] text-accent md:text-lg md:leading-[44px] lg:text-2xl"
+            style={{ marginTop: index === 0 ? 0 : "calc(-0.6lh)" }}
           >
             {content.slogan}
           </p>
@@ -59,13 +59,13 @@ export function AboutPageView({ content }: AboutPageViewProps) {
       </div>
 
       {/* Side photo — Figma SidePhoto 19:21 */}
-      <div className="absolute bottom-24 left-8 aspect-[465/268] w-[min(465px,42vw)] overflow-hidden bg-media-placeholder md:bottom-20 lg:bottom-[48px] lg:left-8">
+      <div className="absolute bottom-24 left-8 aspect-[465/268] w-[min(465px,78vw)] overflow-hidden bg-media-placeholder md:bottom-20 md:w-[min(465px,42vw)] lg:bottom-[48px] lg:left-8">
         <Image
           src={content.portraitSrc}
           alt={content.portraitAlt}
           fill
           className="object-cover"
-          sizes="465px"
+          sizes="(max-width: 768px) 78vw, 465px"
           priority
         />
       </div>

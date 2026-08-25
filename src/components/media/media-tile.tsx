@@ -150,7 +150,7 @@ export function MediaTile({
               alt={cover.alt}
               width={cover.width}
               height={cover.height}
-              sizes="(max-width: 768px) 40vw, 160px"
+              sizes="160px"
               priority={priority}
               loading={priority || eager ? "eager" : "lazy"}
               quality={80}
