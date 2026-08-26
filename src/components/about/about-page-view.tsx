@@ -16,7 +16,7 @@ export function AboutPageView({ content }: AboutPageViewProps) {
       </p>
 
       {/* Contact — Figma Contact 39:29 */}
-      <div className="absolute right-[15px] top-5 z-10 flex flex-col items-end gap-1 text-right text-sm font-bold leading-relaxed text-accent md:right-6 md:text-base md:leading-7 lg:right-[59px] lg:top-4 lg:gap-0 lg:text-lg lg:leading-8">
+      <div className="absolute right-[52px] top-5 z-10 flex flex-col items-end gap-1 text-right text-sm font-bold leading-relaxed text-accent md:right-6 md:text-base md:leading-7 lg:right-[59px] lg:top-4 lg:gap-0 lg:text-lg lg:leading-8">
         <p className="uppercase">Contact</p>
         <a
           href={`mailto:${content.contactEmail}`}

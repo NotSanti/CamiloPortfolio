@@ -187,7 +187,7 @@ function MediaTileComponent({
               sizes="384px"
               priority={priority}
               loading={priority || eager ? "eager" : "lazy"}
-              quality={priority ? 75 : 60}
+              quality={75}
               className="size-full object-cover"
             />
           ) : (

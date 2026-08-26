@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@source not "../.next";
+@source not "../node_modules";
 
 @font-face {
   font-family: "PP Neue Montreal";
@@ -146,7 +148,61 @@ html.app-loading::before {
   }
 }
 
+.typed-caret {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.85em;
+  margin-left: 0.06em;
+  background: currentColor;
+  transform: translateY(0.06em);
+  animation: loading-overlay-caret-blink 0.9s steps(1, end) infinite;
+}
+
+@keyframes site-nav-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.site-nav-fade {
+  animation: site-nav-fade-in 1.2s ease both;
+}
+
+.site-nav-dropdown {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity 280ms ease,
+    transform 280ms ease,
+    visibility 280ms ease;
+}
+
+.site-nav-dropdown[data-open="true"] {
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .typed-caret {
+    display: none;
+  }
+
+  .site-nav-fade {
+    animation: none;
+  }
+
+  .site-nav-dropdown {
+    transition: none;
+  }
+
   .loading-overlay__caret {
     animation: none;
     opacity: 1;
