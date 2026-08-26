@@ -8,10 +8,7 @@ type SiteHeaderProps = {
   projectTitle?: string;
 };
 
-export function SiteHeader({
-  mode = "home",
-  projectTitle,
-}: SiteHeaderProps) {
+export function SiteHeader({ mode = "home", projectTitle }: SiteHeaderProps) {
   const { openProjects } = useProjectsOverlay();
   const isHome = mode === "home";
   const isAbout = mode === "about";
@@ -41,7 +38,7 @@ export function SiteHeader({
 
       <nav
         aria-label="Primary"
-        className="pointer-events-auto absolute right-[15px] top-1/2 flex -translate-y-1/2 flex-col items-center gap-3 text-2xl font-medium uppercase text-accent md:text-3xl lg:right-[23px] lg:gap-3 lg:text-[32px]"
+        className="pointer-events-auto absolute right-[15px] top-1/2 flex -translate-y-1/2 flex-col items-center gap-2 text-lg font-medium uppercase text-accent md:gap-2.5 md:text-xl lg:right-[23px] lg:gap-3 lg:text-2xl"
       >
         {isAbout ? (
           <>
@@ -52,7 +49,10 @@ export function SiteHeader({
             >
               Projects
             </button>
-            <span aria-hidden="true" className={`cursor-default ${railClassName}`}>
+            <span
+              aria-hidden="true"
+              className={`cursor-default ${railClassName}`}
+            >
               -
             </span>
             <Link href="/" className={navItemClassName}>
@@ -68,7 +68,10 @@ export function SiteHeader({
             >
               Projects
             </button>
-            <span aria-hidden="true" className={`cursor-default ${railClassName}`}>
+            <span
+              aria-hidden="true"
+              className={`cursor-default ${railClassName}`}
+            >
               -
             </span>
             <Link href="/about" className={navItemClassName}>
@@ -81,7 +84,7 @@ export function SiteHeader({
       {isHome ? (
         <Link
           href="/"
-          className="pointer-events-auto absolute bottom-4 right-[15px] text-6xl font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-7xl lg:bottom-0 lg:right-[23px] lg:text-[128px]"
+          className="pointer-events-auto absolute bottom-4 right-[15px] text-[7rem] font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-7xl lg:bottom-0 lg:right-[23px] lg:text-[10rem]"
           aria-label="Caloid home"
         >
           Caloid

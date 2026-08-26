@@ -16,8 +16,9 @@ type ProjectMuxVideoProps = {
 };
 
 /**
- * Mux adaptive player. Mount only when needed (caller gates with in-view).
- * Does not autoplay when `active` is false.
+ * Mux adaptive player.
+ * Tile callers mount on hover and unmount when the pointer leaves.
+ * Page variant may stay mounted for the project stage.
  */
 export function ProjectMuxVideo({
   playbackId,
@@ -40,18 +41,32 @@ export function ProjectMuxVideo({
       | null;
     if (!node) return;
 
-    if (active) {
+    function tryPlay() {
+      if (!active || !node) return;
       const attempt = node.play?.();
       if (attempt) {
         attempt.catch(() => {
           // Autoplay may be blocked; poster remains.
         });
       }
-      return;
     }
 
-    node.pause?.();
+    if (active) {
+      node.addEventListener("loadeddata", tryPlay);
+      node.addEventListener("canplay", tryPlay);
+      tryPlay();
+    } else {
+      node.pause?.();
+    }
+
+    return () => {
+      node.removeEventListener("loadeddata", tryPlay);
+      node.removeEventListener("canplay", tryPlay);
+      node.pause?.();
+    };
   }, [active, playbackId]);
+
+  const disableTracking = variant === "tile";
 
   const playerStyle = {
     "--controls": "none",
@@ -64,16 +79,22 @@ export function ProjectMuxVideo({
       playbackId={playbackId}
       streamType="on-demand"
       poster={poster}
-      preload="metadata"
+      preload={variant === "tile" ? "metadata" : "metadata"}
       muted
-      autoPlay={active ? "muted" : false}
+      autoPlay={variant === "page" && active ? "muted" : false}
       loop
       playsInline
+      maxResolution={variant === "tile" ? "720p" : undefined}
+      disableTracking={disableTracking}
       style={playerStyle}
       className={`project-mux-video size-full bg-black ${className}`}
-      metadata={{
-        video_title: title,
-      }}
+      metadata={
+        variant === "page"
+          ? {
+              video_title: title,
+            }
+          : undefined
+      }
       aria-label={title}
     />
   );

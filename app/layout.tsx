@@ -26,7 +26,7 @@ export default async function RootLayout({
         className="flex min-h-full flex-col font-sans"
         suppressHydrationWarning
       >
-        <LoadingOverlay />
+        {/* <LoadingOverlay /> */}
         <ProjectsProvider projects={projectSummaries}>
           <PageTransition>{children}</PageTransition>
         </ProjectsProvider>

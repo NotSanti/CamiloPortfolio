@@ -3,22 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  memo,
   useEffect,
   useRef,
   useState,
+  type MouseEvent as ReactMouseEvent,
   type PointerEvent as ReactPointerEvent,
 } from "react";
-import dynamic from "next/dynamic";
 import { createPortal } from "react-dom";
 import type { Project } from "@/types/projects";
-
-const ProjectMuxVideo = dynamic(
-  () =>
-    import("@/src/components/media/project-mux-video").then(
-      (mod) => mod.ProjectMuxVideo,
-    ),
-  { ssr: false },
-);
+import { ProjectMuxVideo } from "@/src/components/media/project-mux-video";
 
 type MediaTileProps = {
   project: Project;
@@ -30,7 +24,7 @@ type MediaTileProps = {
   active?: boolean;
 };
 
-export function MediaTile({
+function MediaTileComponent({
   project,
   className = "",
   priority = false,
@@ -53,9 +47,22 @@ export function MediaTile({
   const rootRef = useRef<HTMLAnchorElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
+  const hoverLeaveTimerRef = useRef<number | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [inView, setInView] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [labelVisible, setLabelVisible] = useState(false);
+
+  const isVideoProject =
+    kind === "video" && Boolean(muxPlaybackId || videoSrc);
+
+  const canPlayMux =
+    active && !prefersReducedMotion && isHovered && Boolean(muxPlaybackId);
+  const canPlayNativeVideo =
+    active &&
+    !prefersReducedMotion &&
+    isHovered &&
+    !muxPlaybackId &&
+    Boolean(videoSrc);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -68,35 +75,10 @@ export function MediaTile({
   }, []);
 
   useEffect(() => {
-    const node = rootRef.current;
+    const node = videoRef.current;
     if (!node) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInView(entry.isIntersecting);
-      },
-      {
-        root: null,
-        rootMargin: "120px 0px",
-        threshold: 0.01,
-      },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  const canPlayVideo =
-    active &&
-    !prefersReducedMotion &&
-    inView &&
-    Boolean(muxPlaybackId || videoSrc);
-
-  useEffect(() => {
-    const node = videoRef.current;
-    if (!node || muxPlaybackId) return;
-
-    if (canPlayVideo) {
+    if (canPlayNativeVideo) {
       const playAttempt = node.play();
       if (playAttempt !== undefined) {
         playAttempt.catch(() => {
@@ -107,7 +89,37 @@ export function MediaTile({
     }
 
     node.pause();
-  }, [canPlayVideo, muxPlaybackId]);
+  }, [canPlayNativeVideo]);
+
+  useEffect(
+    () => () => {
+      if (hoverLeaveTimerRef.current !== null) {
+        window.clearTimeout(hoverLeaveTimerRef.current);
+      }
+    },
+    [],
+  );
+
+  function setHovered(next: boolean) {
+    if (hoverLeaveTimerRef.current !== null) {
+      window.clearTimeout(hoverLeaveTimerRef.current);
+      hoverLeaveTimerRef.current = null;
+    }
+
+    if (next) {
+      setIsHovered(true);
+      return;
+    }
+
+    // Stream tiles move under the cursor; confirm the pointer really left.
+    hoverLeaveTimerRef.current = window.setTimeout(() => {
+      hoverLeaveTimerRef.current = null;
+      if (rootRef.current?.matches(":hover")) {
+        return;
+      }
+      setIsHovered(false);
+    }, 48);
+  }
 
   function moveLabel(clientX: number, clientY: number) {
     const node = labelRef.current;
@@ -115,11 +127,28 @@ export function MediaTile({
     node.style.transform = `translate3d(${clientX + 14}px, ${clientY + 16}px, 0)`;
   }
 
+  function onMouseEnter(event: ReactMouseEvent<HTMLAnchorElement>) {
+    if (isVideoProject) {
+      setHovered(true);
+    }
+    setLabelVisible(true);
+    requestAnimationFrame(() => moveLabel(event.clientX, event.clientY));
+  }
+
+  function onMouseLeave() {
+    if (isVideoProject) {
+      setHovered(false);
+    }
+    setLabelVisible(false);
+  }
+
   function onPointerEnter(event: ReactPointerEvent<HTMLAnchorElement>) {
     if (event.pointerType !== "mouse") return;
     setLabelVisible(true);
-    const { clientX, clientY } = event;
-    requestAnimationFrame(() => moveLabel(clientX, clientY));
+    if (isVideoProject) {
+      setHovered(true);
+    }
+    requestAnimationFrame(() => moveLabel(event.clientX, event.clientY));
   }
 
   function onPointerMove(event: ReactPointerEvent<HTMLAnchorElement>) {
@@ -129,6 +158,9 @@ export function MediaTile({
 
   function onPointerLeave() {
     setLabelVisible(false);
+    if (isVideoProject) {
+      setHovered(false);
+    }
   }
 
   return (
@@ -136,9 +168,11 @@ export function MediaTile({
       <Link
         ref={rootRef}
         href={`/work/${slug}`}
-        className={`media-tile group relative z-0 block w-full origin-center bg-media-placeholder shadow-none transition-[transform,box-shadow] duration-300 ease-out hover:z-30 hover:scale-[1.06] hover:shadow-[0_18px_48px_rgba(0,0,0,0.28)] focus-visible:z-30 focus-visible:scale-[1.06] focus-visible:shadow-[0_18px_48px_rgba(0,0,0,0.28)] motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:focus-visible:scale-100 ${className}`}
+        className={`media-tile group relative z-0 block w-full origin-center bg-media-placeholder shadow-none transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:z-30 hover:scale-[1.06] focus-visible:z-30 focus-visible:scale-[1.06] motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:focus-visible:scale-100 ${className}`}
         style={{ aspectRatio }}
         aria-label={`View project: ${title}`}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
         onPointerEnter={onPointerEnter}
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
@@ -150,10 +184,10 @@ export function MediaTile({
               alt={cover.alt}
               width={cover.width}
               height={cover.height}
-              sizes="160px"
+              sizes="384px"
               priority={priority}
               loading={priority || eager ? "eager" : "lazy"}
-              quality={80}
+              quality={priority ? 75 : 60}
               className="size-full object-cover"
             />
           ) : (
@@ -162,18 +196,19 @@ export function MediaTile({
             </span>
           )}
 
-          {canPlayVideo && muxPlaybackId ? (
+          {canPlayMux && muxPlaybackId ? (
             <span className="pointer-events-none absolute inset-0" aria-hidden>
               <ProjectMuxVideo
                 playbackId={muxPlaybackId}
                 title={title}
+                posterSrc={poster || undefined}
                 variant="tile"
-                active={canPlayVideo}
+                active
               />
             </span>
           ) : null}
 
-          {canPlayVideo && !muxPlaybackId && videoSrc ? (
+          {canPlayNativeVideo && videoSrc ? (
             <video
               ref={videoRef}
               className="pointer-events-none absolute inset-0 size-full object-cover"
@@ -181,7 +216,7 @@ export function MediaTile({
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="none"
               aria-hidden
               tabIndex={-1}
             />
@@ -204,3 +239,5 @@ export function MediaTile({
     </>
   );
 }
+
+export const MediaTile = memo(MediaTileComponent);

@@ -1,8 +1,8 @@
-/** Display size for stream tiles: short side ≈ 160px (Figma portrait width). */
+/** Display size for stream tiles: short side defaults to 384px. */
 export function getMediaTileDisplaySize(
   width: number,
   height: number,
-  base = 160,
+  base = 384,
 ): { width: number; height: number } {
   if (width <= 0 || height <= 0) {
     return { width: base, height: Math.round((base * 11) / 8) };

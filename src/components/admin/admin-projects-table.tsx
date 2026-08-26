@@ -26,7 +26,18 @@ function sortByDisplayOrder(projects: ProjectRow[]): ProjectRow[] {
 
 function projectsSignature(projects: ProjectRow[]): string {
   return sortByDisplayOrder(projects)
-    .map((project) => `${project.id}:${project.display_order}`)
+    .map(
+      (project) =>
+        [
+          project.id,
+          project.display_order,
+          project.is_published ? 1 : 0,
+          project.is_featured ? 1 : 0,
+          project.title,
+          project.slug,
+          project.kind,
+        ].join(":"),
+    )
     .join("|");
 }
 
@@ -93,6 +104,58 @@ export function AdminProjectsTable({ projects }: AdminProjectsTableProps) {
     const toIndex = fromIndex + direction;
     if (toIndex < 0 || toIndex >= ordered.length) return;
     persistOrder(moveItem(ordered, fromIndex, toIndex));
+  }
+
+  function handleTogglePublished(projectId: string, isPublished: boolean) {
+    const previous = ordered;
+    setOrdered((current) =>
+      current.map((project) =>
+        project.id === projectId
+          ? { ...project, is_published: isPublished }
+          : project,
+      ),
+    );
+    setError(null);
+
+    startTransition(async () => {
+      try {
+        await setProjectPublishedAction(projectId, isPublished);
+        router.refresh();
+      } catch (caught) {
+        setOrdered(previous);
+        setError(
+          caught instanceof Error
+            ? caught.message
+            : "Failed to update publish state.",
+        );
+      }
+    });
+  }
+
+  function handleToggleFeatured(projectId: string, isFeatured: boolean) {
+    const previous = ordered;
+    setOrdered((current) =>
+      current.map((project) =>
+        project.id === projectId
+          ? { ...project, is_featured: isFeatured }
+          : project,
+      ),
+    );
+    setError(null);
+
+    startTransition(async () => {
+      try {
+        await setProjectFeaturedAction(projectId, isFeatured);
+        router.refresh();
+      } catch (caught) {
+        setOrdered(previous);
+        setError(
+          caught instanceof Error
+            ? caught.message
+            : "Failed to update featured state.",
+        );
+      }
+    });
   }
 
   function handleDragStart(projectId: string) {
@@ -206,39 +269,29 @@ export function AdminProjectsTable({ projects }: AdminProjectsTableProps) {
                   </button>
                 </div>
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <form
-                    action={setProjectPublishedAction.bind(
-                      null,
-                      project.id,
-                      !project.is_published,
-                    )}
+                  <button
+                    type="button"
+                    disabled={isPending}
+                    onClick={() =>
+                      handleTogglePublished(project.id, !project.is_published)
+                    }
+                    className="text-xs font-medium uppercase text-accent transition-opacity hover:opacity-70 disabled:opacity-50"
                   >
-                    <button
-                      type="submit"
-                      disabled={isPending}
-                      className="text-xs font-medium uppercase text-accent transition-opacity hover:opacity-70 disabled:opacity-50"
-                    >
-                      {project.is_published ? "Unpublish" : "Publish"}
-                    </button>
-                  </form>
+                    {project.is_published ? "Unpublish" : "Publish"}
+                  </button>
                   <span aria-hidden className="text-foreground/20">
                     ·
                   </span>
-                  <form
-                    action={setProjectFeaturedAction.bind(
-                      null,
-                      project.id,
-                      !project.is_featured,
-                    )}
+                  <button
+                    type="button"
+                    disabled={isPending}
+                    onClick={() =>
+                      handleToggleFeatured(project.id, !project.is_featured)
+                    }
+                    className="text-xs font-medium uppercase text-accent transition-opacity hover:opacity-70 disabled:opacity-50"
                   >
-                    <button
-                      type="submit"
-                      disabled={isPending}
-                      className="text-xs font-medium uppercase text-accent transition-opacity hover:opacity-70 disabled:opacity-50"
-                    >
-                      {project.is_featured ? "Unfeature" : "Feature"}
-                    </button>
-                  </form>
+                    {project.is_featured ? "Unfeature" : "Feature"}
+                  </button>
                   <span aria-hidden className="text-foreground/20">
                     ·
                   </span>
