@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { AboutContent } from "@/data/about";
-import { SloganTextFlow } from "@/src/components/about/slogan-text-flow";
+import { CreditsScroll } from "@/src/components/about/credits-scroll";
 
 type AboutPageViewProps = {
   content: AboutContent;
@@ -8,14 +8,17 @@ type AboutPageViewProps = {
 
 export function AboutPageView({ content }: AboutPageViewProps) {
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden bg-background">
-      {/* Bio — tighter type, closer to the top edge */}
-      <p className="absolute left-8 top-3 z-10 max-w-[min(960px,calc(100%-11rem))] text-sm font-bold leading-relaxed text-accent md:top-4 md:text-base md:leading-7 lg:left-8 lg:top-4 lg:max-w-[min(980px,calc(100%-14rem))] lg:text-lg lg:leading-8">
-        {content.bio}
-      </p>
+    <div
+      data-about-shell
+      className="fixed inset-0 z-0 overflow-hidden bg-background"
+    >
+      <h1 className="sr-only">About Camilo Luna</h1>
 
-      {/* Contact — Figma Contact 39:29 */}
-      <div className="absolute right-[52px] top-5 z-10 flex flex-col items-end gap-1 text-right text-sm font-bold leading-relaxed text-accent md:right-6 md:text-base md:leading-7 lg:right-[59px] lg:top-4 lg:gap-0 lg:text-lg lg:leading-8">
+      <nav
+        data-about-contact
+        aria-label="Contact"
+        className="absolute left-[15px] top-5 z-30 flex flex-col items-start gap-1 text-lg font-bold leading-snug text-accent md:text-xl md:leading-snug lg:left-[23px] lg:top-4 lg:gap-0.5 lg:text-2xl lg:leading-snug"
+      >
         <p className="uppercase">Contact</p>
         <a
           href={`mailto:${content.contactEmail}`}
@@ -39,27 +42,37 @@ export function AboutPageView({ content }: AboutPageViewProps) {
         >
           {content.contactLinkedInLabel}
         </a>
-      </div>
+      </nav>
 
-      {/* Middle slogan — Text Flow particle field */}
-      <SloganTextFlow text={content.slogan} repeat={content.sloganRepeat} />
-
-      {/* Side photo — Figma SidePhoto 19:21 */}
-      <div className="absolute bottom-24 left-8 z-10 aspect-[465/268] w-[min(465px,78vw)] overflow-hidden bg-media-placeholder md:bottom-20 md:w-[min(465px,42vw)] lg:bottom-[48px] lg:left-8">
-        <Image
-          src={content.portraitSrc}
-          alt={content.portraitAlt}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 78vw, 465px"
-          priority
+      <div className="about-credits-clip absolute inset-0 z-10">
+        <CreditsScroll
+          paragraphs={content.bioParagraphs}
+          endLabel={content.creditsEnd}
         />
       </div>
 
-      {/* ABOUT wordmark — Figma ABOUT 19:23 */}
-      <p className="pointer-events-none absolute bottom-4 right-[15px] z-10 text-4xl font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-6xl lg:bottom-0 lg:right-[26px] lg:text-[128px]">
-        About
-      </p>
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-[15] hidden bg-background max-lg:block"
+        style={{ height: "var(--about-credits-clip-top, 8rem)" }}
+        aria-hidden
+      />
+
+      <figure
+        data-about-portrait
+        className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-32 -translate-x-1/2 -translate-y-1/2 bg-background p-1 shadow-md md:w-36 lg:w-40"
+      >
+        <div className="relative aspect-[3/4] w-full overflow-hidden bg-media-placeholder">
+          <Image
+            src={content.portraitSrc}
+            alt={content.portraitAlt}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 128px, 160px"
+            quality={90}
+            priority
+          />
+        </div>
+      </figure>
     </div>
   );
 }

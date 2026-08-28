@@ -6,7 +6,7 @@ import { SiteHeader } from "@/src/components/layout/site-header";
 export const metadata: Metadata = {
   title: "About · Caloid",
   description:
-    "Montreal-based photographer and cinematographer Camilo Luna.",
+    "Born in Bogotá and based in Montreal, Camilo Luna (CALOID) works across photography and filmmaking.",
 };
 
 export default function AboutPage() {

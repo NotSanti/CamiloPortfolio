@@ -73,6 +73,22 @@ body {
   display: none;
 }
 
+@media (max-width: 1023px) {
+  [data-about-shell] {
+    --about-credits-clip-top: 8rem;
+  }
+
+  .about-credits-clip {
+    clip-path: inset(var(--about-credits-clip-top) 0 0 0);
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      transparent var(--about-credits-clip-top),
+      #000 var(--about-credits-clip-top)
+    );
+  }
+}
+
 /*
  * Survives React Strict Mode remounts of LoadingOverlay. Without this, the
  * overlay unmounts for a frame and the home page flashes through on fast loads.
