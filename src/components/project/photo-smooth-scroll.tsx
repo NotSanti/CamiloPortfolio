@@ -29,12 +29,14 @@ const SPRING = {
   restSpeed: 2,
 } as const;
 
-function subscribeToClient() {
-  return () => {};
+function subscribeDesktop(onChange: () => void) {
+  const media = window.matchMedia("(min-width: 1024px)");
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
 }
 
-function getClientSnapshot() {
-  return true;
+function getDesktopSnapshot() {
+  return window.matchMedia("(min-width: 1024px)").matches;
 }
 
 function getServerSnapshot() {
@@ -48,13 +50,13 @@ type PhotoSmoothScrollProps = {
 export function PhotoSmoothScroll({ children }: PhotoSmoothScrollProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [spacerHeight, setSpacerHeight] = useState(0);
-  const isClient = useSyncExternalStore(
-    subscribeToClient,
-    getClientSnapshot,
+  const isDesktop = useSyncExternalStore(
+    subscribeDesktop,
+    getDesktopSnapshot,
     getServerSnapshot,
   );
   const reduced = useReducedMotion();
-  const active = isClient && reduced === false;
+  const active = isDesktop && reduced === false;
   const { scrollY } = useScroll();
   const smoothY = useSpring(scrollY, {
     ...SPRING,
@@ -85,13 +87,17 @@ export function PhotoSmoothScroll({ children }: PhotoSmoothScrollProps) {
   }, [active]);
 
   useEffect(() => {
+    if (!active) {
+      return;
+    }
+
     const html = document.documentElement;
     const previousOverscroll = html.style.overscrollBehaviorY;
     html.style.overscrollBehaviorY = "none";
     return () => {
       html.style.overscrollBehaviorY = previousOverscroll;
     };
-  }, []);
+  }, [active]);
 
   if (!active) {
     return children;

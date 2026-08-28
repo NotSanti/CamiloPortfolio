@@ -79,15 +79,22 @@ export function PhotoProjectView({
     <PhotoSmoothScroll>
       <article className="overflow-x-clip bg-background px-[15px] py-[15px] lg:px-[23px] lg:py-[23px]">
         <div className="relative">
-          <h1 className="pointer-events-none absolute right-[-15px] z-10 top-[calc(100dvh-15px)] translate-y-[calc(-100%+0.25rem)] whitespace-nowrap text-[5rem] font-bold uppercase leading-none text-accent min-[1920px]:text-[15rem] min-[2560px]:text-[30rem] lg:right-[-21px] lg:top-[calc(100dvh-23px)] lg:translate-y-[calc(-100%+1rem)]">
+          <h1 className="sr-only">{title}</h1>
+          <p
+            aria-hidden
+            className="pointer-events-none absolute right-[-15px] z-10 top-[calc(100dvh-15px)] hidden translate-y-[calc(-100%+0.25rem)] whitespace-nowrap text-[5rem] font-bold uppercase leading-none text-accent lg:block lg:right-[-21px] lg:top-[calc(100dvh-23px)] lg:translate-y-[calc(-100%+1rem)] min-[1920px]:text-[15rem] min-[2560px]:text-[30rem]"
+          >
             {title}
-          </h1>
+          </p>
           {photos.map((photo, photoIndex) => {
-            const isLast = photoIndex === photos.length - 1;
+            const showBand = photoIndex === 0 && photos.length > 1;
             const indexLabel = String(photoIndex + 1).padStart(2, "0");
 
             return (
-              <figure key={photo.id} className="m-0">
+              <figure
+                key={photo.id}
+                className={`m-0 ${photoIndex >= 2 ? "mt-[15px] lg:mt-[23px]" : ""}`}
+              >
                 <Image
                   src={photo.src}
                   alt={photo.alt || title}
@@ -98,7 +105,7 @@ export function PhotoProjectView({
                   priority={photoIndex === 0}
                   className="h-auto w-full"
                 />
-                {isLast ? null : (
+                {showBand ? (
                   <figcaption>
                     <MagazineBand
                       category={category}
@@ -107,7 +114,7 @@ export function PhotoProjectView({
                       indexLabel={indexLabel}
                     />
                   </figcaption>
-                )}
+                ) : null}
               </figure>
             );
           })}
