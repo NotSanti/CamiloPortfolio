@@ -13,6 +13,10 @@ import {
 import { useReducedMotion } from "motion/react";
 import type { ProjectSummary } from "@/types/projects";
 import {
+  getMuxAnimatedUrl,
+  getMuxPosterUrl,
+} from "@/src/lib/mux/playback";
+import {
   FRICTION,
   TAP_SLOP_PX,
   copyCount,
@@ -408,8 +412,16 @@ const WheelTrack = memo(function WheelTrack({
 });
 
 const WheelPreview = memo(function WheelPreview({ project }: WheelPreviewProps) {
-  const { cover } = project;
-  const hasImage = Boolean(cover.src);
+  const { cover, muxPlaybackId } = project;
+  const stillSrc =
+    cover.src ||
+    (muxPlaybackId
+      ? getMuxPosterUrl(muxPlaybackId, { width: 1280 })
+      : "");
+  const animatedSrc = muxPlaybackId
+    ? getMuxAnimatedUrl(muxPlaybackId, { width: 640, fps: 12, end: 5 })
+    : undefined;
+  const hasImage = Boolean(stillSrc);
 
   return (
     <div
@@ -423,7 +435,7 @@ const WheelPreview = memo(function WheelPreview({ project }: WheelPreviewProps) 
       >
         {hasImage ? (
           <Image
-            src={cover.src}
+            src={stillSrc}
             alt={cover.alt}
             fill
             sizes="(min-width: 768px) 50vw, 7rem"
@@ -434,6 +446,19 @@ const WheelPreview = memo(function WheelPreview({ project }: WheelPreviewProps) 
         ) : (
           <span className="sr-only">{cover.alt}</span>
         )}
+        {animatedSrc ? (
+          // Native img so Mux animated.webp keeps playing. Hidden under
+          // prefers-reduced-motion; next/image would freeze the loop.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={animatedSrc}
+            alt=""
+            aria-hidden
+            decoding="async"
+            className="pointer-events-none absolute inset-0 size-full object-cover motion-reduce:hidden"
+            draggable={false}
+          />
+        ) : null}
       </Link>
     </div>
   );

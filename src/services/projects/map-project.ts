@@ -130,13 +130,40 @@ export function mapProjectRowToProject(row: ProjectWithMedia): Project {
   };
 }
 
+function firstReadyPlaybackId(
+  videos:
+    | Array<
+        Pick<ProjectVideoRow, "mux_playback_id" | "status" | "display_order">
+      >
+    | null
+    | undefined,
+): string | undefined {
+  const ready = [...(videos ?? [])]
+    .sort((a, b) => a.display_order - b.display_order)
+    .find((video) => video.status === "ready" && video.mux_playback_id);
+  return ready?.mux_playback_id ?? undefined;
+}
+
 export function mapProjectRowToSummary(
-  row: CoverSource & Pick<ProjectRow, "slug">,
+  row: CoverSource &
+    Pick<ProjectRow, "slug" | "kind"> & {
+      project_videos?: Array<
+        Pick<ProjectVideoRow, "mux_playback_id" | "status" | "display_order">
+      > | null;
+    },
 ): ProjectSummary {
+  const cover = mapCover(row);
+  const muxPlaybackId = firstReadyPlaybackId(row.project_videos);
+  if (!cover.src && muxPlaybackId) {
+    cover.src = getMuxPosterUrl(muxPlaybackId, { width: 1280 });
+  }
+
   return {
     id: row.id,
     slug: row.slug,
     title: row.title,
-    cover: mapCover(row),
+    kind: row.kind,
+    cover,
+    muxPlaybackId,
   };
 }

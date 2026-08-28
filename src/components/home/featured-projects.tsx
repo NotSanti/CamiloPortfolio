@@ -274,9 +274,10 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           : introAmount(introElapsedRef.current, ranks?.[i] ?? i);
 
         if (amount <= 0) {
-          if (cache.opacity !== 0) {
+          if (cache.opacity !== 0 || cache.events !== 0) {
             el.style.opacity = "0";
             el.style.pointerEvents = "none";
+            el.classList.remove("featured-globe-tile--facing");
             cache.opacity = 0;
             cache.events = 0;
           }
@@ -327,6 +328,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
         }
         if (cache.events !== events) {
           el.style.pointerEvents = events ? "auto" : "none";
+          el.classList.toggle("featured-globe-tile--facing", events === 1);
           cache.events = events;
         }
 

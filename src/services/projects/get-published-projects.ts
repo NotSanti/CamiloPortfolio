@@ -9,8 +9,12 @@ import type { Project, ProjectSummary } from "@/types/projects";
 const PROJECT_LIST_SELECT =
   "id, title, slug, description, kind, cover_image_path, cover_alt_text, cover_width, cover_height, is_published, is_featured, display_order, created_at, updated_at";
 
-const PROJECT_SUMMARY_SELECT =
-  "id, slug, title, cover_image_path, cover_alt_text, cover_width, cover_height, display_order, is_published";
+const PROJECT_SUMMARY_SELECT = `
+  id, slug, title, kind, cover_image_path, cover_alt_text, cover_width, cover_height, display_order, is_published,
+  project_videos (
+    mux_playback_id, status, display_order
+  )
+`;
 
 /** Home stream: cover + slim videos only (no gallery images). */
 const PROJECT_HOME_SELECT = `
@@ -69,7 +73,7 @@ export async function getPublishedFeaturedProjects(): Promise<Project[]> {
   return (data ?? []).map(mapProjectRowToProject);
 }
 
-/** Thin published list for the projects overlay. */
+/** Thin published list for the projects overlay (cover + Mux playback id). */
 export async function getPublishedProjectSummaries(): Promise<
   ProjectSummary[]
 > {

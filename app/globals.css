@@ -285,6 +285,25 @@ html.app-loading::before {
   border-radius: 0;
 }
 
+/* Animated Mux covers: still is always painted; loop on the front hemisphere. */
+.featured-globe-tile .globe-cover--animated {
+  display: none;
+}
+
+.featured-globe-tile--facing .globe-cover--animated {
+  display: block;
+}
+
+.home-featured--suspended .globe-cover--animated {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-globe-tile .globe-cover--animated {
+    display: none;
+  }
+}
+
 /* Projects overlay open: free GPU/CPU so the overlay scroll stays smooth. */
 .home-featured--suspended {
   pointer-events: none;

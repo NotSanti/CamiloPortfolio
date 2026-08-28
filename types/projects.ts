@@ -28,10 +28,13 @@ export interface Project {
   media: MediaItem[];
 }
 
-/** Lean list item for the projects overlay (cover only, no gallery). */
+/** Lean list item for the projects overlay (cover + optional Mux preview). */
 export interface ProjectSummary {
   id: string;
   slug: string;
   title: string;
+  kind: ProjectKind;
   cover: MediaItem;
+  /** First ready Mux video, used for animated list covers. */
+  muxPlaybackId?: string;
 }
