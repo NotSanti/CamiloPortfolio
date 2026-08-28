@@ -11,12 +11,13 @@ import {
 } from "@/src/components/about/credits-layout";
 
 const PX_PER_SECOND = 24;
-const TICK_MS = 32;
 const RESUME_MS = 1600;
 const INERTIA_DECEL = 0.998;
 const INERTIA_MIN_VELOCITY = 0.04;
 const INERTIA_MAX_VELOCITY = 6;
 const VELOCITY_SAMPLE_MS = 80;
+const DEFAULT_FRAME_MS = 1000 / 60;
+const MAX_FRAME_MS = 32;
 const PAGE_PAD = 32;
 const CONTENT_MAX = 768;
 const LOOP_GAP = 48;
@@ -154,6 +155,9 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       }
     }
 
+    const visibleWordKeys = new Set<string>();
+    const nextVisibleKeys = new Set<string>();
+
     function applyLayout() {
       const metrics = metricsRef.current;
       if (!metrics) {
@@ -167,28 +171,42 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
         circleRef.current,
         metrics,
       );
-      const seen = new Set<string>();
+      nextVisibleKeys.clear();
 
       for (const word of placed) {
         const key = wordKey(word.copyIndex, word.tokenIndex);
-        seen.add(key);
+        nextVisibleKeys.add(key);
         const node = wordRefs.current.get(key);
         if (!node) {
           continue;
         }
 
         node.style.transform = `translate3d(${word.x}px, ${word.y}px, 0)`;
-        node.style.opacity = "1";
+        if (!visibleWordKeys.has(key)) {
+          node.style.opacity = "1";
+        }
       }
 
-      for (const [key, node] of wordRefs.current) {
-        if (!seen.has(key)) {
+      for (const key of visibleWordKeys) {
+        if (nextVisibleKeys.has(key)) {
+          continue;
+        }
+        const node = wordRefs.current.get(key);
+        if (node) {
           node.style.opacity = "0";
         }
+      }
+
+      visibleWordKeys.clear();
+      for (const key of nextVisibleKeys) {
+        visibleWordKeys.add(key);
       }
     }
 
     let inertiaVelocity = 0;
+    let needsLayout = true;
+    let rafId = 0;
+    let lastFrameTime = 0;
     const touchSamples: { t: number; y: number }[] = [];
     const touchState = { y: 0, active: false };
 
@@ -205,26 +223,41 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       scheduleResume();
     }
 
-    let intervalId = 0;
+    function frame(timestamp: number) {
+      const now = performance.now() || timestamp || lastFrameTime + DEFAULT_FRAME_MS;
+      let dt = lastFrameTime ? now - lastFrameTime : DEFAULT_FRAME_MS;
+      lastFrameTime = now;
+      if (dt <= 0) {
+        dt = DEFAULT_FRAME_MS;
+      } else if (dt > MAX_FRAME_MS) {
+        dt = MAX_FRAME_MS;
+      }
 
-    function tick() {
       if (Math.abs(inertiaVelocity) > INERTIA_MIN_VELOCITY) {
-        offsetRef.current += inertiaVelocity * TICK_MS;
-        inertiaVelocity *= Math.pow(INERTIA_DECEL, TICK_MS);
+        offsetRef.current += inertiaVelocity * dt;
+        inertiaVelocity *= Math.pow(INERTIA_DECEL, dt);
         wrapOffset();
         if (Math.abs(inertiaVelocity) <= INERTIA_MIN_VELOCITY) {
           inertiaVelocity = 0;
           scheduleResume();
         }
+        needsLayout = true;
       } else if (
         !touchState.active &&
         !prefersReducedMotion() &&
         !interactingRef.current
       ) {
-        offsetRef.current += PX_PER_SECOND * (TICK_MS / 1000);
+        offsetRef.current += PX_PER_SECOND * (dt / 1000);
         wrapOffset();
+        needsLayout = true;
       }
-      applyLayout();
+
+      if (needsLayout) {
+        applyLayout();
+        needsLayout = false;
+      }
+
+      rafId = window.requestAnimationFrame(frame);
     }
 
     function onWheel(event: WheelEvent) {
@@ -232,7 +265,7 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       event.preventDefault();
       offsetRef.current += event.deltaY;
       wrapOffset();
-      applyLayout();
+      needsLayout = true;
     }
 
     function pruneTouchSamples(now: number) {
@@ -271,6 +304,7 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       window.clearTimeout(resumeTimerRef.current);
       touchState.y = y;
       touchState.active = true;
+      lastFrameTime = now;
       touchSamples.length = 0;
       touchSamples.push({ t: now, y });
     }
@@ -287,7 +321,7 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       touchSamples.push({ t: now, y: currentY });
       pruneTouchSamples(now);
       wrapOffset();
-      applyLayout();
+      needsLayout = true;
       event.preventDefault();
     }
 
@@ -297,8 +331,9 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       }
 
       touchState.active = false;
+      lastFrameTime = performance.now();
       const lastSample = touchSamples[touchSamples.length - 1];
-      const idle = lastSample ? performance.now() - lastSample.t : Infinity;
+      const idle = lastSample ? lastFrameTime - lastSample.t : Infinity;
       const velocity =
         idle > VELOCITY_SAMPLE_MS ? 0 : velocityFromTouchSamples();
       touchSamples.length = 0;
@@ -327,13 +362,13 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
         pauseAuto();
         offsetRef.current += event.key === "PageDown" ? height * 0.8 : 48;
         wrapOffset();
-        applyLayout();
+        needsLayout = true;
       } else if (event.key === "ArrowUp" || event.key === "PageUp") {
         event.preventDefault();
         pauseAuto();
         offsetRef.current -= event.key === "PageUp" ? height * 0.8 : 48;
         wrapOffset();
-        applyLayout();
+        needsLayout = true;
       }
     }
 
@@ -364,7 +399,9 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       readFont();
       readCircle();
       readClipTop();
+      needsLayout = true;
       applyLayout();
+      needsLayout = false;
     }
 
     const shellCandidate = root.closest("[data-about-shell]");
@@ -387,9 +424,13 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       measureAll();
     });
 
-    intervalId = window.setInterval(tick, TICK_MS);
+    function onMotionPreferenceChange() {
+      needsLayout = true;
+    }
 
-    motionQuery.addEventListener("change", applyLayout);
+    rafId = window.requestAnimationFrame(frame);
+
+    motionQuery.addEventListener("change", onMotionPreferenceChange);
     desktopQuery.addEventListener("change", measureAll);
     shell?.addEventListener("wheel", onWheel, { passive: false });
     root.addEventListener("keydown", onKeyDown);
@@ -399,10 +440,10 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
     root.addEventListener("touchcancel", onTouchEnd);
 
     return () => {
-      window.clearInterval(intervalId);
+      window.cancelAnimationFrame(rafId);
       window.clearTimeout(resumeTimerRef.current);
       resizeObserver.disconnect();
-      motionQuery.removeEventListener("change", applyLayout);
+      motionQuery.removeEventListener("change", onMotionPreferenceChange);
       desktopQuery.removeEventListener("change", measureAll);
       shell?.removeEventListener("wheel", onWheel);
       root.removeEventListener("keydown", onKeyDown);
