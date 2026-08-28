@@ -13,6 +13,10 @@ import {
 const PX_PER_SECOND = 24;
 const TICK_MS = 32;
 const RESUME_MS = 1600;
+const INERTIA_DECEL = 0.998;
+const INERTIA_MIN_VELOCITY = 0.04;
+const INERTIA_MAX_VELOCITY = 6;
+const VELOCITY_SAMPLE_MS = 80;
 const PAGE_PAD = 32;
 const CONTENT_MAX = 768;
 const LOOP_GAP = 48;
@@ -184,18 +188,39 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       }
     }
 
-    function pauseAuto() {
-      interactingRef.current = true;
+    let inertiaVelocity = 0;
+    const touchSamples: { t: number; y: number }[] = [];
+    const touchState = { y: 0, active: false };
+
+    function scheduleResume() {
       window.clearTimeout(resumeTimerRef.current);
       resumeTimerRef.current = window.setTimeout(() => {
         interactingRef.current = false;
       }, RESUME_MS);
     }
 
+    function pauseAuto() {
+      inertiaVelocity = 0;
+      interactingRef.current = true;
+      scheduleResume();
+    }
+
     let intervalId = 0;
 
     function tick() {
-      if (!prefersReducedMotion() && !interactingRef.current) {
+      if (Math.abs(inertiaVelocity) > INERTIA_MIN_VELOCITY) {
+        offsetRef.current += inertiaVelocity * TICK_MS;
+        inertiaVelocity *= Math.pow(INERTIA_DECEL, TICK_MS);
+        wrapOffset();
+        if (Math.abs(inertiaVelocity) <= INERTIA_MIN_VELOCITY) {
+          inertiaVelocity = 0;
+          scheduleResume();
+        }
+      } else if (
+        !touchState.active &&
+        !prefersReducedMotion() &&
+        !interactingRef.current
+      ) {
         offsetRef.current += PX_PER_SECOND * (TICK_MS / 1000);
         wrapOffset();
       }
@@ -210,20 +235,80 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       applyLayout();
     }
 
-    const touchStart = { y: 0 };
+    function pruneTouchSamples(now: number) {
+      while (
+        touchSamples.length > 1 &&
+        now - touchSamples[0].t > VELOCITY_SAMPLE_MS
+      ) {
+        touchSamples.shift();
+      }
+    }
+
+    function velocityFromTouchSamples() {
+      if (touchSamples.length < 2) {
+        return 0;
+      }
+
+      const first = touchSamples[0];
+      const last = touchSamples[touchSamples.length - 1];
+      const elapsed = last.t - first.t;
+      if (elapsed < 8) {
+        return 0;
+      }
+
+      const velocity = (first.y - last.y) / elapsed;
+      return Math.max(
+        -INERTIA_MAX_VELOCITY,
+        Math.min(INERTIA_MAX_VELOCITY, velocity),
+      );
+    }
 
     function onTouchStart(event: TouchEvent) {
-      pauseAuto();
-      touchStart.y = event.touches[0]?.clientY ?? 0;
+      const y = event.touches[0]?.clientY ?? 0;
+      const now = performance.now();
+      inertiaVelocity = 0;
+      interactingRef.current = true;
+      window.clearTimeout(resumeTimerRef.current);
+      touchState.y = y;
+      touchState.active = true;
+      touchSamples.length = 0;
+      touchSamples.push({ t: now, y });
     }
 
     function onTouchMove(event: TouchEvent) {
-      const currentY = event.touches[0]?.clientY ?? touchStart.y;
-      offsetRef.current += touchStart.y - currentY;
-      touchStart.y = currentY;
+      if (!touchState.active) {
+        return;
+      }
+
+      const currentY = event.touches[0]?.clientY ?? touchState.y;
+      const now = performance.now();
+      offsetRef.current += touchState.y - currentY;
+      touchState.y = currentY;
+      touchSamples.push({ t: now, y: currentY });
+      pruneTouchSamples(now);
       wrapOffset();
       applyLayout();
       event.preventDefault();
+    }
+
+    function onTouchEnd() {
+      if (!touchState.active) {
+        return;
+      }
+
+      touchState.active = false;
+      const lastSample = touchSamples[touchSamples.length - 1];
+      const idle = lastSample ? performance.now() - lastSample.t : Infinity;
+      const velocity =
+        idle > VELOCITY_SAMPLE_MS ? 0 : velocityFromTouchSamples();
+      touchSamples.length = 0;
+
+      if (Math.abs(velocity) > INERTIA_MIN_VELOCITY) {
+        inertiaVelocity = velocity;
+        return;
+      }
+
+      scheduleResume();
     }
 
     function onKeyDown(event: KeyboardEvent) {
@@ -302,36 +387,29 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       measureAll();
     });
 
-    if (!prefersReducedMotion()) {
-      intervalId = window.setInterval(tick, TICK_MS);
-    }
+    intervalId = window.setInterval(tick, TICK_MS);
 
-    function onMotionPreferenceChange() {
-      window.clearInterval(intervalId);
-      intervalId = 0;
-      if (!prefersReducedMotion()) {
-        intervalId = window.setInterval(tick, TICK_MS);
-      }
-      applyLayout();
-    }
-
-    motionQuery.addEventListener("change", onMotionPreferenceChange);
+    motionQuery.addEventListener("change", applyLayout);
     desktopQuery.addEventListener("change", measureAll);
     shell?.addEventListener("wheel", onWheel, { passive: false });
     root.addEventListener("keydown", onKeyDown);
     root.addEventListener("touchstart", onTouchStart, { passive: true });
     root.addEventListener("touchmove", onTouchMove, { passive: false });
+    root.addEventListener("touchend", onTouchEnd);
+    root.addEventListener("touchcancel", onTouchEnd);
 
     return () => {
       window.clearInterval(intervalId);
       window.clearTimeout(resumeTimerRef.current);
       resizeObserver.disconnect();
-      motionQuery.removeEventListener("change", onMotionPreferenceChange);
+      motionQuery.removeEventListener("change", applyLayout);
       desktopQuery.removeEventListener("change", measureAll);
       shell?.removeEventListener("wheel", onWheel);
       root.removeEventListener("keydown", onKeyDown);
       root.removeEventListener("touchstart", onTouchStart);
       root.removeEventListener("touchmove", onTouchMove);
+      root.removeEventListener("touchend", onTouchEnd);
+      root.removeEventListener("touchcancel", onTouchEnd);
     };
   }, [paragraphs, endLabel]);
 
@@ -341,7 +419,7 @@ export function CreditsScroll({ paragraphs, endLabel }: CreditsScrollProps) {
       tabIndex={0}
       role="region"
       aria-label="Biography"
-      className="relative size-full overflow-hidden -outline-offset-2"
+      className="relative size-full touch-none overflow-hidden -outline-offset-2"
     >
       <div className="sr-only">
         {paragraphs.map((paragraph) => (

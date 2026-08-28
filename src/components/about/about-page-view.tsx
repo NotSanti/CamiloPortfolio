@@ -59,7 +59,7 @@ export function AboutPageView({ content }: AboutPageViewProps) {
 
       <figure
         data-about-portrait
-        className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-32 -translate-x-1/2 -translate-y-1/2 bg-background p-1 shadow-md md:w-36 lg:w-40"
+        className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-28 -translate-x-1/2 -translate-y-1/2 bg-background p-1 shadow-md md:w-36 lg:w-40"
       >
         <div className="relative aspect-[3/4] w-full overflow-hidden bg-media-placeholder">
           <Image
@@ -67,7 +67,7 @@ export function AboutPageView({ content }: AboutPageViewProps) {
             alt={content.portraitAlt}
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 128px, 160px"
+            sizes="(max-width: 768px) 112px, 160px"
             quality={90}
             priority
           />
