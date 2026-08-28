@@ -12,6 +12,10 @@ type ProjectMuxVideoProps = {
   variant: "tile" | "page";
   /** When false, pause playback (tile off-screen / overlay open). */
   active?: boolean;
+  /** Page custom controls: pause without unmounting. */
+  paused?: boolean;
+  /** Page custom controls: mute state. Tiles stay muted. */
+  muted?: boolean;
   className?: string;
 };
 
@@ -20,12 +24,20 @@ type ProjectMuxVideoProps = {
  * Tile callers mount on hover and unmount when the pointer leaves.
  * Page variant may stay mounted for the project stage.
  */
+type MuxMediaNode = HTMLElement & {
+  play?: () => Promise<void>;
+  pause?: () => void;
+  muted?: boolean;
+};
+
 export function ProjectMuxVideo({
   playbackId,
   title,
   posterSrc,
   variant,
   active = true,
+  paused = false,
+  muted = true,
   className = "",
 }: ProjectMuxVideoProps) {
   const playerRef = useRef<HTMLElement | null>(null);
@@ -34,15 +46,26 @@ export function ProjectMuxVideo({
     getMuxPosterUrl(playbackId, {
       width: variant === "tile" ? 640 : 1280,
     });
+  const shouldPlay = active && !paused;
+  const isMuted = variant === "tile" ? true : muted;
 
   useEffect(() => {
-    const node = playerRef.current as
-      | (HTMLElement & { play?: () => Promise<void>; pause?: () => void })
-      | null;
-    if (!node) return;
+    const node = playerRef.current as MuxMediaNode | null;
+    if (node) {
+      node.muted = isMuted;
+    }
+  }, [isMuted]);
+
+  useEffect(() => {
+    const node = playerRef.current as MuxMediaNode | null;
+    if (!node) {
+      return;
+    }
 
     function tryPlay() {
-      if (!active || !node) return;
+      if (!shouldPlay || !node) {
+        return;
+      }
       const attempt = node.play?.();
       if (attempt) {
         attempt.catch(() => {
@@ -51,7 +74,7 @@ export function ProjectMuxVideo({
       }
     }
 
-    if (active) {
+    if (shouldPlay) {
       node.addEventListener("loadeddata", tryPlay);
       node.addEventListener("canplay", tryPlay);
       tryPlay();
@@ -64,7 +87,7 @@ export function ProjectMuxVideo({
       node.removeEventListener("canplay", tryPlay);
       node.pause?.();
     };
-  }, [active, playbackId]);
+  }, [playbackId, shouldPlay]);
 
   const disableTracking = variant === "tile";
 
@@ -80,8 +103,8 @@ export function ProjectMuxVideo({
       streamType="on-demand"
       poster={poster}
       preload={variant === "tile" ? "metadata" : "metadata"}
-      muted
-      autoPlay={variant === "page" && active ? "muted" : false}
+      muted={isMuted}
+      autoPlay={variant === "page" && shouldPlay ? "muted" : false}
       loop
       playsInline
       maxResolution={variant === "tile" ? "720p" : undefined}

@@ -18,7 +18,9 @@ type MappableVideo = Pick<
   | "status"
   | "title"
   | "display_order"
->;
+> & {
+  caption?: string | null;
+};
 
 type ProjectWithMedia = ProjectRow & {
   project_images?: ProjectImageRow[] | null;
@@ -82,6 +84,7 @@ function mapVideo(
       alt: video.title ?? cover.alt,
       width: cover.width,
       height: cover.height,
+      caption: video.caption?.trim() || undefined,
       muxPlaybackId: playbackId,
       posterSrc: cover.src || muxPoster,
     };
@@ -100,6 +103,7 @@ function mapVideo(
     alt: video.title ?? cover.alt,
     width: cover.width,
     height: cover.height,
+    caption: video.caption?.trim() || undefined,
     posterSrc: cover.src || undefined,
   };
 }

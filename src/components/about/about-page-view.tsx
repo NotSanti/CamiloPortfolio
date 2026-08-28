@@ -59,7 +59,7 @@ export function AboutPageView({ content }: AboutPageViewProps) {
 
       <figure
         data-about-portrait
-        className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-28 -translate-x-1/2 -translate-y-1/2 bg-background p-1 shadow-md md:w-36 lg:w-40"
+        className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-28 -translate-x-1/2 -translate-y-1/2 md:w-36 lg:w-40"
       >
         <div className="relative aspect-[3/4] w-full overflow-hidden bg-media-placeholder">
           <Image

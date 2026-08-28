@@ -50,6 +50,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {project.kind === "video" ? (
           <VideoProjectView
             title={project.title}
+            summary={project.summary}
             media={project.media}
             cover={project.cover}
           />
