@@ -32,7 +32,7 @@ function RevealMark({
     <Link
       href={revealHref}
       aria-label={revealLabel}
-      className="pointer-events-auto absolute top-1/2 left-1/2 z-10 flex size-[0.75em] -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+      className="pointer-events-auto absolute top-1/2 left-1/2 z-10 flex size-[0.75em] -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center"
     >
       <span aria-hidden>{reveal}</span>
     </Link>
@@ -84,7 +84,7 @@ export function HoverRevealMark({
   return (
     <span
       ref={rootRef}
-      className="hover-reveal-mark relative inline-block text-left"
+      className="hover-reveal-mark relative inline-block cursor-default text-left"
     >
       <span className="pointer-events-none invisible select-none" aria-hidden>
         {text}

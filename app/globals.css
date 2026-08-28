@@ -30,6 +30,8 @@
   --background: #ffffff;
   --foreground: #000000;
   --accent: #cf0023;
+  --cursor-moon: url("/cursors/moon.png?v=6") 16 16, auto;
+  --cursor-moon-active: url("/cursors/moon-red.png?v=6") 16 16, pointer;
   --media-placeholder: #d9d9d9;
   --space-1: 8px;
   --space-2: 16px;
@@ -41,13 +43,7 @@
   --content-max: 1440px;
   --nav-rail: 64px;
   --font-pp-neue-montreal: "PP Neue Montreal";
-  --photo-index-slot: 8rem;
-  /* Scales with viewport, and also with the width left beside the index. */
-  --project-title-size: clamp(
-    2.25rem,
-    min(8.9vw, calc((100vw - var(--photo-index-slot) - 3rem) / 12)),
-    8rem
-  );
+  --project-title-size: clamp(2.25rem, 8.9vw, 8rem);
 }
 
 @theme inline {
@@ -62,6 +58,41 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body {
+    cursor: var(--cursor-moon);
+  }
+
+  a[href],
+  button:not(:disabled),
+  [role="button"],
+  [role="link"],
+  summary,
+  select:not(:disabled),
+  label[for],
+  input[type="button"]:not(:disabled),
+  input[type="submit"]:not(:disabled),
+  input[type="reset"]:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled),
+  input[type="file"]:not(:disabled),
+  input[type="image"]:not(:disabled),
+  .cursor-pointer {
+    cursor: var(--cursor-moon-active);
+  }
+
+  .cursor-default {
+    cursor: var(--cursor-moon);
+  }
+
+  .featured-globe,
+  .featured-globe a[href],
+  .featured-globe--dragging {
+    cursor: var(--cursor-moon-active);
+  }
 }
 
 * {
@@ -285,7 +316,7 @@ a:focus-visible .hover-reveal-mark__static {
   margin: 0;
   padding: 0;
   list-style: none;
-  cursor: grab;
+  cursor: var(--cursor-moon-active);
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
@@ -301,7 +332,7 @@ a:focus-visible .hover-reveal-mark__static {
 }
 
 .featured-globe--dragging {
-  cursor: grabbing;
+  cursor: var(--cursor-moon-active);
 }
 
 .featured-globe-tile {
@@ -348,10 +379,18 @@ a:focus-visible .hover-reveal-mark__static {
   pointer-events: none;
 }
 
-/* Project title scales with viewport and leaves a left slot for the photo index. */
+/* Project title: one line, full bottom edge. Overflow scrolls in-place. */
+.project-title-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior: contain;
+  touch-action: pan-x;
+}
+
 .project-title {
   font-size: var(--project-title-size);
-  max-width: calc(100% - var(--photo-index-slot) - 3rem);
+  max-width: none;
+  white-space: nowrap;
 }
 
 /* Video project: lock to the viewport and clear the project title / nav. */

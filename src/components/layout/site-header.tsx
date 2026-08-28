@@ -4,6 +4,7 @@ import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { TypedLines } from "@/src/components/layout/typed-text";
 import { HoverRevealMark } from "@/src/components/layout/hover-reveal-mark";
+import { ProjectTitle } from "@/src/components/layout/project-title";
 import { useProjectsOverlay } from "@/src/components/work/projects-provider";
 
 const HOME_INTRO = "Montreal based photographer & cinematographer";
@@ -148,7 +149,7 @@ export function SiteHeader({ mode = "home", projectTitle }: SiteHeaderProps) {
   return (
     <header className="pointer-events-none fixed inset-0 z-40">
       {isHome ? (
-        <div className="pointer-events-auto absolute left-[15px] top-5 max-w-[min(693px,calc(100%-5rem))] text-accent">
+        <div className="pointer-events-auto absolute left-[15px] top-5 max-w-[min(693px,calc(100%-5rem))] cursor-default text-accent">
           <TypedLines
             lines={HOME_TITLE_LINES}
             delayMs={TYPE_START_MS}
@@ -171,7 +172,7 @@ export function SiteHeader({ mode = "home", projectTitle }: SiteHeaderProps) {
       <SiteNav isHome={isHome} isAbout={isAbout} />
 
       {isHome ? (
-        <div className="pointer-events-auto absolute bottom-4 right-[15px] text-[6rem] font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-7xl lg:bottom-0 lg:right-[23px] lg:text-[10rem]">
+        <div className="pointer-events-auto absolute bottom-4 right-[15px] cursor-default text-[6rem] font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-7xl lg:bottom-0 lg:right-[23px] lg:text-[10rem]">
           <HoverRevealMark
             text={HOME_MARK}
             reveal="?"
@@ -182,9 +183,7 @@ export function SiteHeader({ mode = "home", projectTitle }: SiteHeaderProps) {
           />
         </div>
       ) : projectTitle ? (
-        <p className="project-title pointer-events-none absolute bottom-4 right-[15px] truncate text-right font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 lg:bottom-0 lg:right-[23px]">
-          {projectTitle}
-        </p>
+        <ProjectTitle title={projectTitle} />
       ) : null}
     </header>
   );
