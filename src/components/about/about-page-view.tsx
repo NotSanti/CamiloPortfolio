@@ -1,17 +1,16 @@
 import Image from "next/image";
 import type { AboutContent } from "@/data/about";
+import { SloganTextFlow } from "@/src/components/about/slogan-text-flow";
 
 type AboutPageViewProps = {
   content: AboutContent;
 };
 
 export function AboutPageView({ content }: AboutPageViewProps) {
-  const sloganLines = Array.from({ length: content.sloganRepeat }, (_, index) => index);
-
   return (
     <div className="fixed inset-0 z-0 overflow-hidden bg-background">
       {/* Bio — tighter type, closer to the top edge */}
-      <p className="absolute left-8 top-3 max-w-[min(960px,calc(100%-11rem))] text-sm font-bold leading-relaxed text-accent md:top-4 md:text-base md:leading-7 lg:left-8 lg:top-4 lg:max-w-[min(980px,calc(100%-14rem))] lg:text-lg lg:leading-8">
+      <p className="absolute left-8 top-3 z-10 max-w-[min(960px,calc(100%-11rem))] text-sm font-bold leading-relaxed text-accent md:top-4 md:text-base md:leading-7 lg:left-8 lg:top-4 lg:max-w-[min(980px,calc(100%-14rem))] lg:text-lg lg:leading-8">
         {content.bio}
       </p>
 
@@ -42,24 +41,11 @@ export function AboutPageView({ content }: AboutPageViewProps) {
         </a>
       </div>
 
-      {/* Middle slogan stack — centered in the viewport */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-[58%] w-max max-w-[calc(100vw-5.5rem)] -translate-x-1/2 -translate-y-1/2 md:top-1/2"
-        aria-hidden
-      >
-        {sloganLines.map((index) => (
-          <p
-            key={index}
-            className="whitespace-nowrap text-center text-[clamp(0.7rem,3.4vw,1.5rem)] font-bold uppercase leading-[1.35] text-accent md:text-lg md:leading-[44px] lg:text-2xl"
-            style={{ marginTop: index === 0 ? 0 : "calc(-0.6lh)" }}
-          >
-            {content.slogan}
-          </p>
-        ))}
-      </div>
+      {/* Middle slogan — Text Flow particle field */}
+      <SloganTextFlow text={content.slogan} repeat={content.sloganRepeat} />
 
       {/* Side photo — Figma SidePhoto 19:21 */}
-      <div className="absolute bottom-24 left-8 aspect-[465/268] w-[min(465px,78vw)] overflow-hidden bg-media-placeholder md:bottom-20 md:w-[min(465px,42vw)] lg:bottom-[48px] lg:left-8">
+      <div className="absolute bottom-24 left-8 z-10 aspect-[465/268] w-[min(465px,78vw)] overflow-hidden bg-media-placeholder md:bottom-20 md:w-[min(465px,42vw)] lg:bottom-[48px] lg:left-8">
         <Image
           src={content.portraitSrc}
           alt={content.portraitAlt}
@@ -71,7 +57,7 @@ export function AboutPageView({ content }: AboutPageViewProps) {
       </div>
 
       {/* ABOUT wordmark — Figma ABOUT 19:23 */}
-      <p className="pointer-events-none absolute bottom-4 right-[15px] text-4xl font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-6xl lg:bottom-0 lg:right-[26px] lg:text-[128px]">
+      <p className="pointer-events-none absolute bottom-4 right-[15px] z-10 text-4xl font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-6xl lg:bottom-0 lg:right-[26px] lg:text-[128px]">
         About
       </p>
     </div>

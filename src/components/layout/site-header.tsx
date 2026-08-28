@@ -2,7 +2,8 @@
 
 import { useEffect, useId, useState } from "react";
 import Link from "next/link";
-import { TypedLines, TypedText } from "@/src/components/layout/typed-text";
+import { TypedLines } from "@/src/components/layout/typed-text";
+import { HoverRevealMark } from "@/src/components/layout/hover-reveal-mark";
 import { useProjectsOverlay } from "@/src/components/work/projects-provider";
 
 const HOME_INTRO = "Montreal based photographer & cinematographer";
@@ -170,20 +171,16 @@ export function SiteHeader({ mode = "home", projectTitle }: SiteHeaderProps) {
       <SiteNav isHome={isHome} isAbout={isAbout} />
 
       {isHome ? (
-        <Link
-          href="/"
-          className="pointer-events-auto absolute bottom-4 right-[15px] text-[6rem] font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-7xl lg:bottom-0 lg:right-[23px] lg:text-[10rem]"
-          aria-label="Caloid home"
-        >
-          <span className="relative inline-block text-left" aria-hidden>
-            <span className="invisible select-none">{HOME_MARK}</span>
-            <span className="absolute top-0 left-0 whitespace-nowrap">
-              {introDone ? (
-                <TypedText text={HOME_MARK} delayMs={0} charMs={MARK_CHAR_MS} />
-              ) : null}
-            </span>
-          </span>
-        </Link>
+        <div className="pointer-events-auto absolute bottom-4 right-[15px] text-[6rem] font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 md:text-7xl lg:bottom-0 lg:right-[23px] lg:text-[10rem]">
+          <HoverRevealMark
+            text={HOME_MARK}
+            reveal="?"
+            revealHref="/why"
+            revealLabel="Why is he called Caloid?"
+            typing={introDone}
+            charMs={MARK_CHAR_MS}
+          />
+        </div>
       ) : projectTitle ? (
         <p className="project-title pointer-events-none absolute bottom-4 right-[15px] truncate text-right font-bold uppercase leading-none text-accent md:bottom-6 md:right-6 lg:bottom-0 lg:right-[23px]">
           {projectTitle}
