@@ -11,7 +11,7 @@ const WHY_STACK_CLASS =
 
 export function WhyPageView({ text, repeat }: WhyPageViewProps) {
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden bg-background">
+    <div className="fixed inset-0 z-0 touch-manipulation overflow-hidden bg-background">
       <h1 className="sr-only">{text}</h1>
       <Link
         href="/"

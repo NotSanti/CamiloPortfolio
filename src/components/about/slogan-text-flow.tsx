@@ -36,6 +36,8 @@ const MOUSE_RADIUS = 240;
 const RETURN_SPEED = 0.03;
 const PUSH_STRENGTH = 2;
 const DAMPING = 0.95;
+const MOUSE_SUPPRESS_MS = 700;
+const TOUCH_LINGER_MS = 160;
 
 function SloganStack({
   text,
@@ -137,9 +139,56 @@ function runTextFlow(
   let cancelled = false;
   let started = false;
 
+  let pointerKind = "mouse";
+  let suppressMouseUntil = 0;
+  let resetTimer = 0;
+
   function resetMouse() {
     mouse.x = -1000;
     mouse.y = -1000;
+  }
+
+  function setMouseFromEvent(event: PointerEvent) {
+    if (
+      event.pointerType === "mouse" &&
+      performance.now() < suppressMouseUntil
+    ) {
+      return;
+    }
+
+    const rect = surface.getBoundingClientRect();
+    mouse.x = event.clientX - rect.left;
+    mouse.y = event.clientY - rect.top;
+    pointerKind = event.pointerType;
+  }
+
+  function onPointerDown(event: PointerEvent) {
+    window.clearTimeout(resetTimer);
+    if (event.pointerType !== "mouse") {
+      suppressMouseUntil = performance.now() + MOUSE_SUPPRESS_MS;
+    }
+    setMouseFromEvent(event);
+  }
+
+  function onPointerMove(event: PointerEvent) {
+    setMouseFromEvent(event);
+  }
+
+  function onPointerUp(event: PointerEvent) {
+    if (event.pointerType === "mouse") {
+      return;
+    }
+
+    suppressMouseUntil = performance.now() + MOUSE_SUPPRESS_MS;
+    window.clearTimeout(resetTimer);
+    resetTimer = window.setTimeout(resetMouse, TOUCH_LINGER_MS);
+  }
+
+  function onMouseLeave() {
+    if (pointerKind !== "mouse") {
+      return;
+    }
+    resetMouse();
   }
 
   function buildParticles() {
@@ -266,21 +315,18 @@ function runTextFlow(
     frameId = window.requestAnimationFrame(tick);
   }
 
-  function onPointerMove(event: PointerEvent) {
-    const rect = surface.getBoundingClientRect();
-    mouse.x = event.clientX - rect.left;
-    mouse.y = event.clientY - rect.top;
-  }
-
   const resizeObserver = new ResizeObserver(() => {
     buildParticles();
     startLoop();
   });
   resizeObserver.observe(surface);
 
+  window.addEventListener("pointerdown", onPointerDown, { passive: true });
   window.addEventListener("pointermove", onPointerMove, { passive: true });
+  window.addEventListener("pointerup", onPointerUp, { passive: true });
+  window.addEventListener("pointercancel", onPointerUp, { passive: true });
   window.addEventListener("blur", resetMouse);
-  document.documentElement.addEventListener("mouseleave", resetMouse);
+  document.documentElement.addEventListener("mouseleave", onMouseLeave);
 
   void document.fonts.ready.then(() => {
     if (cancelled) {
@@ -293,10 +339,14 @@ function runTextFlow(
 
   return () => {
     cancelled = true;
+    window.clearTimeout(resetTimer);
     window.cancelAnimationFrame(frameId);
     resizeObserver.disconnect();
+    window.removeEventListener("pointerdown", onPointerDown);
     window.removeEventListener("pointermove", onPointerMove);
+    window.removeEventListener("pointerup", onPointerUp);
+    window.removeEventListener("pointercancel", onPointerUp);
     window.removeEventListener("blur", resetMouse);
-    document.documentElement.removeEventListener("mouseleave", resetMouse);
+    document.documentElement.removeEventListener("mouseleave", onMouseLeave);
   };
 }
