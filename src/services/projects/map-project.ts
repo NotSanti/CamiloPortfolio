@@ -29,7 +29,22 @@ function categoryFromKind(kind: ProjectRow["kind"]): string {
   return kind === "video" ? "Videography" : "Photography";
 }
 
-function mapCover(project: ProjectRow): MediaItem {
+function yearFromTimestamp(value: string): number {
+  const year = new Date(value).getFullYear();
+  return Number.isFinite(year) ? year : 0;
+}
+
+type CoverSource = Pick<
+  ProjectRow,
+  | "id"
+  | "title"
+  | "cover_image_path"
+  | "cover_alt_text"
+  | "cover_width"
+  | "cover_height"
+>;
+
+function mapCover(project: CoverSource): MediaItem {
   return {
     id: `cover-${project.id}`,
     type: "image",
@@ -48,6 +63,7 @@ function mapImage(image: ProjectImageRow): MediaItem {
     alt: image.alt_text ?? "",
     width: image.width ?? 1600,
     height: image.height ?? 2200,
+    caption: image.caption?.trim() || undefined,
   };
 }
 
@@ -106,7 +122,7 @@ export function mapProjectRowToProject(row: ProjectWithMedia): Project {
     title: row.title,
     category: categoryFromKind(row.kind),
     kind: row.kind,
-    year: 0,
+    year: yearFromTimestamp(row.created_at),
     summary: row.description ?? "",
     featured: row.is_featured,
     cover,
@@ -114,10 +130,13 @@ export function mapProjectRowToProject(row: ProjectWithMedia): Project {
   };
 }
 
-export function mapProjectRowToSummary(row: ProjectRow): ProjectSummary {
+export function mapProjectRowToSummary(
+  row: CoverSource & Pick<ProjectRow, "slug">,
+): ProjectSummary {
   return {
     id: row.id,
     slug: row.slug,
     title: row.title,
+    cover: mapCover(row),
   };
 }

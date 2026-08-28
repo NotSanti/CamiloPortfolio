@@ -42,7 +42,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <>
-      <SiteHeader mode="project" projectTitle={project.title} />
+      <SiteHeader
+        mode="project"
+        projectTitle={project.kind === "video" ? project.title : undefined}
+      />
       <main className="flex-1">
         {project.kind === "video" ? (
           <VideoProjectView
@@ -51,7 +54,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             cover={project.cover}
           />
         ) : (
-          <PhotoProjectView title={project.title} media={project.media} />
+          <PhotoProjectView
+            title={project.title}
+            category={project.category}
+            year={project.year}
+            summary={project.summary}
+            media={project.media}
+          />
         )}
       </main>
     </>

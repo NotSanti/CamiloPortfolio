@@ -1,10 +1,16 @@
 import { cache } from "react";
 import { createPublicClient } from "@/src/lib/supabase/public";
-import { mapProjectRowToProject } from "@/src/services/projects/map-project";
+import {
+  mapProjectRowToProject,
+  mapProjectRowToSummary,
+} from "@/src/services/projects/map-project";
 import type { Project, ProjectSummary } from "@/types/projects";
 
 const PROJECT_LIST_SELECT =
   "id, title, slug, description, kind, cover_image_path, cover_alt_text, cover_width, cover_height, is_published, is_featured, display_order, created_at, updated_at";
+
+const PROJECT_SUMMARY_SELECT =
+  "id, slug, title, cover_image_path, cover_alt_text, cover_width, cover_height, display_order, is_published";
 
 /** Home stream: cover + slim videos only (no gallery images). */
 const PROJECT_HOME_SELECT = `
@@ -71,7 +77,7 @@ export async function getPublishedProjectSummaries(): Promise<
 
   const { data, error } = await supabase
     .from("projects")
-    .select("id, slug, title, display_order, is_published")
+    .select(PROJECT_SUMMARY_SELECT)
     .eq("is_published", true)
     .order("display_order", { ascending: true });
 
@@ -81,11 +87,7 @@ export async function getPublishedProjectSummaries(): Promise<
     );
   }
 
-  return (data ?? []).map((row) => ({
-    id: row.id,
-    slug: row.slug,
-    title: row.title,
-  }));
+  return (data ?? []).map(mapProjectRowToSummary);
 }
 
 /** Deduped within a single request (metadata + page share one DB round-trip). */

@@ -48,6 +48,7 @@ The public site prioritizes:
 - Avoid arbitrary styling values when a token exists.
 - Build mobile-first.
 - Respect `prefers-reduced-motion`.
+- Never show scrollbars. Scrolling must still work.
 - Do not invent decorative effects not present in the approved design.
 
 ## Workflow

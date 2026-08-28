@@ -19,7 +19,7 @@ type SiteHeaderProps = {
   projectTitle?: string;
 };
 
-function SiteNav({ isAbout }: { isAbout: boolean }) {
+function SiteNav({ isHome, isAbout }: { isHome: boolean; isAbout: boolean }) {
   const { openProjects } = useProjectsOverlay();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuId = useId();
@@ -41,7 +41,7 @@ function SiteNav({ isAbout }: { isAbout: boolean }) {
       }
     }
 
-    const media = window.matchMedia("(min-width: 768px)");
+    const media = window.matchMedia("(min-width: 1024px)");
     function onViewportChange() {
       if (media.matches) {
         setMenuOpen(false);
@@ -65,13 +65,13 @@ function SiteNav({ isAbout }: { isAbout: boolean }) {
     <nav aria-label="Primary" className="site-nav-fade pointer-events-auto">
       {menuOpen ? (
         <div
-          className="fixed inset-0 z-30 md:hidden"
+          className="fixed inset-0 z-30 lg:hidden"
           aria-hidden
           onClick={() => setMenuOpen(false)}
         />
       ) : null}
 
-      <div className="absolute right-[15px] top-1/2 hidden -translate-y-1/2 flex-col items-center gap-2 text-lg font-medium uppercase text-accent md:flex md:gap-2.5 md:text-xl lg:right-[23px] lg:gap-3 lg:text-2xl">
+      <div className="absolute right-[15px] top-1/2 hidden -translate-y-1/2 flex-col items-center gap-2 text-lg font-medium uppercase text-accent lg:flex lg:right-[23px] lg:gap-3 lg:text-2xl">
         <button
           type="button"
           onClick={openProjects}
@@ -87,7 +87,7 @@ function SiteNav({ isAbout }: { isAbout: boolean }) {
         </Link>
       </div>
 
-      <div className="absolute right-[15px] top-[26px] z-40 md:hidden">
+      <div className="absolute right-[15px] top-[26px] z-40 lg:hidden">
         <button
           type="button"
           className="size-[30px] rounded-full bg-accent transition-opacity hover:opacity-80"
@@ -103,7 +103,7 @@ function SiteNav({ isAbout }: { isAbout: boolean }) {
           data-open={menuOpen ? "true" : "false"}
           aria-hidden={!menuOpen}
           inert={!menuOpen}
-          className="site-nav-dropdown absolute top-[calc(100%+8px)] right-0 flex min-w-32 flex-col items-end bg-background py-1 pl-4 text-accent"
+          className="site-nav-dropdown absolute top-[calc(100%+8px)] right-0 flex min-w-32 flex-col items-end py-1 pl-4 text-accent"
         >
           <button
             type="button"
@@ -113,14 +113,26 @@ function SiteNav({ isAbout }: { isAbout: boolean }) {
           >
             Projects
           </button>
-          <Link
-            href={secondaryHref}
-            role="menuitem"
-            className={mobileItemClassName}
-            onClick={() => setMenuOpen(false)}
-          >
-            {secondaryLabel}
-          </Link>
+          {isHome ? null : (
+            <Link
+              href="/"
+              role="menuitem"
+              className={mobileItemClassName}
+              onClick={() => setMenuOpen(false)}
+            >
+              Home
+            </Link>
+          )}
+          {isAbout ? null : (
+            <Link
+              href="/about"
+              role="menuitem"
+              className={mobileItemClassName}
+              onClick={() => setMenuOpen(false)}
+            >
+              About
+            </Link>
+          )}
         </div>
       </div>
     </nav>
@@ -150,12 +162,12 @@ export function SiteHeader({ mode = "home", projectTitle }: SiteHeaderProps) {
       {mode === "project" ? (
         <Link
           href="/"
-          className="pointer-events-auto absolute left-[23px] top-[26px] z-40 size-[30px] rounded-full bg-accent transition-opacity hover:opacity-80"
+          className="pointer-events-auto absolute left-[23px] top-[26px] z-40 hidden size-[30px] rounded-full bg-accent transition-opacity hover:opacity-80 lg:block"
           aria-label="Back to home"
         />
       ) : null}
 
-      <SiteNav isAbout={isAbout} />
+      <SiteNav isHome={isHome} isAbout={isAbout} />
 
       {isHome ? (
         <Link

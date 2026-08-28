@@ -41,11 +41,11 @@
   --content-max: 1440px;
   --nav-rail: 64px;
   --font-pp-neue-montreal: "PP Neue Montreal";
-  --photo-filmstrip-slot: clamp(10.5rem, 30vw, 26rem);
-  /* Scales with viewport, and also with the width left beside the filmstrip slot. */
+  --photo-index-slot: 8rem;
+  /* Scales with viewport, and also with the width left beside the index. */
   --project-title-size: clamp(
     2.25rem,
-    min(8.9vw, calc((100vw - var(--photo-filmstrip-slot) - 3rem) / 12)),
+    min(8.9vw, calc((100vw - var(--photo-index-slot) - 3rem) / 12)),
     8rem
   );
 }
@@ -62,6 +62,15 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 /*
@@ -219,16 +228,6 @@ html.app-loading::before {
   outline-offset: 3px;
 }
 
-@keyframes photo-carousel-scroll {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
 .home-featured {
   /* Globe tiles are absolutely positioned; keep an explicit viewport height
      so overflow clipping doesn't hide every tile when utility height is missing. */
@@ -291,31 +290,10 @@ html.app-loading::before {
   pointer-events: none;
 }
 
-/* Project title scales with viewport and always leaves a left slot for the filmstrip. */
+/* Project title scales with viewport and leaves a left slot for the photo index. */
 .project-title {
   font-size: var(--project-title-size);
-  max-width: calc(100% - var(--photo-filmstrip-slot) - 3rem);
-}
-
-/* Expanded photo: lock to the viewport and reserve chrome for nav / title / strip. */
-.photo-expanded {
-  --photo-expanded-top: 4.625rem;
-  /* Filmstrip row ≈ 105px; keep a gap above title/strip. */
-  --photo-expanded-bottom: max(8rem, calc(var(--project-title-size) + 1.5rem));
-  --photo-expanded-inline: 2rem;
-  --photo-expanded-end: max(2rem, calc(var(--nav-rail) + 1.5rem));
-  padding: var(--photo-expanded-top) var(--photo-expanded-end)
-    var(--photo-expanded-bottom) var(--photo-expanded-inline);
-}
-
-.photo-expanded-stage {
-  width: 100%;
-  min-height: 0;
-}
-
-.photo-expanded-frame {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: calc(100% - var(--photo-index-slot) - 3rem);
 }
 
 /* Video project: lock to the viewport and clear the project title / nav. */
@@ -336,36 +314,33 @@ html.app-loading::before {
 .video-project-frame {
   max-width: 100%;
   max-height: 100%;
+  container-type: size;
 }
 
-.photo-carousel-track {
-  animation: photo-carousel-scroll 48s linear infinite;
+.video-project-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.photo-carousel-track:hover,
-.photo-carousel-track:focus-within {
-  animation-play-state: paused;
+@media (max-width: 1023px) {
+  .video-project {
+    --video-project-top: 0px;
+    --video-project-bottom: 0px;
+    --video-project-inline: 0px;
+    --video-project-end: 0px;
+  }
 }
 
-/* Expanded photo strip: reserved left slot beside the project title. */
-.photo-filmstrip {
-  max-width: var(--photo-filmstrip-slot);
-}
-
-.photo-filmstrip ul {
-  scrollbar-width: none;
-}
-
-.photo-filmstrip ul::-webkit-scrollbar {
-  display: none;
-}
-
-.projects-overlay-scroll {
-  scrollbar-width: none;
-}
-
-.projects-overlay-scroll::-webkit-scrollbar {
-  display: none;
+@media (max-width: 1023px) and (orientation: portrait) {
+  .video-project-media {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100dvh;
+    height: 100dvw;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
 }
 
 /* Seamless page-to-page crossfade (View Transitions API). */
@@ -400,26 +375,7 @@ html.app-loading::before {
   animation-duration: 450ms;
 }
 
-/* Photo project: selected tile zooms up; siblings minimize to the corner. */
-::view-transition-group(.photo-morph) {
-  animation-duration: 560ms;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-::view-transition-old(.photo-morph),
-::view-transition-new(.photo-morph) {
-  animation-duration: 560ms;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  mix-blend-mode: normal;
-  height: 100%;
-  overflow: clip;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .photo-carousel-track {
-    animation: none;
-  }
-
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {

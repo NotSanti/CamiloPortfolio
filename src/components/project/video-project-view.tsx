@@ -22,41 +22,43 @@ export function VideoProjectView({
     <div className="video-project relative flex h-dvh max-h-dvh flex-col overflow-hidden bg-black">
       <div className="video-project-stage grid min-h-0 flex-1 place-items-center">
         <div className="video-project-frame relative h-full w-full overflow-hidden bg-black">
-          {muxPlaybackId ? (
-            <ProjectMuxVideo
-              playbackId={muxPlaybackId}
-              title={video?.alt ?? title}
-              posterSrc={poster || undefined}
-              variant="page"
-              active
-            />
-          ) : src ? (
-            <video
-              className="size-full object-contain"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster={poster}
-              aria-label={video?.alt ?? title}
-            >
-              <source src={src} />
-            </video>
-          ) : poster ? (
-            <Image
-              src={poster}
-              alt={video?.alt ?? cover.alt}
-              fill
-              className="object-contain"
-              sizes="100vw"
-              priority
-            />
-          ) : (
-            <span className="flex size-full items-center justify-center text-sm uppercase text-white/50">
-              Video processing
-            </span>
-          )}
+          <div className="video-project-media">
+            {muxPlaybackId ? (
+              <ProjectMuxVideo
+                playbackId={muxPlaybackId}
+                title={video?.alt ?? title}
+                posterSrc={poster || undefined}
+                variant="page"
+                active
+              />
+            ) : src ? (
+              <video
+                className="size-full object-contain"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={poster}
+                aria-label={video?.alt ?? title}
+              >
+                <source src={src} />
+              </video>
+            ) : poster ? (
+              <Image
+                src={poster}
+                alt={video?.alt ?? cover.alt}
+                fill
+                className="object-contain"
+                sizes="100vw"
+                priority
+              />
+            ) : (
+              <span className="flex size-full items-center justify-center text-sm uppercase text-white/50">
+                Video processing
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </div>
