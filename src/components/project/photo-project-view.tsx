@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { MediaItem } from "@/types/projects";
+import { PhotoProjectTitle } from "@/src/components/project/photo-project-title";
 import { PhotoSmoothScroll } from "@/src/components/project/photo-smooth-scroll";
 
 type PhotoProjectViewProps = {
@@ -52,7 +53,7 @@ function MagazineBand({
           </span>
         ))}
       </p>
-      <p className="line-clamp-2 min-w-0 flex-1 text-center text-[0.625rem] font-bold uppercase leading-snug tracking-[0.08em] md:text-xs lg:text-sm">
+      <p className="min-w-0 flex-1 text-center text-[0.625rem] font-bold uppercase leading-snug tracking-[0.08em] md:text-xs lg:text-sm">
         {headline}
       </p>
       <p className="w-16 shrink-0 text-right text-[0.625rem] font-medium uppercase leading-tight tracking-[0.08em] md:w-24 md:text-xs">
@@ -80,12 +81,7 @@ export function PhotoProjectView({
       <article className="overflow-x-clip bg-background px-[15px] py-[15px] lg:px-[23px] lg:py-[23px]">
         <div className="relative">
           <h1 className="sr-only">{title}</h1>
-          <p
-            aria-hidden
-            className="photo-project-title pointer-events-none absolute right-[-15px] z-10 top-[calc(100dvh-15px)] hidden translate-y-[calc(-100%+0.25rem)] whitespace-nowrap font-bold uppercase leading-none text-accent lg:block lg:right-[-21px] lg:top-[calc(100dvh-23px)] lg:translate-y-[calc(-100%+1rem)]"
-          >
-            {title}
-          </p>
+          <PhotoProjectTitle title={title} />
           {photos.map((photo, photoIndex) => {
             const showBand = photoIndex === 0 && photos.length > 1;
             const indexLabel = String(photoIndex + 1).padStart(2, "0");
