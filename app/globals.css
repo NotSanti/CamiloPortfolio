@@ -398,6 +398,35 @@ a:focus-visible .hover-reveal-mark__static {
   white-space: nowrap;
 }
 
+/*
+  Photo overlay title: 5rem → 15rem → 30rem, matching the previous
+  Tailwind steps, interpolated so typical desktop widths (not only
+  exact 1920 / 2560 CSS pixels) actually grow.
+*/
+.photo-project-title {
+  font-size: 5rem;
+}
+
+@media (width >= 1024px) {
+  .photo-project-title {
+    font-size: clamp(
+      5rem,
+      5rem + (10rem * (100vw - 1024px) / 896px),
+      15rem
+    );
+  }
+}
+
+@media (width >= 1920px) {
+  .photo-project-title {
+    font-size: clamp(
+      15rem,
+      15rem + (15rem * (100vw - 1920px) / 640px),
+      30rem
+    );
+  }
+}
+
 /* Video project: lock to the viewport and clear the project title / nav. */
 .video-project {
   --video-project-top: 4.625rem;

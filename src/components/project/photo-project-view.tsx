@@ -82,7 +82,7 @@ export function PhotoProjectView({
           <h1 className="sr-only">{title}</h1>
           <p
             aria-hidden
-            className="pointer-events-none absolute right-[-15px] z-10 top-[calc(100dvh-15px)] hidden translate-y-[calc(-100%+0.25rem)] whitespace-nowrap text-[5rem] font-bold uppercase leading-none text-accent lg:block lg:right-[-21px] lg:top-[calc(100dvh-23px)] lg:translate-y-[calc(-100%+1rem)] min-[1920px]:text-[15rem] min-[2560px]:text-[30rem]"
+            className="photo-project-title pointer-events-none absolute right-[-15px] z-10 top-[calc(100dvh-15px)] hidden translate-y-[calc(-100%+0.25rem)] whitespace-nowrap font-bold uppercase leading-none text-accent lg:block lg:right-[-21px] lg:top-[calc(100dvh-23px)] lg:translate-y-[calc(-100%+1rem)]"
           >
             {title}
           </p>
