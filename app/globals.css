@@ -46,6 +46,11 @@
   --project-title-size: clamp(2.25rem, 8.9vw, 8rem);
 }
 
+html:has([data-admin-shell]) {
+  --cursor-moon: auto;
+  --cursor-moon-active: pointer;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
