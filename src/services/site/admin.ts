@@ -1,5 +1,5 @@
 import { createClient } from "@/src/lib/supabase/server";
-import { SITE_SETTINGS_ID } from "@/src/services/site/get-site-settings";
+import { SITE_SETTINGS_ID, SITE_SETTINGS_SELECT } from "@/src/services/site/get-site-settings";
 import type { SiteSettingsRow } from "@/types/database";
 
 async function requireUser() {
@@ -19,9 +19,7 @@ export async function getAdminSiteSettings(): Promise<SiteSettingsRow> {
   const supabase = await requireUser();
   const { data, error } = await supabase
     .from("site_settings")
-    .select(
-      "id, portrait_path, portrait_alt, portrait_width, portrait_height, updated_at",
-    )
+    .select(SITE_SETTINGS_SELECT)
     .eq("id", SITE_SETTINGS_ID)
     .maybeSingle();
 

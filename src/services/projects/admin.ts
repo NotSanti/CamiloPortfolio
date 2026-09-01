@@ -6,7 +6,7 @@ import type {
 } from "@/types/database";
 
 const ADMIN_PROJECT_LIST_SELECT =
-  "id, title, slug, description, kind, cover_image_path, cover_alt_text, cover_width, cover_height, is_published, is_featured, display_order, created_at, updated_at";
+  "id, title, slug, description, kind, cover_image_path, cover_alt_text, cover_width, cover_height, is_published, is_featured, display_order, seo_title, seo_description, created_at, updated_at";
 
 export type AdminProjectDetail = ProjectRow & {
   project_images: ProjectImageRow[];

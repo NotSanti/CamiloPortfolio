@@ -3,7 +3,9 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/src/lib/supabase/server";
+import { generateProjectSeo } from "@/src/lib/seo";
 import { slugifyTitle } from "@/src/services/projects/slugify";
+import { revalidatePublicSeo } from "@/src/services/seo/revalidate";
 import type { ProjectKind } from "@/types/database";
 
 export type ProjectEditorValues = {
@@ -22,15 +24,10 @@ export type UpdateProjectState = {
 };
 
 function revalidatePublicPortfolio(slug?: string, previousSlug?: string) {
-  revalidatePath("/", "layout");
-  revalidatePath("/");
-  if (slug) {
-    revalidatePath(`/work/${slug}`);
-  }
-  if (previousSlug && previousSlug !== slug) {
-    revalidatePath(`/work/${previousSlug}`);
-  }
-  revalidatePath("/admin/projects");
+  const slugs = [slug, previousSlug].filter(
+    (value): value is string => Boolean(value),
+  );
+  revalidatePublicSeo(slugs);
 }
 
 async function requireAuthedClient() {
@@ -249,6 +246,12 @@ export async function createProjectFromEditorAction(
     };
   }
 
+  const generated = generateProjectSeo({
+    title: values.title,
+    kind: values.kind,
+    description: values.description,
+  });
+
   const { data, error } = await supabase
     .from("projects")
     .insert({
@@ -259,6 +262,8 @@ export async function createProjectFromEditorAction(
       is_published: values.isPublished,
       is_featured: values.isFeatured,
       display_order: maxOrder + 1,
+      seo_title: generated.title,
+      seo_description: generated.description,
     })
     .select("id")
     .single();

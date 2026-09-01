@@ -15,9 +15,7 @@ export async function generateMetadata({ params }: AdminProjectEditPageProps) {
   const project = await getAdminProjectById(projectId);
 
   return {
-    title: project
-      ? `Edit ${project.title} · Caloid CMS`
-      : "Project · Caloid CMS",
+    title: project ? `Edit ${project.title}` : "Project",
   };
 }
 

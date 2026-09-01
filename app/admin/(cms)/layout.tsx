@@ -45,6 +45,12 @@ export default async function AdminCmsLayout({
               About
             </Link>
             <Link
+              href="/admin/seo"
+              className="text-sm font-medium uppercase text-accent transition-opacity hover:opacity-70"
+            >
+              SEO
+            </Link>
+            <Link
               href="/"
               className="text-sm font-medium uppercase text-foreground/50 transition-opacity hover:opacity-70"
               target="_blank"

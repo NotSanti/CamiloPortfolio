@@ -3,7 +3,7 @@ import { AdminProjectsTable } from "@/src/components/admin/admin-projects-table"
 import { getAllProjects } from "@/src/services/projects/admin";
 
 export const metadata = {
-  title: "Projects · Caloid CMS",
+  title: "Projects",
 };
 
 export default async function AdminProjectsPage() {

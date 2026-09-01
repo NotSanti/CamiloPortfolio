@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ProjectEditorForm } from "@/src/components/admin/project-editor-form";
 
 export const metadata = {
-  title: "New project · Caloid CMS",
+  title: "New project",
 };
 
 export default function AdminNewProjectPage() {

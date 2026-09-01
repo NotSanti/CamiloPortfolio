@@ -32,6 +32,8 @@ export type Database = {
           is_published: boolean;
           is_featured: boolean;
           display_order: number;
+          seo_title: string | null;
+          seo_description: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -48,6 +50,8 @@ export type Database = {
           is_published?: boolean;
           is_featured?: boolean;
           display_order?: number;
+          seo_title?: string | null;
+          seo_description?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -64,6 +68,8 @@ export type Database = {
           is_published?: boolean;
           is_featured?: boolean;
           display_order?: number;
+          seo_title?: string | null;
+          seo_description?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -173,6 +179,10 @@ export type Database = {
           portrait_alt: string | null;
           portrait_width: number | null;
           portrait_height: number | null;
+          home_seo_title: string | null;
+          home_seo_description: string | null;
+          about_seo_title: string | null;
+          about_seo_description: string | null;
           updated_at: string;
         };
         Insert: {
@@ -181,6 +191,10 @@ export type Database = {
           portrait_alt?: string | null;
           portrait_width?: number | null;
           portrait_height?: number | null;
+          home_seo_title?: string | null;
+          home_seo_description?: string | null;
+          about_seo_title?: string | null;
+          about_seo_description?: string | null;
           updated_at?: string;
         };
         Update: {
@@ -189,6 +203,10 @@ export type Database = {
           portrait_alt?: string | null;
           portrait_width?: number | null;
           portrait_height?: number | null;
+          home_seo_title?: string | null;
+          home_seo_description?: string | null;
+          about_seo_title?: string | null;
+          about_seo_description?: string | null;
           updated_at?: string;
         };
         Relationships: [];

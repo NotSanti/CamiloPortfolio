@@ -4,14 +4,35 @@ import { getPublishedProjectSummaries } from "@/src/services/projects/get-publis
 import { LoadingOverlay } from "@/src/components/layout/loading-overlay";
 import { PageTransition } from "@/src/components/layout/page-transition";
 import { ProjectsProvider } from "@/src/components/work/projects-provider";
+import {
+  DEFAULT_HOME_DESCRIPTION,
+  getSiteUrl,
+  PERSON_NAME,
+  SITE_NAME,
+} from "@/src/lib/seo";
 import "./globals.css";
 
 /** Public project data can change from the CMS without a redeploy. */
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Caloid",
-  description: "Montreal-based photographer and cinematographer Camilo Luna.",
+  metadataBase: new URL(getSiteUrl()),
+  title: {
+    default: SITE_NAME,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: DEFAULT_HOME_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: PERSON_NAME }],
+  creator: PERSON_NAME,
+  openGraph: {
+    type: "website",
+    locale: "en_CA",
+    siteName: SITE_NAME,
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default async function RootLayout({

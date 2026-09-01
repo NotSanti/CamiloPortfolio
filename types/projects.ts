@@ -26,6 +26,8 @@ export interface Project {
   featured: boolean;
   cover: MediaItem;
   media: MediaItem[];
+  seoTitle: string | null;
+  seoDescription: string | null;
 }
 
 /** Lean list item for the projects overlay (cover + optional Mux preview). */

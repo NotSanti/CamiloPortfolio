@@ -7,7 +7,7 @@ import {
 import type { Project, ProjectSummary } from "@/types/projects";
 
 const PROJECT_LIST_SELECT =
-  "id, title, slug, description, kind, cover_image_path, cover_alt_text, cover_width, cover_height, is_published, is_featured, display_order, created_at, updated_at";
+  "id, title, slug, description, kind, cover_image_path, cover_alt_text, cover_width, cover_height, is_published, is_featured, display_order, seo_title, seo_description, created_at, updated_at";
 
 const PROJECT_SUMMARY_SELECT = `
   id, slug, title, kind, cover_image_path, cover_alt_text, cover_width, cover_height, display_order, is_published,
@@ -134,4 +134,27 @@ export async function getPublishedProjectSlugs(): Promise<string[]> {
   }
 
   return (data ?? []).map((row) => row.slug);
+}
+
+export async function getPublishedSitemapEntries(): Promise<
+  Array<{ slug: string; updatedAt: string }>
+> {
+  const supabase = createPublicClient();
+
+  const { data, error } = await supabase
+    .from("projects")
+    .select("slug, updated_at")
+    .eq("is_published", true)
+    .order("display_order", { ascending: true });
+
+  if (error) {
+    throw new Error(
+      `Failed to load published sitemap entries: ${error.message}`,
+    );
+  }
+
+  return (data ?? []).map((row) => ({
+    slug: row.slug,
+    updatedAt: row.updated_at,
+  }));
 }

@@ -67,6 +67,8 @@ function project(input: {
   return {
     ...input,
     featured: true,
+    seoTitle: null,
+    seoDescription: null,
   };
 }
 

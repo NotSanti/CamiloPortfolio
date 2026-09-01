@@ -5,7 +5,7 @@ type AdminLoginPageProps = {
 };
 
 export const metadata = {
-  title: "Admin login · Caloid",
+  title: "Sign in",
   robots: { index: false, follow: false },
 };
 

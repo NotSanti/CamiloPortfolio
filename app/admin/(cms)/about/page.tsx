@@ -4,7 +4,7 @@ import { aboutContent } from "@/data/about";
 import { getAdminSiteSettings } from "@/src/services/site/admin";
 
 export const metadata = {
-  title: "About · Caloid CMS",
+  title: "About",
 };
 
 export default async function AdminAboutPage() {

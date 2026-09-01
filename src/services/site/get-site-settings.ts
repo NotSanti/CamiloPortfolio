@@ -11,13 +11,14 @@ export type AboutPortrait = {
   alt: string;
 };
 
+export const SITE_SETTINGS_SELECT =
+  "id, portrait_path, portrait_alt, portrait_width, portrait_height, home_seo_title, home_seo_description, about_seo_title, about_seo_description, updated_at";
+
 export const getSiteSettings = cache(async (): Promise<SiteSettingsRow | null> => {
   const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("site_settings")
-    .select(
-      "id, portrait_path, portrait_alt, portrait_width, portrait_height, updated_at",
-    )
+    .select(SITE_SETTINGS_SELECT)
     .eq("id", SITE_SETTINGS_ID)
     .maybeSingle();
 

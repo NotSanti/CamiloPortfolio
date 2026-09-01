@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { aboutContent } from "@/data/about";
 import { WhyPageView } from "@/src/components/why/why-page-view";
+import { buildPageMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Why · Caloid",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Why",
   description: aboutContent.slogan,
-};
+  path: "/why",
+});
 
 export default function WhyPage() {
   return (

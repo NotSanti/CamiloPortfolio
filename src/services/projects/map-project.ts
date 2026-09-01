@@ -131,6 +131,8 @@ export function mapProjectRowToProject(row: ProjectWithMedia): Project {
     featured: row.is_featured,
     cover,
     media: [...images, ...videos],
+    seoTitle: row.seo_title,
+    seoDescription: row.seo_description,
   };
 }
 
