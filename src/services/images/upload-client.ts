@@ -65,9 +65,22 @@ function uploadWithProgress(
   });
 }
 
-export async function uploadProjectImageFile(input: {
-  projectId: string;
+async function requireUploadSession(): Promise<string> {
+  const supabase = createClient();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session?.access_token) {
+    throw new Error("You must be signed in to upload.");
+  }
+
+  return session.access_token;
+}
+
+async function uploadImageToStorage(input: {
   file: File;
+  storagePath: string;
   onProgress?: (progress: UploadProgress) => void;
 }): Promise<{
   storagePath: string;
@@ -79,24 +92,14 @@ export async function uploadProjectImageFile(input: {
     throw new Error(validationError);
   }
 
-  const supabase = createClient();
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (!session?.access_token) {
-    throw new Error("You must be signed in to upload.");
-  }
-
-  const safeName = sanitizeFileName(input.file.name) || "image.jpg";
-  const storagePath = `projects/${input.projectId}/gallery/${crypto.randomUUID()}-${safeName}`;
+  const accessToken = await requireUploadSession();
 
   input.onProgress?.({ percent: 0, status: "uploading" });
 
   await uploadWithProgress(
     input.file,
-    storagePath,
-    session.access_token,
+    input.storagePath,
+    accessToken,
     (percent) => {
       input.onProgress?.({ percent, status: "uploading" });
     },
@@ -107,8 +110,45 @@ export async function uploadProjectImageFile(input: {
   const dimensions = await readImageDimensions(input.file);
 
   return {
-    storagePath,
+    storagePath: input.storagePath,
     width: dimensions?.width ?? null,
     height: dimensions?.height ?? null,
   };
+}
+
+export async function uploadProjectImageFile(input: {
+  projectId: string;
+  file: File;
+  onProgress?: (progress: UploadProgress) => void;
+}): Promise<{
+  storagePath: string;
+  width: number | null;
+  height: number | null;
+}> {
+  const safeName = sanitizeFileName(input.file.name) || "image.jpg";
+  const storagePath = `projects/${input.projectId}/gallery/${crypto.randomUUID()}-${safeName}`;
+
+  return uploadImageToStorage({
+    file: input.file,
+    storagePath,
+    onProgress: input.onProgress,
+  });
+}
+
+export async function uploadSitePortraitFile(input: {
+  file: File;
+  onProgress?: (progress: UploadProgress) => void;
+}): Promise<{
+  storagePath: string;
+  width: number | null;
+  height: number | null;
+}> {
+  const safeName = sanitizeFileName(input.file.name) || "portrait.jpg";
+  const storagePath = `site/portrait/${crypto.randomUUID()}-${safeName}`;
+
+  return uploadImageToStorage({
+    file: input.file,
+    storagePath,
+    onProgress: input.onProgress,
+  });
 }

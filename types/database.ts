@@ -166,6 +166,33 @@ export type Database = {
           },
         ];
       };
+      site_settings: {
+        Row: {
+          id: string;
+          portrait_path: string | null;
+          portrait_alt: string | null;
+          portrait_width: number | null;
+          portrait_height: number | null;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          portrait_path?: string | null;
+          portrait_alt?: string | null;
+          portrait_width?: number | null;
+          portrait_height?: number | null;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          portrait_path?: string | null;
+          portrait_alt?: string | null;
+          portrait_width?: number | null;
+          portrait_height?: number | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
@@ -191,3 +218,8 @@ export type ProjectVideoInsert =
   Database["public"]["Tables"]["project_videos"]["Insert"];
 export type ProjectVideoUpdate =
   Database["public"]["Tables"]["project_videos"]["Update"];
+
+export type SiteSettingsRow =
+  Database["public"]["Tables"]["site_settings"]["Row"];
+export type SiteSettingsUpdate =
+  Database["public"]["Tables"]["site_settings"]["Update"];
