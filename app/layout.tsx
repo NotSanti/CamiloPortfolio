@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { preconnect } from "react-dom";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getPublishedProjectSummaries } from "@/src/services/projects/get-published-projects";
 import { LoadingOverlay } from "@/src/components/layout/loading-overlay";
 import { PageTransition } from "@/src/components/layout/page-transition";
@@ -57,6 +59,8 @@ export default async function RootLayout({
         <ProjectsProvider projects={projectSummaries}>
           <PageTransition>{children}</PageTransition>
         </ProjectsProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
