@@ -7,9 +7,11 @@ import {
   AdminFeedback,
   AdminFileDropzone,
 } from "@/src/components/admin/admin-file-dropzone";
+import { MuxAssetLibrary } from "@/src/components/admin/mux-asset-library";
 import { getMuxPosterUrl } from "@/src/lib/mux/playback";
 import { VIDEO_ACCEPT } from "@/src/lib/video";
 import { deleteProjectVideoAction } from "@/src/services/videos/admin-actions";
+import { hardDeleteMuxAssetAction } from "@/src/services/videos/mux-library-actions";
 import {
   uploadProjectVideoFile,
   type VideoUploadProgress,
@@ -116,6 +118,9 @@ export function ProjectVideoManager({
   const [error, setError] = useState<string | null>(null);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
+  const [pendingMuxDeleteId, setPendingMuxDeleteId] = useState<string | null>(
+    null,
+  );
   const [isPending, startTransition] = useTransition();
   const [isUploading, setIsUploading] = useState(false);
 
@@ -177,7 +182,7 @@ export function ProjectVideoManager({
       [
         `Delete video “${label}”?`,
         "",
-        "This removes the database record and deletes the Mux asset if nothing else uses it.",
+        "This removes the video from this project. The Mux asset is deleted only if no other project uses it.",
       ].join("\n"),
     );
     if (!confirmed) return;
@@ -194,6 +199,40 @@ export function ProjectVideoManager({
         return;
       }
       setStatusMessage("Video deleted.");
+      router.refresh();
+    });
+  }
+
+  function handleHardDelete(video: ProjectVideoRow) {
+    const assetId = video.mux_asset_id;
+    if (!assetId) {
+      setError("This video has no Mux asset to delete.");
+      return;
+    }
+
+    const label = video.title || video.id.slice(0, 8);
+    const confirmed = window.confirm(
+      [
+        `Delete “${label}” from Mux?`,
+        "",
+        "This permanently removes the asset from Mux. It cannot be undone.",
+        "Every project that uses this video will lose it.",
+      ].join("\n"),
+    );
+    if (!confirmed) return;
+
+    setPendingMuxDeleteId(video.id);
+    setError(null);
+    setStatusMessage(null);
+
+    startTransition(async () => {
+      const result = await hardDeleteMuxAssetAction({ assetId });
+      setPendingMuxDeleteId(null);
+      if (!result.ok) {
+        setError(result.error);
+        return;
+      }
+      setStatusMessage("Mux asset deleted.");
       router.refresh();
     });
   }
@@ -226,6 +265,19 @@ export function ProjectVideoManager({
           </AdminFileDropzone>
         </div>
 
+        <MuxAssetLibrary
+          projectId={projectId}
+          disabled={isUploading}
+          onAttached={() => {
+            startTransition(() => router.refresh());
+          }}
+          onHardDeleted={() => {
+            startTransition(() => router.refresh());
+          }}
+          onError={setError}
+          onStatus={setStatusMessage}
+        />
+
         <AdminFeedback status={statusMessage} error={error} />
       </div>
 
@@ -235,7 +287,8 @@ export function ProjectVideoManager({
             No videos yet
           </p>
           <p className="mt-2 text-sm normal-case text-foreground/50">
-            Drop a file above. Status will move Waiting → Processing → Ready.
+            Drop a file above, or use an existing Mux video. Status will move
+            Waiting → Processing → Ready.
           </p>
         </div>
       ) : (
@@ -288,14 +341,30 @@ export function ProjectVideoManager({
                           </p>
                         ) : null}
                       </div>
-                      <button
-                        type="button"
-                        disabled={isPending && pendingDeleteId === video.id}
-                        onClick={() => handleDelete(video)}
-                        className="text-[10px] font-medium uppercase text-accent transition-opacity hover:opacity-70 disabled:opacity-60"
-                      >
-                        {pendingDeleteId === video.id ? "…" : "Delete"}
-                      </button>
+                      <div className="flex flex-col items-end gap-2">
+                        <button
+                          type="button"
+                          disabled={isPending && pendingDeleteId === video.id}
+                          onClick={() => handleDelete(video)}
+                          className="text-[10px] font-medium uppercase text-accent transition-opacity hover:opacity-70 disabled:opacity-60"
+                        >
+                          {pendingDeleteId === video.id ? "…" : "Delete"}
+                        </button>
+                        {video.mux_asset_id ? (
+                          <button
+                            type="button"
+                            disabled={
+                              isPending && pendingMuxDeleteId === video.id
+                            }
+                            onClick={() => handleHardDelete(video)}
+                            className="text-[10px] font-medium uppercase text-accent transition-opacity hover:opacity-70 disabled:opacity-60"
+                          >
+                            {pendingMuxDeleteId === video.id
+                              ? "…"
+                              : "Delete from Mux"}
+                          </button>
+                        ) : null}
+                      </div>
                     </div>
                   </div>
                 </div>
