@@ -62,6 +62,15 @@ function isFrontTile(el: HTMLElement): boolean {
   return Number.parseFloat(el.style.opacity || "0") >= CLICK_OPACITY_MIN;
 }
 
+/** Hidden `display:none` animated imgs still get fetched; assign src only when facing. */
+function startGlobeAnimatedCover(tile: HTMLLIElement) {
+  const img = tile.querySelector<HTMLImageElement>("img.globe-cover--animated");
+  if (!img) return;
+  const pending = img.dataset.src;
+  if (!pending || img.getAttribute("src")) return;
+  img.src = pending;
+}
+
 function easeOutCubic(t: number): number {
   return 1 - (1 - t) ** 3;
 }
@@ -330,6 +339,9 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           el.style.pointerEvents = events ? "auto" : "none";
           el.classList.toggle("featured-globe-tile--facing", events === 1);
           cache.events = events;
+          if (events === 1) {
+            startGlobeAnimatedCover(el);
+          }
         }
 
         if (projected.front > bestFront) {

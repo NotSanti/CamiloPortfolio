@@ -2,62 +2,29 @@
 
 import Link from "next/link";
 import { memo } from "react";
+import { useReducedMotion } from "motion/react";
 import type { Project } from "@/types/projects";
 import {
-  getMuxAnimatedUrl,
-  getMuxPosterUrl,
-} from "@/src/lib/mux/playback";
-
-/** Small enough for sphere tiles; avoids Next.js image-optimizer workers. */
-const GLOBE_STILL_WIDTH = 384;
-/** Mux animated max is 640; tiles are ~110×138 so 320 is enough. */
-const GLOBE_ANIMATED_WIDTH = 320;
+  GLOBE_ANIMATED_WIDTH,
+  GLOBE_STILL_HEIGHT,
+  GLOBE_STILL_WIDTH,
+  getGlobeAnimatedSrc,
+  getGlobeStillSrc,
+} from "@/src/lib/globe-media";
 
 type FeaturedGlobeTileProps = {
   project: Project;
   priority?: boolean;
 };
 
-function getVideoPlaybackId(project: Project): string | undefined {
-  if (project.kind !== "video") {
-    return undefined;
-  }
-  return project.media.find((item) => item.type === "video")?.muxPlaybackId;
-}
-
-function getGlobeStillSrc(project: Project): string {
-  const { cover, media } = project;
-  const playbackId = getVideoPlaybackId(project);
-  if (playbackId) {
-    return getMuxPosterUrl(playbackId, {
-      width: GLOBE_STILL_WIDTH,
-    });
-  }
-  if (project.kind === "video") {
-    const video = media.find((item) => item.type === "video");
-    return video?.posterSrc || cover.src;
-  }
-  return cover.src;
-}
-
-function getGlobeAnimatedSrc(project: Project): string | undefined {
-  const playbackId = getVideoPlaybackId(project);
-  if (!playbackId) {
-    return undefined;
-  }
-  return getMuxAnimatedUrl(playbackId, {
-    width: GLOBE_ANIMATED_WIDTH,
-    fps: 12,
-    end: 4,
-  });
-}
-
 function FeaturedGlobeTileComponent({
   project,
   priority = false,
 }: FeaturedGlobeTileProps) {
+  const reducedMotion = useReducedMotion();
   const stillSrc = getGlobeStillSrc(project);
-  const animatedSrc = getGlobeAnimatedSrc(project);
+  const animatedSrc =
+    reducedMotion === true ? undefined : getGlobeAnimatedSrc(project);
   const hasImage = Boolean(stillSrc);
 
   return (
@@ -76,9 +43,10 @@ function FeaturedGlobeTileComponent({
           src={stillSrc}
           alt={project.cover.alt}
           width={GLOBE_STILL_WIDTH}
-          height={Math.round((GLOBE_STILL_WIDTH * 94) / 75)}
+          height={GLOBE_STILL_HEIGHT}
           decoding="async"
           loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "low"}
           draggable={false}
           className="size-full rounded-none object-cover"
         />
@@ -88,16 +56,16 @@ function FeaturedGlobeTileComponent({
         </span>
       )}
       {animatedSrc ? (
-        // Native img so Mux animated.webp keeps playing. Shown on front-facing
-        // tiles via CSS; display:none on the back avoids decoding hidden loops.
+        // Native img so Mux animated.webp keeps playing. `src` is assigned
+        // when the tile faces the camera — hidden back-face tiles must not
+        // compete with stills on first paint.
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={animatedSrc}
+          data-src={animatedSrc}
           alt=""
           width={GLOBE_ANIMATED_WIDTH}
-          height={Math.round((GLOBE_ANIMATED_WIDTH * 94) / 75)}
+          height={Math.round((GLOBE_ANIMATED_WIDTH * GLOBE_STILL_HEIGHT) / GLOBE_STILL_WIDTH)}
           decoding="async"
-          loading="lazy"
           draggable={false}
           aria-hidden
           className="globe-cover--animated pointer-events-none absolute inset-0 size-full rounded-none object-cover"

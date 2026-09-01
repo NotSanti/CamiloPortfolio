@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { preconnect } from "react-dom";
 import { getPublishedProjectSummaries } from "@/src/services/projects/get-published-projects";
 import { LoadingOverlay } from "@/src/components/layout/loading-overlay";
 import { PageTransition } from "@/src/components/layout/page-transition";
@@ -19,6 +20,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const projectSummaries = await getPublishedProjectSummaries();
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  if (supabaseUrl) {
+    preconnect(supabaseUrl);
+  }
+  preconnect("https://image.mux.com");
 
   return (
     <html lang="en" className="h-full antialiased">

@@ -49,6 +49,50 @@ export function getMediaUrl(path: string | null | undefined): string {
   return `${base}/storage/v1/object/public/${PORTFOLIO_MEDIA_BUCKET}/${path}`;
 }
 
+const STORAGE_OBJECT_PUBLIC = "/storage/v1/object/public/";
+const STORAGE_RENDER_PUBLIC = "/storage/v1/render/image/public/";
+
+export type StorageImageTransform = {
+  width: number;
+  height?: number;
+  quality?: number;
+  resize?: "cover" | "contain" | "fill";
+  format?: "origin" | "webp" | "avif";
+};
+
+/**
+ * Resize a Supabase Storage image via Image Transformations.
+ * Non-storage URLs (Mux, local `/public` paths) are returned unchanged.
+ */
+export function getResizedStorageUrl(
+  urlOrPath: string | null | undefined,
+  options: StorageImageTransform,
+): string {
+  const full = getMediaUrl(urlOrPath);
+  if (
+    !full.includes(STORAGE_OBJECT_PUBLIC) &&
+    !full.includes(STORAGE_RENDER_PUBLIC)
+  ) {
+    return full;
+  }
+
+  try {
+    const url = new URL(full.replace(STORAGE_OBJECT_PUBLIC, STORAGE_RENDER_PUBLIC));
+    url.searchParams.set("width", String(options.width));
+    if (options.height != null) {
+      url.searchParams.set("height", String(options.height));
+    } else {
+      url.searchParams.delete("height");
+    }
+    url.searchParams.set("resize", options.resize ?? "cover");
+    url.searchParams.set("quality", String(options.quality ?? 70));
+    url.searchParams.set("format", options.format ?? "webp");
+    return url.toString();
+  } catch {
+    return full;
+  }
+}
+
 export function isManagedStoragePath(path: string | null | undefined): boolean {
   if (!path) {
     return false;
