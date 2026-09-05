@@ -5,19 +5,11 @@ import {
   isManagedStoragePath,
   PORTFOLIO_MEDIA_BUCKET,
 } from "@/src/lib/media";
-import { createClient } from "@/src/lib/supabase/server";
+import { requireAdminClient } from "@/src/lib/auth/require-admin";
 import { SITE_SETTINGS_ID } from "@/src/services/site/get-site-settings";
 
 async function requireAuthedClient() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    throw new Error("Authentication required.");
-  }
-
+  const { supabase } = await requireAdminClient();
   return supabase;
 }
 

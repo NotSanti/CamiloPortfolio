@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAllowedMuxCorsOrigin, isUuid } from "@/src/lib/security/mux-upload";
 import { createProjectVideoDirectUpload } from "@/src/services/videos/create-direct-upload";
 
 export const runtime = "nodejs";
@@ -9,17 +10,27 @@ type RequestBody = {
   corsOrigin?: unknown;
 };
 
-function resolveCorsOrigin(
+const TITLE_MAX = 200;
+
+function pickAllowedCorsOrigin(
   request: Request,
   bodyOrigin: string | null,
 ): string | null {
-  if (bodyOrigin) return bodyOrigin;
-
   const headerOrigin = request.headers.get("origin");
-  if (headerOrigin) return headerOrigin;
+  if (headerOrigin) {
+    return isAllowedMuxCorsOrigin(headerOrigin)
+      ? new URL(headerOrigin).origin
+      : null;
+  }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
-  if (siteUrl) return siteUrl;
+  if (bodyOrigin && isAllowedMuxCorsOrigin(bodyOrigin)) {
+    return new URL(bodyOrigin).origin;
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? null;
+  if (siteUrl && isAllowedMuxCorsOrigin(siteUrl)) {
+    return new URL(siteUrl).origin;
+  }
 
   return null;
 }
@@ -27,7 +38,7 @@ function resolveCorsOrigin(
 /**
  * POST /api/mux/uploads
  *
- * Authenticated CMS users only. Creates a `project_videos` row and a Mux
+ * CMS administrators only. Creates a `project_videos` row and a Mux
  * direct-upload URL. Does not accept the video file body — the browser uploads
  * directly to Mux.
  */
@@ -42,17 +53,19 @@ export async function POST(request: Request) {
 
   const projectId =
     typeof body.projectId === "string" ? body.projectId.trim() : "";
-  const title = typeof body.title === "string" ? body.title : null;
+  const title =
+    typeof body.title === "string" ? body.title.slice(0, TITLE_MAX) : null;
   const bodyCorsOrigin =
     typeof body.corsOrigin === "string" ? body.corsOrigin.trim() : null;
-  const corsOrigin = resolveCorsOrigin(request, bodyCorsOrigin);
 
+  if (!projectId || !isUuid(projectId)) {
+    return NextResponse.json({ error: "Invalid project ID." }, { status: 400 });
+  }
+
+  const corsOrigin = pickAllowedCorsOrigin(request, bodyCorsOrigin);
   if (!corsOrigin) {
     return NextResponse.json(
-      {
-        error:
-          "Missing Origin. Send corsOrigin in the body or set NEXT_PUBLIC_SITE_URL.",
-      },
+      { error: "Origin is not allowed." },
       { status: 400 },
     );
   }
@@ -64,10 +77,14 @@ export async function POST(request: Request) {
   });
 
   if (!result.ok) {
-    return NextResponse.json(
+    const response = NextResponse.json(
       { error: result.error },
       { status: result.status },
     );
+    if (result.status === 429) {
+      response.headers.set("Retry-After", "60");
+    }
+    return response;
   }
 
   return NextResponse.json(

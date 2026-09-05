@@ -1,5 +1,10 @@
+import { AdminAuthError, requireAdminClient } from "@/src/lib/auth/require-admin";
 import { createMuxClient } from "@/src/lib/mux/server";
-import { createClient } from "@/src/lib/supabase/server";
+import {
+  isAllowedMuxCorsOrigin,
+  isUuid,
+  publicErrorMessage,
+} from "@/src/lib/security/mux-upload";
 
 export type CreateDirectUploadInput = {
   projectId: string;
@@ -24,26 +29,40 @@ export type CreateDirectUploadResult =
 export async function createProjectVideoDirectUpload(
   input: CreateDirectUploadInput,
 ): Promise<CreateDirectUploadResult> {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return { ok: false, error: "Authentication required.", status: 401 };
+  let supabase;
+  try {
+    ({ supabase } = await requireAdminClient());
+  } catch (err) {
+    if (err instanceof AdminAuthError) {
+      return { ok: false, error: err.message, status: err.status };
+    }
+    throw err;
   }
 
   const projectId = input.projectId.trim();
-  if (!projectId) {
-    return { ok: false, error: "projectId is required.", status: 400 };
+  if (!isUuid(projectId)) {
+    return { ok: false, error: "Invalid project ID.", status: 400 };
   }
 
   const corsOrigin = input.corsOrigin.trim();
-  if (!corsOrigin) {
+  if (!isAllowedMuxCorsOrigin(corsOrigin)) {
+    return { ok: false, error: "Origin is not allowed.", status: 400 };
+  }
+
+  const windowStart = new Date(Date.now() - 60_000).toISOString();
+  const { count: recentCount, error: rateError } = await supabase
+    .from("project_videos")
+    .select("id", { count: "exact", head: true })
+    .gte("created_at", windowStart);
+
+  if (rateError) {
+    return { ok: false, error: "Unable to create upload.", status: 500 };
+  }
+  if ((recentCount ?? 0) >= 8) {
     return {
       ok: false,
-      error: "corsOrigin is required for browser uploads.",
-      status: 400,
+      error: "Too many upload requests. Try again shortly.",
+      status: 429,
     };
   }
 
@@ -54,7 +73,7 @@ export async function createProjectVideoDirectUpload(
     .maybeSingle();
 
   if (projectError) {
-    return { ok: false, error: projectError.message, status: 500 };
+    return { ok: false, error: "Unable to load project.", status: 500 };
   }
   if (!project) {
     return { ok: false, error: "Project not found.", status: 404 };
@@ -84,7 +103,7 @@ export async function createProjectVideoDirectUpload(
   if (insertError || !video) {
     return {
       ok: false,
-      error: insertError?.message ?? "Failed to create video record.",
+      error: "Failed to create video record.",
       status: 500,
     };
   }
@@ -120,7 +139,7 @@ export async function createProjectVideoDirectUpload(
       .eq("id", video.id);
 
     if (updateError) {
-      return { ok: false, error: updateError.message, status: 500 };
+      return { ok: false, error: "Failed to save upload.", status: 500 };
     }
 
     return {
@@ -132,15 +151,15 @@ export async function createProjectVideoDirectUpload(
   } catch (err) {
     await supabase.from("project_videos").delete().eq("id", video.id);
 
-    const message =
-      err instanceof Error ? err.message : "Failed to create Mux upload.";
-    const missingCreds =
-      message.includes("MUX_TOKEN_ID") || message.includes("MUX_TOKEN_SECRET");
+    const { message, missingMuxCreds } = publicErrorMessage(
+      err,
+      "Failed to create Mux upload.",
+    );
 
     return {
       ok: false,
       error: message,
-      status: missingCreds ? 503 : 502,
+      status: missingMuxCreds ? 503 : 502,
     };
   }
 }

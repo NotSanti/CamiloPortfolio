@@ -1,4 +1,4 @@
-import { createClient } from "@/src/lib/supabase/server";
+import { requireAdminClient } from "@/src/lib/auth/require-admin";
 import type {
   ProjectImageRow,
   ProjectRow,
@@ -14,15 +14,7 @@ export type AdminProjectDetail = ProjectRow & {
 };
 
 async function requireUser() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    throw new Error("Authentication required.");
-  }
-
+  const { supabase } = await requireAdminClient();
   return supabase;
 }
 

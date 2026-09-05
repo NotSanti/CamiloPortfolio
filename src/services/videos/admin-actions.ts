@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/src/lib/supabase/server";
+import { requireAdminClient } from "@/src/lib/auth/require-admin";
 import type { ProjectVideoStatus } from "@/types/database";
 
 const UPDATABLE_STATUSES: ReadonlySet<ProjectVideoStatus> = new Set([
@@ -13,15 +13,7 @@ const UPDATABLE_STATUSES: ReadonlySet<ProjectVideoStatus> = new Set([
 ]);
 
 async function requireAuthedClient() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    throw new Error("Authentication required.");
-  }
-
+  const { supabase } = await requireAdminClient();
   return supabase;
 }
 

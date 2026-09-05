@@ -5,6 +5,7 @@ import {
   getMuxTokenSecret,
   getMuxWebhookSecret,
 } from "@/src/lib/mux/env";
+import { webhookClientError } from "@/src/lib/security/webhook-errors";
 import { handleMuxWebhookEvent } from "@/src/services/videos/handle-mux-webhook";
 
 export const runtime = "nodejs";
@@ -19,9 +20,11 @@ export async function POST(request: Request) {
   let webhookSecret: string;
   try {
     webhookSecret = getMuxWebhookSecret();
-  } catch (err) {
-    const message = err instanceof Error ? err.message : "Webhook secret missing.";
-    return NextResponse.json({ error: message }, { status: 503 });
+  } catch {
+    return NextResponse.json(
+      { error: webhookClientError("unconfigured") },
+      { status: 503 },
+    );
   }
 
   const rawBody = await request.text();
@@ -34,10 +37,11 @@ export async function POST(request: Request) {
       webhookSecret,
     });
     event = await mux.webhooks.unwrap(rawBody, request.headers);
-  } catch (err) {
-    const message =
-      err instanceof Error ? err.message : "Invalid webhook signature.";
-    return NextResponse.json({ error: message }, { status: 401 });
+  } catch {
+    return NextResponse.json(
+      { error: webhookClientError("invalid_signature") },
+      { status: 401 },
+    );
   }
 
   try {
@@ -47,10 +51,10 @@ export async function POST(request: Request) {
       type: event.type,
       ...result,
     });
-  } catch (err) {
-    const message =
-      err instanceof Error ? err.message : "Failed to process webhook.";
-    // 500 so Mux retries transient DB failures.
-    return NextResponse.json({ error: message }, { status: 500 });
+  } catch {
+    return NextResponse.json(
+      { error: webhookClientError("processing") },
+      { status: 500 },
+    );
   }
 }

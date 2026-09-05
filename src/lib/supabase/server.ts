@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import type { Database } from "@/types/database";
-import { getSupabaseAnonKey, getSupabaseUrl } from "@/src/lib/supabase/env";
+import { getSupabaseAnonKey, getSupabaseUrl } from "@/src/lib/supabase/env-public";
 
 /** Server Component / Route Handler client (anon key + cookie session + RLS). */
 export async function createClient() {

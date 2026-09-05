@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/src/lib/supabase/server";
+import { safeAdminNextPath } from "@/src/lib/security/safe-next-path";
 
 export type LoginState = {
   error: string | null;
@@ -29,10 +30,7 @@ export async function loginAction(
     return { error: "Invalid email or password." };
   }
 
-  const safeNext =
-    nextPath.startsWith("/admin") && !nextPath.startsWith("//")
-      ? nextPath
-      : "/admin/projects";
+  const safeNext = safeAdminNextPath(nextPath);
 
   redirect(safeNext);
 }

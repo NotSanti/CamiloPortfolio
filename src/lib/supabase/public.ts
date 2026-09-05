@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/types/database";
-import { getSupabaseAnonKey, getSupabaseUrl } from "@/src/lib/supabase/env";
+import { getSupabaseAnonKey, getSupabaseUrl } from "@/src/lib/supabase/env-public";
 
 /**
  * Cookie-free anon client for public server reads (SSG, RSC, generateStaticParams).

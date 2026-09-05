@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { requireAdminClient, AdminAuthError } from "@/src/lib/auth/require-admin";
 import { logoutAction } from "@/src/services/auth/actions";
-import { createClient } from "@/src/lib/supabase/server";
 
 export const metadata = {
   robots: { index: false, follow: false },
@@ -12,13 +12,14 @@ export default async function AdminCmsLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/admin/login");
+  let user;
+  try {
+    ({ user } = await requireAdminClient());
+  } catch (err) {
+    if (err instanceof AdminAuthError && err.status === 401) {
+      redirect("/admin/login");
+    }
+    redirect("/");
   }
 
   return (

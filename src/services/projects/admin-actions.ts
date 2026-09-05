@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { createClient } from "@/src/lib/supabase/server";
+import { requireAdminClient } from "@/src/lib/auth/require-admin";
 import { generateProjectSeo } from "@/src/lib/seo";
 import { slugifyTitle } from "@/src/services/projects/slugify";
 import { revalidatePublicSeo } from "@/src/services/seo/revalidate";
@@ -31,15 +31,7 @@ function revalidatePublicPortfolio(slug?: string, previousSlug?: string) {
 }
 
 async function requireAuthedClient() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    throw new Error("Authentication required.");
-  }
-
+  const { supabase } = await requireAdminClient();
   return supabase;
 }
 

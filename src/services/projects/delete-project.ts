@@ -1,9 +1,9 @@
+import { AdminAuthError, requireAdminClient } from "@/src/lib/auth/require-admin";
 import { createMuxClient } from "@/src/lib/mux/server";
 import {
   isManagedStoragePath,
   PORTFOLIO_MEDIA_BUCKET,
 } from "@/src/lib/media";
-import { createClient } from "@/src/lib/supabase/server";
 
 export type DeleteProjectCleanupResult =
   | { ok: true; slug: string; notes: string[] }
@@ -17,13 +17,14 @@ export async function deleteProjectWithMediaCleanup(
   projectId: string,
 ): Promise<DeleteProjectCleanupResult> {
   const notes: string[] = [];
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return { ok: false, error: "Authentication required.", notes };
+  let supabase;
+  try {
+    ({ supabase } = await requireAdminClient());
+  } catch (err) {
+    if (err instanceof AdminAuthError) {
+      return { ok: false, error: err.message, notes };
+    }
+    throw err;
   }
 
   const { data: project, error: loadError } = await supabase

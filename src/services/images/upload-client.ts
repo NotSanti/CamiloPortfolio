@@ -1,5 +1,5 @@
 import { createClient } from "@/src/lib/supabase/client";
-import { getSupabaseAnonKey, getSupabaseUrl } from "@/src/lib/supabase/env";
+import { getSupabaseAnonKey, getSupabaseUrl } from "@/src/lib/supabase/env-public";
 import {
   PORTFOLIO_MEDIA_BUCKET,
   sanitizeFileName,

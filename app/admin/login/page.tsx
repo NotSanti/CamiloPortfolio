@@ -1,4 +1,5 @@
 import { AdminLoginForm } from "@/src/components/admin/admin-login-form";
+import { safeAdminNextPath } from "@/src/lib/security/safe-next-path";
 
 type AdminLoginPageProps = {
   searchParams: Promise<{ next?: string }>;
@@ -13,10 +14,7 @@ export default async function AdminLoginPage({
   searchParams,
 }: AdminLoginPageProps) {
   const params = await searchParams;
-  const nextPath =
-    params.next && params.next.startsWith("/admin")
-      ? params.next
-      : "/admin/projects";
+  const nextPath = safeAdminNextPath(params.next ?? "");
 
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center bg-background px-6 py-16">

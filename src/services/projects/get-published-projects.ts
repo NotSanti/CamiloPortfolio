@@ -30,7 +30,7 @@ const PROJECT_DETAIL_SELECT = `
     id, project_id, storage_path, alt_text, caption, width, height, display_order, created_at
   ),
   project_videos (
-    id, project_id, mux_asset_id, mux_playback_id, mux_upload_id, source_path, status, title, caption, display_order, created_at, updated_at
+    id, project_id, mux_playback_id, source_path, status, title, caption, display_order, created_at, updated_at
   )
 `;
 

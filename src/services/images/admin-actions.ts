@@ -1,22 +1,14 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/src/lib/supabase/server";
+import { requireAdminClient } from "@/src/lib/auth/require-admin";
 import {
   isManagedStoragePath,
   PORTFOLIO_MEDIA_BUCKET,
 } from "@/src/lib/media";
 
 async function requireAuthedClient() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    throw new Error("Authentication required.");
-  }
-
+  const { supabase } = await requireAdminClient();
   return supabase;
 }
 

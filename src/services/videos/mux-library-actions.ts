@@ -1,8 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { AdminAuthError, requireAdminClient } from "@/src/lib/auth/require-admin";
 import { createMuxClient } from "@/src/lib/mux/server";
-import { createClient } from "@/src/lib/supabase/server";
 
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -35,16 +35,15 @@ export type HardDeleteMuxAssetResult =
   | { ok: false; error: string };
 
 async function requireAuthedClient() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    throw new Error("Authentication required.");
-  }
-
+  const { supabase } = await requireAdminClient();
   return supabase;
+}
+
+function authActionError(err: unknown): string {
+  if (err instanceof AdminAuthError) {
+    return err.message;
+  }
+  throw err;
 }
 
 function muxErrorMessage(err: unknown, fallback: string): string {
@@ -101,8 +100,8 @@ export async function listMuxLibraryAction(input: {
 }): Promise<ListMuxLibraryResult> {
   try {
     await requireAuthedClient();
-  } catch {
-    return { ok: false, error: "Authentication required." };
+  } catch (err) {
+    return { ok: false, error: authActionError(err) };
   }
 
   const projectId = input.projectId.trim();
@@ -205,8 +204,8 @@ export async function attachMuxAssetAction(input: {
   let supabase;
   try {
     supabase = await requireAuthedClient();
-  } catch {
-    return { ok: false, error: "Authentication required." };
+  } catch (err) {
+    return { ok: false, error: authActionError(err) };
   }
 
   const projectId = input.projectId.trim();
@@ -315,8 +314,8 @@ export async function hardDeleteMuxAssetAction(input: {
   let supabase;
   try {
     supabase = await requireAuthedClient();
-  } catch {
-    return { ok: false, error: "Authentication required." };
+  } catch (err) {
+    return { ok: false, error: authActionError(err) };
   }
 
   const assetId = input.assetId.trim();
